@@ -27,20 +27,20 @@ import javafx.stage.Stage;
  */
 public class MainScreenController implements Initializable 
 {
-    Stage CurrencyStage = new Stage();
+    Stage CurrencyStage;
     
     @FXML
     private void handleButtonAction(ActionEvent event)
     {
+        System.out.println("You clicked Currency");
         try {
-            System.out.println("You clicked Currency");
             
-            Parent root = FXMLLoader.load(getClass().getResource("Currency.fxml"));
-            
-            Scene scene = new Scene(root);
-            
-     
-            CurrencyStage.setScene(scene);
+            if (CurrencyStage == null){
+                CurrencyStage = new Stage();
+                Parent root = FXMLLoader.load(getClass().getResource("Currency.fxml"));
+                Scene scene = new Scene(root);
+                CurrencyStage.setScene(scene);
+            }
             CurrencyStage.show();
         } catch (IOException ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
