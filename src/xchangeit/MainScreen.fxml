@@ -6,9 +6,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xchangeit.MainScreenController">
+<AnchorPane id="AnchorPane" prefHeight="297.0" prefWidth="471.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="xchangeit.MainScreenController">
     <children>
-        <Button layoutX="126" layoutY="90" text="Click Me!" onAction="#handleButtonAction" fx:id="button" />
-        <Label layoutX="126" layoutY="120" minHeight="16" minWidth="69" fx:id="label" />
+        <Button fx:id="currencyButton" layoutX="36.0" layoutY="52.0" onAction="#handleButtonAction" text="Curriencies" />
     </children>
 </AnchorPane>
