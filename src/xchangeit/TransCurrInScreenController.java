@@ -15,7 +15,7 @@ import javafx.fxml.Initializable;
  *
  * @author Amer
  */
-public class TransCashInController implements Initializable
+public class TransCurrInScreenController implements Initializable
 {
 
     /**
