@@ -32,6 +32,10 @@ public class MainScreenController implements Initializable
     Stage RateStage;
     Stage BuyStage;
     Stage SellStage;
+    Stage TransCashInStage;
+    Stage TransCashOutStage;
+    Stage TransCurrInStage;
+    Stage TransCurrOutStage;
     
 
     @FXML
@@ -105,6 +109,82 @@ public class MainScreenController implements Initializable
                 SellStage.setScene(scene);
             }
             SellStage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
+    @FXML
+    private void handleTransCashInButtonAction(ActionEvent event)
+    {
+        System.out.println("You clicked TransCashIn");
+        try {
+            
+            if (TransCashInStage == null){
+                TransCashInStage = new Stage();
+                Parent root = FXMLLoader.load(getClass().getResource("TransCashInScreen.fxml"));
+                Scene scene = new Scene(root);
+                TransCashInStage.setScene(scene);
+            }
+            TransCashInStage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
+    @FXML
+    private void handleTransCashOutButtonAction(ActionEvent event)
+    {
+        System.out.println("You clicked TransCashOut");
+        try {
+            
+            if (TransCashOutStage == null){
+                TransCashOutStage = new Stage();
+                Parent root = FXMLLoader.load(getClass().getResource("TransCashOutScreen.fxml"));
+                Scene scene = new Scene(root);
+                TransCashOutStage.setScene(scene);
+            }
+            TransCashOutStage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
+    @FXML
+    private void handleTransCurrInButtonAction(ActionEvent event)
+    {
+        System.out.println("You clicked TransCurrIn");
+        try {
+            
+            if (TransCurrInStage == null){
+                TransCurrInStage = new Stage();
+                Parent root = FXMLLoader.load(getClass().getResource("TransCurrInScreen.fxml"));
+                Scene scene = new Scene(root);
+                TransCurrInStage.setScene(scene);
+            }
+            TransCurrInStage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
+    @FXML
+    private void handleTransCurrOutButtonAction(ActionEvent event)
+    {
+        System.out.println("You clicked TransCurrOut");
+        try {
+            
+            if (TransCurrOutStage == null){
+                TransCurrOutStage = new Stage();
+                Parent root = FXMLLoader.load(getClass().getResource("TransCurrOutScreen.fxml"));
+                Scene scene = new Scene(root);
+                TransCurrOutStage.setScene(scene);
+            }
+            TransCurrOutStage.show();
         } catch (IOException ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
