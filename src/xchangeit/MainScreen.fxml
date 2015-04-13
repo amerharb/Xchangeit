@@ -1,20 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" fx:id="transCashInButton" prefHeight="297.0" prefWidth="471.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xchangeit.MainScreenController">
+<AnchorPane id="AnchorPane" fx:id="transCashInButton" prefHeight="297.0" prefWidth="445.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xchangeit.MainScreenController">
     <children>
-        <Button fx:id="currencyButton" layoutX="332.0" layoutY="51.0" onAction="#handleCurrencyButtonAction" text="Currency" />
-      <Button fx:id="rateButton" layoutX="332.0" layoutY="95.0" onAction="#handleRateButtonAction" text="Rate" />
-      <Button fx:id="buyButton" layoutX="332.0" layoutY="149.0" onAction="#handleBuyButtonAction" text="Buy" />
-      <Button fx:id="sellButton" layoutX="332.0" layoutY="195.0" onAction="#handleSellButtonAction" text="Sell" />
-      <Button fx:id="transCashInButton" layoutX="74.0" layoutY="61.0" onAction="#handleTransCashInButtonAction" text="Trans Cash In" />
-      <Button fx:id="transCashOutButton" layoutX="74.0" layoutY="108.0" onAction="#handleTransCashOutButtonAction" text="Trans Cash Out" />
-      <Button fx:id="transCurrInButton" layoutX="74.0" layoutY="155.0" onAction="#handleTransCurrInButtonAction" text="Trans Curr In" />
-      <Button fx:id="transCurrOutButton" layoutX="74.0" layoutY="201.0" onAction="#handleTransCurrOutButtonAction" text="Trans Curr Out" />
+      <Pane layoutX="14.0" layoutY="20.0" prefHeight="257.0" prefWidth="150.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="60.0">
+         <children>
+            <Button fx:id="transCurrOutButton" layoutX="15.0" layoutY="160.0" onAction="#handleTransCurrOutButtonAction" prefHeight="25.0" prefWidth="100.0" text="Trans Curr Out" />
+            <Button fx:id="transCurrInButton" layoutX="15.0" layoutY="125.0" onAction="#handleTransCurrInButtonAction" prefHeight="25.0" prefWidth="100.0" text="Trans Curr In" />
+            <Button fx:id="transCashOutButton" layoutX="15.0" layoutY="75.0" onAction="#handleTransCashOutButtonAction" prefHeight="25.0" prefWidth="100.0" text="Trans Cash Out" />
+            <Button fx:id="transCashInButton1" layoutX="15.0" layoutY="40.0" onAction="#handleTransCashInButtonAction" prefHeight="25.0" prefWidth="100.0" text="Trans Cash In" />
+         </children>
+      </Pane>
+      <Pane layoutX="250.0" layoutY="49.0" prefHeight="257.0" prefWidth="140.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="60.0">
+         <children>
+            <Button fx:id="sellButton" layoutX="15.0" layoutY="125.0" onAction="#handleSellButtonAction" prefHeight="25.0" prefWidth="100.0" text="Sell" />
+              <Button fx:id="currencyButton" layoutX="15.0" layoutY="40.0" onAction="#handleCurrencyButtonAction" prefHeight="25.0" prefWidth="100.0" text="Currency" />
+            <Button fx:id="rateButton" layoutX="15.0" layoutY="75.0" onAction="#handleRateButtonAction" prefHeight="25.0" prefWidth="100.0" text="Rate" />
+            <Button fx:id="buyButton" layoutX="15.0" layoutY="160.0" onAction="#handleBuyButtonAction" prefHeight="25.0" prefWidth="100.0" text="Buy" />
+         </children>
+      </Pane>
+      <Label alignment="CENTER" layoutX="142.0" layoutY="14.0" prefHeight="42.0" prefWidth="425.0" text="Xchangeit" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>
