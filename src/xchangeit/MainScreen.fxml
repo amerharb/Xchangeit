@@ -6,8 +6,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="297.0" prefWidth="471.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="xchangeit.MainScreenController">
+<AnchorPane id="AnchorPane" prefHeight="297.0" prefWidth="471.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xchangeit.MainScreenController">
     <children>
-        <Button fx:id="currencyButton" layoutX="36.0" layoutY="52.0" onAction="#handleButtonAction" text="Curriencies" />
+        <Button fx:id="currencyButton" layoutX="332.0" layoutY="51.0" onAction="#handleCurrencyButtonAction" text="Curriency" />
+      <Button fx:id="rateButton" layoutX="332.0" layoutY="95.0" onAction="#handleRateButtonAction" text="Rate" />
+      <Button fx:id="buyButton" layoutX="332.0" layoutY="149.0" onAction="#handleBuyButtonAction" text="Buy" />
+      <Button fx:id="sellButton" layoutX="332.0" layoutY="195.0" onAction="#handleSellButtonAction" text="Sell" />
     </children>
 </AnchorPane>

@@ -15,7 +15,7 @@ import javafx.fxml.Initializable;
  *
  * @author Amer
  */
-public class CurrencyController implements Initializable
+public class BuyScreenController implements Initializable
 {
 
     /**
