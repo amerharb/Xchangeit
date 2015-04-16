@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.input.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
@@ -26,12 +27,12 @@
             <Button fx:id="buyButton" layoutX="15.0" layoutY="160.0" onAction="#handleBuyButtonAction" prefHeight="25.0" prefWidth="100.0" text="Buy" />
          </children>
       </Pane>
-      <Label alignment="CENTER" layoutX="142.0" layoutY="14.0" prefHeight="42.0" prefWidth="425.0" text="Xchangeit" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <Label alignment="CENTER" layoutX="142.0" layoutY="14.0" prefHeight="42.0" prefWidth="425.0" text="Xchangeit" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <Label layoutX="195.0" layoutY="60.0" text="Best Rates">
+      <Label layoutX="194.0" layoutY="70.0" text="Best Rates">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>
@@ -41,5 +42,38 @@
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
+      <MenuBar layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Database">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Connect" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Exit" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Entities">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#handleCurrencyButtonAction" text="Currencies">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="C" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem mnemonicParsing="false" onAction="#handleRateButtonAction" text="Rates" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Transactions">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#handleBuyButtonAction" text="Buy" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleSellButtonAction" text="Sell" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleTransCashInButtonAction" text="Cash in" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleTransCashOutButtonAction" text="Cash Out" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleTransCurrInButtonAction" text="Currency in" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleTransCurrOutButtonAction" text="Currency out" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
     </children>
 </AnchorPane>

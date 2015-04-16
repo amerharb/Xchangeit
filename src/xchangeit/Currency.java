@@ -15,19 +15,25 @@ public class Currency
 {
     private int pk;
     private String currName;
-    private char[] isoSymbol = new char[3];
+    private String isoSymbol;
     private String Symbol;
     private String note;
     private boolean inactive;			
 
+    public Currency(int pk, String currName, String isoSymbol, String Symbol, String note, boolean inactive){
+        this.pk = pk;
+        this.currName= currName;
+        this.isoSymbol = isoSymbol;
+        this.Symbol = Symbol;
+        this.note= note;
+        this.inactive = inactive;
+    }
+    
+    public Currency(){}
+    
     public int getPk()
     {
         return pk;
-    }
-
-    public void setPk(int pk)
-    {
-        this.pk = pk;
     }
 
     public String getCurrName()
@@ -40,12 +46,12 @@ public class Currency
         this.currName = currName;
     }
 
-    public char[] getIsoSymbol()
+    public String getIsoSymbol()
     {
         return isoSymbol;
     }
 
-    public void setIsoSymbol(char[] isoSymbol)
+    public void setIsoSymbol(String isoSymbol)
     {
         this.isoSymbol = isoSymbol;
     }

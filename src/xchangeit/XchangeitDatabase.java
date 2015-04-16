@@ -49,7 +49,6 @@ public class XchangeitDatabase
             System.err.println("ERROR: " + e);
         }
 
-
 }
     public XchConnectionStatusEnum getStatus(){
         return status;
@@ -65,6 +64,24 @@ public class XchangeitDatabase
             System.err.println("ERROR: " + e);
             return null;
         }
-            
+              
+    }
+    
+    public Currency getCurrencyByPK(int pk){
+        try{
+            Statement st = c.createStatement();
+            ResultSet rs = st.executeQuery("select curr_name, iso_symbol, symbol, note, inactive from curr where pk = " + pk);
+
+            if (rs.first()){
+                Currency curr = new Currency(pk, rs.getString("curr_name"), rs.getString("iso_symbol"), rs.getString("symbol"), rs.getString("note"), rs.getBoolean("inactive") );
+                return curr;
+            }else{
+                return null;
+            }
+        } catch (Exception e) {
+            System.err.println("ERROR: " + e);
+            return null;
+        }
+        
     }
 }
