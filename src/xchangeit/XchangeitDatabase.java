@@ -25,14 +25,14 @@ public class XchangeitDatabase
     }
     private XchConnectionStatusEnum status;
     
-    private Connection c;
+    private Connection conn;
 
     public void connect(String server, String rootPassword){
                // TODO code application logic here
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             String URL = "jdbc:mysql://" + server + ":3306/curEx?user=root&password=" + rootPassword;
-            c = DriverManager.getConnection(URL);
+            conn = DriverManager.getConnection(URL);
             status = XchConnectionStatusEnum.Connected;
         } catch (Exception e) {
             System.err.println("ERROR: " + e);
@@ -43,7 +43,7 @@ public class XchangeitDatabase
     public void Disconnect() {
     
         try{
-            c.close();
+            conn.close();
             status = XchConnectionStatusEnum.Disconnect;
         } catch (Exception e) {
             System.err.println("ERROR: " + e);
@@ -57,7 +57,7 @@ public class XchangeitDatabase
     public ResultSet executeStatment(String stmt){
         
         try{
-            Statement st = c.createStatement();
+            Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(stmt);
             return rs;
         } catch (Exception e) {
@@ -69,7 +69,7 @@ public class XchangeitDatabase
     
     public Currency getCurrencyByPK(int pk){
         try{
-            Statement st = c.createStatement();
+            Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("select curr_name, iso_symbol, symbol, note, inactive from curr where pk = " + pk);
 
             if (rs.first()){

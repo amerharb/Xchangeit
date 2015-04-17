@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="216.0" prefWidth="409.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="xchangeit.ConnectScreenController">
+   <children>
+      <Pane layoutX="186.0" layoutY="139.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <Label layoutX="26.0" layoutY="20.0" text="Server" />
+            <Label layoutX="26.0" layoutY="65.0" text="Password" />
+            <TextField layoutX="114.0" layoutY="20.0" prefHeight="25.0" prefWidth="269.0" />
+            <TextField layoutX="114.0" layoutY="65.0" prefHeight="25.0" prefWidth="269.0" />
+         </children>
+      </Pane>
+      <Button layoutX="275.0" layoutY="177.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" text="OK" />
+      <Button layoutX="137.0" layoutY="177.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" text="Cancel" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="10.0" text="Connect" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

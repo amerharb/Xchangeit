@@ -28,6 +28,8 @@ import javafx.stage.Stage;
 
 public class MainScreenController implements Initializable 
 {
+
+    Stage ConnectStage;
     Stage CurrencyStage;
     Stage RateStage;
     Stage BuyStage;
@@ -38,6 +40,32 @@ public class MainScreenController implements Initializable
     Stage TransCurrOutStage;
     
 
+    @FXML
+    private void handleExitButtonAction(ActionEvent event)
+    {
+        System.out.println("You clicked Exit");
+        System.exit(0);
+    }
+
+    @FXML
+    private void handleConnectButtonAction(ActionEvent event)
+    {
+        System.out.println("You clicked Connect");
+        try {
+            
+            if (ConnectStage == null){
+                ConnectStage = new Stage();
+                Parent root = FXMLLoader.load(getClass().getResource("ConnectScreen.fxml"));
+                Scene scene = new Scene(root);
+                ConnectStage.setScene(scene);
+            }
+            ConnectStage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
     @FXML
     private void handleCurrencyButtonAction(ActionEvent event)
     {
