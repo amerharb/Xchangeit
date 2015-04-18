@@ -24,16 +24,8 @@ import javafx.stage.Window;
  *
  * @author Amer
  */
-public class ConnectScreenController implements Initializable
+public class ConnectScreenController extends XchController
 {
-    
-    /**
-     * Initializes the controller class.
-     */
-    private static MainScreenController MainScreen;
-    public static void setMainScreen(MainScreenController MS){
-        MainScreen = MS;
-    }
     
     @FXML
     TextField serverNameText;
@@ -47,6 +39,7 @@ public class ConnectScreenController implements Initializable
         System.out.println("You clicked OK");
         XchangeitDatabase db = MainScreen.getDatabase();
         db.connect(serverNameText.getText(), rootPasswordText.getText());
+        //TODO: find more logical way to close window
         serverNameText.getParent().getScene().getWindow().hide();
     }
 
@@ -54,6 +47,7 @@ public class ConnectScreenController implements Initializable
     private void handleCancelButtonAction(ActionEvent event)
     {
         System.out.println("You clicked Cancel");
+        //TODO: find more logical way to close window
         serverNameText.getParent().getScene().getWindow().hide();
     }
     
@@ -61,13 +55,7 @@ public class ConnectScreenController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-//        Parent p = okButton.getParent();
-//        XchScene s = (XchScene) p.getScene();
-//        
-//        if (s!=null){
-//            MainScreen = s.getMainScreen();
-//            MainScreen.Database = null; //TEST
-//        }    
+
     }    
     
     
