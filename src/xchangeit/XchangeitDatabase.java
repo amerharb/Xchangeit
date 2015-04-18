@@ -6,11 +6,13 @@
 
 package xchangeit;
 
+import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.sql.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  *
@@ -83,5 +85,23 @@ public class XchangeitDatabase
             return null;
         }
         
+    }
+    
+    public ArrayList<Currency> getAllCurrency(){
+        try{
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("select pk, curr_name, iso_symbol, symbol, note, inactive from curr " );
+            ArrayList<Currency> list = new ArrayList();
+            
+            while(rs.next()){
+                Currency curr = new Currency(rs.getInt("pk"), rs.getString("curr_name"), rs.getString("iso_symbol"), rs.getString("symbol"), rs.getString("note"), rs.getBoolean("inactive") );
+                list.add(curr);
+            }
+            
+            return list;
+        } catch (Exception e) {
+            System.err.println("ERROR: " + e);
+            return null;
+        }
     }
 }
