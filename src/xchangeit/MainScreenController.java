@@ -39,7 +39,8 @@ public class MainScreenController implements Initializable
     Stage TransCurrInStage;
     Stage TransCurrOutStage;
     
-
+    private XchangeitDatabase Database = new XchangeitDatabase();
+    
     @FXML
     private void handleExitButtonAction(ActionEvent event)
     {
@@ -52,16 +53,18 @@ public class MainScreenController implements Initializable
     {
         System.out.println("You clicked Connect");
         try {
-            
+
             if (ConnectStage == null){
                 ConnectStage = new Stage();
                 Parent root = FXMLLoader.load(getClass().getResource("ConnectScreen.fxml"));
                 Scene scene = new Scene(root);
                 ConnectStage.setScene(scene);
+                ConnectScreenController.setMainScreen(this);
             }
-            ConnectStage.show();
+            ConnectStage.show();            
         } catch (IOException ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
+            ConnectStage = null;
         }
 
     }
@@ -225,5 +228,10 @@ public class MainScreenController implements Initializable
     {
         // TODO
     }    
+
+    public XchangeitDatabase getDatabase()
+    {
+        return Database;
+    }
     
 }

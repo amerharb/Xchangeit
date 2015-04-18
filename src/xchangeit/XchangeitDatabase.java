@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.*;
 
 /**
  *
@@ -28,7 +29,6 @@ public class XchangeitDatabase
     private Connection conn;
 
     public void connect(String server, String rootPassword){
-               // TODO code application logic here
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             String URL = "jdbc:mysql://" + server + ":3306/curEx?user=root&password=" + rootPassword;
