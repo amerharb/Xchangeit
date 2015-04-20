@@ -68,9 +68,9 @@ public class MainScreenController implements Initializable
         try {
             showScreen(CurrencyStage, "CurrencyScreen.fxml");
         } catch (IOException ex) {
+            ex.printStackTrace();
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
     
     @FXML
@@ -161,11 +161,17 @@ public class MainScreenController implements Initializable
     private void showScreen(Stage stage, String fxmlFile) throws IOException{
             
             if (stage == null){
+                FXMLLoader loader = new FXMLLoader();
                 stage = new Stage();
-                Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
+                
+                Parent root = loader.load(getClass().getResource(fxmlFile));
+                //NOTE: no need to list line as it has been made a static and added to the initionlization method below
+                //XchController.setMainScreen(this);
+                //XchController cnt = loader.getController();
+                //cnt.setMainScreen(this);
+                
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
-                XchController.setMainScreen(this);
             }
             stage.show();
     }
@@ -173,7 +179,7 @@ public class MainScreenController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
+        XchController.setMainScreen(this);
     }    
 
     public XchangeitDatabase getDatabase()

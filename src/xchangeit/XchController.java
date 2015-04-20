@@ -15,8 +15,8 @@ import javafx.fxml.Initializable;
 public abstract class XchController implements Initializable
 {
     protected static MainScreenController MainScreen;
-    public static void setMainScreen(MainScreenController MS){
-        MainScreen = MS;
+    public static void setMainScreen(MainScreenController mainScreenController){
+        MainScreen = mainScreenController;
     }
         
 }

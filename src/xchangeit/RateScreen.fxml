@@ -7,13 +7,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="xchangeit.RateScreenController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xchangeit.RateScreenController">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="247.0" layoutY="36.0" prefHeight="35.0" prefWidth="127.0" text="Rates" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
+      <TableView fx:id="rateTable" layoutX="64.0" layoutY="90.0" prefHeight="304.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <columns>
+          <TableColumn fx:id="pkCol" prefWidth="75.0" sortable="false" text="C1" />
+          <TableColumn fx:id="nameCol" prefWidth="75.0" sortable="false" text="C2" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>
