@@ -20,7 +20,7 @@ import java.util.Collection;
  */
 
 
-public class XchangeitDatabase
+public class XchDatabase
 {
     public enum XchConnectionStatusEnum{
         Disconnect,

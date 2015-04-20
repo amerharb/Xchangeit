@@ -37,7 +37,7 @@ public class ConnectScreenController extends XchController
     private void handleOkButtonAction(ActionEvent event)
     {
         System.out.println("You clicked OK");
-        XchangeitDatabase db = MainScreen.getDatabase();
+        XchDatabase db = MainScreen.getDatabase();
         db.connect(serverNameText.getText(), rootPasswordText.getText());
         //TODO: find more logical way to close window
         serverNameText.getParent().getScene().getWindow().hide();

@@ -39,7 +39,7 @@ public class MainScreenController implements Initializable
     Stage TransCurrInStage;
     Stage TransCurrOutStage;
     
-    private XchangeitDatabase Database = new XchangeitDatabase();
+    private XchDatabase Database = new XchDatabase();
     
     @FXML
     private void handleExitButtonAction(ActionEvent event)
@@ -182,7 +182,7 @@ public class MainScreenController implements Initializable
         XchController.setMainScreen(this);
     }    
 
-    public XchangeitDatabase getDatabase()
+    public XchDatabase getDatabase()
     {
         return Database;
     }

@@ -12,7 +12,7 @@ import javafx.scene.control.TableView;
 public class CurrencyScreenController extends XchController
 {
 
-    XchangeitDatabase DataBase;     
+    XchDatabase DataBase;     
 
     @FXML TableView<CurrencyProperty> currencyTable;
     
