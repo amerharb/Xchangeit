@@ -2,15 +2,20 @@ drop database CurEx;
 
 create database CurEx;
 
+
 use CurEx;
 
+
 #this table will contain all the currencies that this Currency Exchange company will deal will
+
 #not including the local currency
+
 create table curr 
 (  
+
 	pk			    	int				  	not null
 						auto_increment primary key
-	,curr_name    		varchar(50)			not null
+	,curr_name			varchar(50)			not null
 	,ISO_symbol			char(3)				not null
 						unique
 	,symbol				nvarchar(10)		null
@@ -32,6 +37,7 @@ create table rates
 	,buy_price			float				not null # from buy transaction 
     ,note				nvarchar(100)		null # could be use full to register the info of rate source
 );
+
 
 #this table will containt all transaction transfater cash and currency and buy and sell
 create table trans
