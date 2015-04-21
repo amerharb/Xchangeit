@@ -26,14 +26,21 @@ public class XchDatabase
         Disconnect,
         Connected
     }
-    private XchConnectionStatusEnum status;
+    private XchConnectionStatusEnum status = XchConnectionStatusEnum.Disconnect;
     
     private Connection conn;
 
     public void connect(String server, String rootPassword){
+        connect(server, rootPassword, "");
+    }
+    
+    public void connect(String server, String rootPassword, String databaseName){
         try {
+            if (!databaseName.isEmpty())
+                databaseName= "/".concat(databaseName);
+            
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            String URL = "jdbc:mysql://" + server + ":3306/curEx?user=root&password=" + rootPassword;
+            String URL = "jdbc:mysql://" + server + ":3306" + databaseName + "?user=root&password=" + rootPassword;
             conn = DriverManager.getConnection(URL);
             status = XchConnectionStatusEnum.Connected;
         } catch (Exception e) {
@@ -41,6 +48,7 @@ public class XchDatabase
         }
 
     }
+    
     
     public void Disconnect() {
     

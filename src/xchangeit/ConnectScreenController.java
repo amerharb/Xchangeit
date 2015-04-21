@@ -38,7 +38,7 @@ public class ConnectScreenController extends XchController
     {
         System.out.println("You clicked OK");
         XchDatabase db = MainScreen.getDatabase();
-        db.connect(serverNameText.getText(), rootPasswordText.getText());
+        db.connect(serverNameText.getText(), rootPasswordText.getText(), "CurEx");
         //TODO: find more logical way to close window
         serverNameText.getParent().getScene().getWindow().hide();
     }
