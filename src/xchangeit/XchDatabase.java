@@ -99,6 +99,25 @@ public class XchDatabase
         }
     }
 
+    public ArrayList<Rate> getAllRate(){
+        try{
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("select pk, rate_date, curr, rate, sell_price, buy_price, note from rates" );
+            ArrayList<Rate> list = new ArrayList();
+            
+            while(rs.next()){
+                //TODO get currency object from fixed collection no new 
+                Rate r = new Rate(rs.getInt("pk"), rs.getDate("rate_date"), getCurrencyByPK(rs.getInt("curr")), rs.getDouble("rate"), rs.getDouble("sell_price"), rs.getDouble("buy_price"), rs.getString("note"));
+                list.add(r);
+            }
+            return list;
+
+        } catch (Exception e) {
+            System.err.println("ERROR: " + e);
+            return null;
+        }
+    }
+
     public void createDatabase(){
         createDatabase("Xchangeit");
     }

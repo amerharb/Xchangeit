@@ -20,14 +20,16 @@ public class Rate
     private double rate;
     private double sellPrice;
     private double buyPrice;			
-
-    public Rate(int pk, Date rateDate, Currency curr, double rate, double sellPrice, double buyPrice){
+    private String note;
+    
+    public Rate(int pk, Date rateDate, Currency curr, double rate, double sellPrice, double buyPrice, String note){
         this.pk = pk;
         this.rateDate = rateDate;
         this.curr = curr;
         this.rate = rate;
         this.sellPrice = sellPrice;
         this.buyPrice = buyPrice;
+        this.note = note;
     }
     
 //    public Currency(){}
@@ -86,5 +88,16 @@ public class Rate
     {
         this.buyPrice = buyPrice;
     }
+    
+    public String getNote()
+    {
+        return note;
+    }
+
+    public void setNote(String note)
+    {
+        this.note = note;
+    }
+
 
 }

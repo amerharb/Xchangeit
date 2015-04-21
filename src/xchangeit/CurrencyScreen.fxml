@@ -14,7 +14,7 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <TableView fx:id="currencyTable" editable="true" layoutX="14.0" layoutY="300.0" prefHeight="327.0" prefWidth="580.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+      <TableView fx:id="currencyTable" editable="true" layoutX="14.0" layoutY="300.0" prefHeight="325.0" prefWidth="580.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
         <columns>
           <TableColumn fx:id="pkCol" editable="false" maxWidth="30.0" prefWidth="30.0" resizable="false" sortable="false" text="pk" />
           <TableColumn fx:id="nameCol" prefWidth="115.0" sortable="false" text="Currency Name" />
