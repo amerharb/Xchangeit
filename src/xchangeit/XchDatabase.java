@@ -37,7 +37,7 @@ public class XchDatabase
     public void connect(String server, String rootPassword, String databaseName){
         try {
             if (!databaseName.isEmpty())
-                databaseName= "/".concat(databaseName);
+                databaseName = "/" + databaseName;
             
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             String URL = "jdbc:mysql://" + server + ":3306" + databaseName + "?user=root&password=" + rootPassword;
@@ -49,6 +49,9 @@ public class XchDatabase
 
     }
     
+    public void createDatabase(String databaseName){
+        
+    }
     
     public void Disconnect() {
     
