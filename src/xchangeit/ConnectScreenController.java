@@ -16,8 +16,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import sun.security.krb5.JavaxSecurityAuthKerberosAccess;
 
 /**
  * FXML Controller class
@@ -26,7 +28,8 @@ import javafx.stage.Window;
  */
 public class ConnectScreenController extends XchController
 {
-    
+
+    @FXML AnchorPane connectPane;
     @FXML
     TextField serverNameText;
     
@@ -41,6 +44,7 @@ public class ConnectScreenController extends XchController
         db.connect(serverNameText.getText(), rootPasswordText.getText(), "CurEx");
         //TODO: find more logical way to close window
         serverNameText.getParent().getScene().getWindow().hide();
+
     }
 
     @FXML
