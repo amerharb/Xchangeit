@@ -42,14 +42,14 @@ public class MainScreenController implements Initializable
     private XchDatabase Database = new XchDatabase();
     
     @FXML
-    private void handleExitButtonAction(ActionEvent event)
+    private void handleExitAction(ActionEvent event)
     {
         System.out.println("You clicked Exit");
         System.exit(0);
     }
 
     @FXML
-    private void handleConnectButtonAction(ActionEvent event)
+    private void handleConnectAction(ActionEvent event)
     {
         System.out.println("You clicked Connect");
         try {
@@ -62,7 +62,7 @@ public class MainScreenController implements Initializable
     }
     
     @FXML
-    private void handleCurrencyButtonAction(ActionEvent event)
+    private void handleCurrencyAction(ActionEvent event)
     {
         System.out.println("You clicked Currency");
         try {
@@ -74,7 +74,7 @@ public class MainScreenController implements Initializable
     }
     
     @FXML
-    private void handleRateButtonAction(ActionEvent event)
+    private void handleRateAction(ActionEvent event)
     {
         System.out.println("You clicked Rate");
         try {
@@ -87,7 +87,7 @@ public class MainScreenController implements Initializable
     
 
     @FXML
-    private void handleBuyButtonAction(ActionEvent event)
+    private void handleBuyAction(ActionEvent event)
     {
         System.out.println("You clicked Buy");
         try {
@@ -99,7 +99,7 @@ public class MainScreenController implements Initializable
     }
     
     @FXML
-    private void handleSellButtonAction(ActionEvent event)
+    private void handleSellAction(ActionEvent event)
     {
         System.out.println("You clicked Sell");
         try {
@@ -111,7 +111,7 @@ public class MainScreenController implements Initializable
     }
     
     @FXML
-    private void handleTransCashInButtonAction(ActionEvent event)
+    private void handleTransCashInAction(ActionEvent event)
     {
         System.out.println("You clicked TransCashIn");
         try {
@@ -123,7 +123,7 @@ public class MainScreenController implements Initializable
     }
     
     @FXML
-    private void handleTransCashOutButtonAction(ActionEvent event)
+    private void handleTransCashOutAction(ActionEvent event)
     {
         System.out.println("You clicked TransCashOut");
         try {
@@ -135,7 +135,7 @@ public class MainScreenController implements Initializable
     }
     
     @FXML
-    private void handleTransCurrInButtonAction(ActionEvent event)
+    private void handleTransCurrInAction(ActionEvent event)
     {
         System.out.println("You clicked TransCurrIn");
         try {
@@ -147,7 +147,7 @@ public class MainScreenController implements Initializable
     }
     
     @FXML
-    private void handleTransCurrOutButtonAction(ActionEvent event)
+    private void handleTransCurrOutAction(ActionEvent event)
     {
         System.out.println("You clicked TransCurrOut");
         try {
