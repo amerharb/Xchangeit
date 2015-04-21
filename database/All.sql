@@ -1,8 +1,8 @@
-drop database CurEx;
+drop database Xchangeit;
 
-create database CurEx;
+create database Xchangeit;
 
-use CurEx;
+use Xchangeit;
 
 #this table will contain all the currencies that this Currency Exchange company will deal will
 #not including the local currency
@@ -69,7 +69,7 @@ create table trans
 );
 
 
-use CurEx;
+use Xchangeit;
 
 SET SQL_SAFE_UPDATES = 0;
 
@@ -84,7 +84,6 @@ insert into curr(curr_name ,ISO_symbol ,symbol) value
 	,('Australian Dollar'		,'AUD' ,'A$') #pk=8
 	,('Canadian Dollar'			,'CAD' ,'C$') #pk=9
 	,('Dupl. Canadian dollar'	,'CAA' ,'C') #pk=10 # wrong value to demostrate deleting it
-    
 ;
 
 #update currency rates at 2014-01-02 9:00 
@@ -191,7 +190,7 @@ insert into trans(trans_type ,curr ,curr_amt ,rate)
 SET SQL_SAFE_UPDATES = 1;
 
 #Reports
-use CurEx;
+use Xchangeit;
 
 #Last Currency rates and Prices
 select c.ISO_symbol currency ,r.rate ,r.sell_price ,r.buy_price 

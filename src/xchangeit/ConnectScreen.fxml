@@ -18,11 +18,12 @@
          </children>
       </Pane>
       <Button fx:id="okButton" layoutX="275.0" layoutY="177.0" mnemonicParsing="false" onAction="#handleOkButtonAction" prefHeight="25.0" prefWidth="120.0" text="OK" />
-      <Button fx:id="cancelButton" layoutX="137.0" layoutY="177.0" mnemonicParsing="false" onAction="#handleCancelButtonAction" prefHeight="25.0" prefWidth="120.0" text="Cancel" />
+      <Button fx:id="cancelButton" layoutX="14.0" layoutY="175.0" mnemonicParsing="false" onAction="#handleCancelButtonAction" prefHeight="25.0" prefWidth="120.0" text="Cancel" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="10.0" text="Connect" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
+      <Button fx:id="cancelButton1" layoutX="145.0" layoutY="177.0" mnemonicParsing="false" onAction="#handleCreateDatabaseButtonAction" prefHeight="25.0" prefWidth="120.0" text="Create Database" />
    </children>
 </AnchorPane>

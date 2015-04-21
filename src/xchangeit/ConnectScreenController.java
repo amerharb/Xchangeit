@@ -32,17 +32,28 @@ public class ConnectScreenController extends XchController
     @FXML PasswordField rootPasswordText;
     
     @FXML 
+    private void handleCreateDatabaseButtonAction(ActionEvent event)
+    {
+        System.out.println("You clicked Create Database");
+        XchDatabase db = MainScreen.getDatabase();
+        if (db.getStatus() == XchDatabase.XchConnectionStatusEnum.Connected)
+            db.Disconnect();
+        
+        db.connect(serverNameText.getText(), rootPasswordText.getText());
+        db.createDatabase();
+        
+    }
+    
+    @FXML 
     private void handleOkButtonAction(ActionEvent event)
     {
         System.out.println("You clicked OK");
         XchDatabase db = MainScreen.getDatabase();
-        db.connect(serverNameText.getText(), rootPasswordText.getText(), "CurEx");
+        db.connect(serverNameText.getText(), rootPasswordText.getText(), "Xchangeit");
         //TODO: find more logical way to close window
         serverNameText.getParent().getScene().getWindow().hide();
 
     }
-    
-    
     
     @FXML
     private void handleCancelButtonAction(ActionEvent event)
@@ -55,7 +66,7 @@ public class ConnectScreenController extends XchController
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-
+            
     }    
     
 }
