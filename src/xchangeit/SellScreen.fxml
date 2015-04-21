@@ -9,7 +9,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xchangeit.SellScreenController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="237.0" layoutY="35.0" prefHeight="35.0" prefWidth="127.0" text="Sell Currency" textAlignment="CENTER">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="237.0" layoutY="35.0" prefHeight="35.0" prefWidth="127.0" text="Sell Currency" textAlignment="CENTER" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
