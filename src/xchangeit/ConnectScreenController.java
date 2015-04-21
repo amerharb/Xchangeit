@@ -42,6 +42,8 @@ public class ConnectScreenController extends XchController
 
     }
     
+    
+    
     @FXML
     private void handleCancelButtonAction(ActionEvent event)
     {
