@@ -30,13 +30,11 @@ public class ConnectScreenController extends XchController
 {
 
     @FXML AnchorPane connectPane;
-    @FXML
-    TextField serverNameText;
+    @FXML TextField serverNameText;
     
-    @FXML
-    PasswordField rootPasswordText;
+    @FXML PasswordField rootPasswordText;
     
-    @FXML
+    @FXML 
     private void handleOkButtonAction(ActionEvent event)
     {
         System.out.println("You clicked OK");
@@ -46,7 +44,7 @@ public class ConnectScreenController extends XchController
         serverNameText.getParent().getScene().getWindow().hide();
 
     }
-
+    
     @FXML
     private void handleCancelButtonAction(ActionEvent event)
     {
@@ -54,13 +52,11 @@ public class ConnectScreenController extends XchController
         //TODO: find more logical way to close window
         serverNameText.getParent().getScene().getWindow().hide();
     }
-    
-    
+        
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
 
     }    
-    
     
 }
