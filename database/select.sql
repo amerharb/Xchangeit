@@ -1,6 +1,7 @@
 
 #Reports
-use CurEx;
+
+use Xchangeit;
 
 #Last Currency rates and Prices
 select c.ISO_symbol currency ,r.rate ,r.sell_price ,r.buy_price 

@@ -1,5 +1,5 @@
-
-use CurEx;
+﻿
+use Xchangeit;
 
 SET SQL_SAFE_UPDATES = 0;
 insert into curr(curr_name ,ISO_symbol ,symbol) value 
