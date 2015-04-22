@@ -62,6 +62,19 @@ public class MainScreenController implements Initializable
     }
     
     @FXML
+    private void handleDisconnectAction(ActionEvent event)
+    {
+        System.out.println("You clicked Disconnect");
+        try {
+            Database.Disconnect();
+        } catch (Exception ex) {
+            Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
+            ConnectStage = null;
+        }
+
+    }
+    
+    @FXML
     private void handleCurrencyAction(ActionEvent event)
     {
         System.out.println("You clicked Currency");

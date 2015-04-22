@@ -46,7 +46,8 @@
         <menus>
           <Menu mnemonicParsing="false" text="Database">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#handleConnectAction" text="Connect" />
+              <MenuItem mnemonicParsing="false" onAction="#handleConnectAction" text="Connect ..." />
+                  <MenuItem mnemonicParsing="false" onAction="#handleDisconnectAction" text="Disconnect" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" onAction="#handleExitAction" text="Exit" />
             </items>
