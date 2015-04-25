@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -24,7 +25,19 @@ public class CurrencyScreenController extends XchController
     
     ArrayList<Currency> allCureency;
     ObservableList<CurrencyProperty> allCurrencyProperty = FXCollections.observableArrayList();
-    
+
+    @FXML
+    private void handleAddCurrencyAction(ActionEvent event)
+    {
+        
+        System.out.println("You Click Currency Screen Add Button");
+        try{
+            allCurrencyProperty.add(new CurrencyProperty(33, "name", "sym", "Sym", "note", false));
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
