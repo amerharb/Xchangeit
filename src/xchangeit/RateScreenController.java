@@ -51,19 +51,20 @@ public class RateScreenController implements Initializable
                 DataBase = MainScreen.getDatabase();
                 allRate = DataBase.getAllRate();
 
+                if (allRate != null) {
                 for(Rate r:allRate){
                     allRateProperty.add(new RateProperty(r));
                 }
+                    pkCol.setCellValueFactory(cellData -> cellData.getValue().getPkProperty().asObject());
+                    rateDateCol.setCellValueFactory(cellData -> cellData.getValue().getRateDateProperty());
+                    currCol.setCellValueFactory(cellData -> cellData.getValue().getCurrProperty().getCurrNameProperty());
+                    rateCol.setCellValueFactory(cellData -> cellData.getValue().getRateProperty().asObject());
+                    sellPriceCol.setCellValueFactory(cellData -> cellData.getValue().getSellPriceProperty().asObject());
+                    buyPriceCol.setCellValueFactory(cellData -> cellData.getValue().getBuyPriceProperty().asObject());
+                    noteCol.setCellValueFactory(cellData -> cellData.getValue().getNoteProperty());
 
-                pkCol.setCellValueFactory(cellData -> cellData.getValue().getPkProperty().asObject());
-                rateDateCol.setCellValueFactory(cellData -> cellData.getValue().getRateDateProperty());
-                currCol.setCellValueFactory(cellData -> cellData.getValue().getCurrProperty().getCurrNameProperty());
-                rateCol.setCellValueFactory(cellData -> cellData.getValue().getRateProperty().asObject());
-                sellPriceCol.setCellValueFactory(cellData -> cellData.getValue().getSellPriceProperty().asObject());
-                buyPriceCol.setCellValueFactory(cellData -> cellData.getValue().getBuyPriceProperty().asObject());
-                noteCol.setCellValueFactory(cellData -> cellData.getValue().getNoteProperty());
-
-                rateTable.setItems(allRateProperty);
+                    rateTable.setItems(allRateProperty);
+                }
             }
             
         }catch(Exception ex) {

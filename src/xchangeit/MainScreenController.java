@@ -82,7 +82,6 @@ public class MainScreenController implements Initializable
             showScreen(CurrencyStage, "CurrencyScreen.fxml");
         } catch (IOException ex) {
             ex.printStackTrace();
-            Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -172,7 +171,7 @@ public class MainScreenController implements Initializable
     }
     
     private void showScreen(Stage stage, String fxmlFile) throws IOException{
-            
+        try{
             if (stage == null){
                 FXMLLoader loader = new FXMLLoader();
                 stage = new Stage();
@@ -187,6 +186,10 @@ public class MainScreenController implements Initializable
                 stage.setScene(scene);
             }
             stage.show();
+            
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
     }
     
     @Override
