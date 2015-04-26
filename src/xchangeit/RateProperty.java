@@ -36,7 +36,10 @@ public class RateProperty extends Rate
         super(pk, rateDate, curr, rate, sellPrice, buyPrice, note);
         this.pkProperty = new SimpleIntegerProperty(pk);
         this.rateDateProperty = new SimpleObjectProperty(rateDate);
-        this.currProperty = new CurrencyProperty(curr);
+        if (curr == null)
+            this.currProperty = new CurrencyProperty(0,"","","","",false);
+        else
+            this.currProperty = new CurrencyProperty(curr);
         this.rateProperty = new SimpleDoubleProperty(rate);
         this.sellPriceProperty = new SimpleDoubleProperty(sellPrice);
         this.buyPriceProperty = new SimpleDoubleProperty(buyPrice);

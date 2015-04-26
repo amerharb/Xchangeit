@@ -52,9 +52,9 @@ public class RateScreenController implements Initializable
                 allRate = DataBase.getAllRate();
 
                 if (allRate != null) {
-                for(Rate r:allRate){
-                    allRateProperty.add(new RateProperty(r));
-                }
+                    for(Rate r:allRate){
+                        allRateProperty.add(new RateProperty(r));
+                    }
                     pkCol.setCellValueFactory(cellData -> cellData.getValue().getPkProperty().asObject());
                     rateDateCol.setCellValueFactory(cellData -> cellData.getValue().getRateDateProperty());
                     currCol.setCellValueFactory(cellData -> cellData.getValue().getCurrProperty().getCurrNameProperty());

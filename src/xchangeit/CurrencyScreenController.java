@@ -37,6 +37,7 @@ public class CurrencyScreenController extends XchController
     
     @FXML Button updateButton;
     @FXML Button newButton;
+    @FXML Button deleteButton;
     
     ArrayList<Currency> allCureency;
     ObservableList<CurrencyProperty> allCurrencyProperty = FXCollections.observableArrayList();
@@ -63,7 +64,6 @@ public class CurrencyScreenController extends XchController
         System.out.println("You Click on Table");
         try{
 
-            selCurrencyProp = currencyTable.getSelectionModel().getSelectedItem();
             fillFields();
         }catch(Exception ex){
             ex.printStackTrace();
@@ -73,6 +73,7 @@ public class CurrencyScreenController extends XchController
     private void fillFields(){
         try{
 
+            selCurrencyProp = currencyTable.getSelectionModel().getSelectedItem();
             if (selCurrencyProp != null){
                 currNameText.setText(selCurrencyProp.getCurrName());
                 isoSymbolText.setText(selCurrencyProp.getIsoSymbol());
@@ -80,12 +81,47 @@ public class CurrencyScreenController extends XchController
                 noteText.setText(selCurrencyProp.getNote());
                 inactiveCheck.setSelected(selCurrencyProp.isInactive());
                 
+            }else{
+                currNameText.clear();
+                isoSymbolText.clear();
+                symbolText.clear();
+                noteText.clear();
+                inactiveCheck.setSelected(false);
             }
         }catch(Exception ex){
             ex.printStackTrace();
         }
     }
     
+    @FXML
+    private void handelDeleteCurrencyAction(ActionEvent event)
+    {
+        
+        System.out.println("You Click delete currency");
+        try{
+            if (selCurrencyProp != null){
+                if (DataBase.delCurrencyByPK(selCurrencyProp.getPk())){
+                    fillCurrencyTable();
+                }
+            }
+            fillFields();
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handelUpdateCurrencyAction(ActionEvent event)
+    {
+        
+        System.out.println("You Click xxx");
+        try{
+
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
     @FXML
     private void xxxAction(ActionEvent event)
     {
@@ -101,11 +137,22 @@ public class CurrencyScreenController extends XchController
     public void initialize(URL url, ResourceBundle rb)
     {
         try{
+            fillCurrencyTable();
+            fillFields();
+        }catch(Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void fillCurrencyTable()
+    {
+        try{
             if (MainScreen != null){
                 DataBase = MainScreen.getDatabase();
                 allCureency = DataBase.getAllCurrency();
 
                 if (allCureency != null){
+                    allCurrencyProperty = FXCollections.observableArrayList();
                     for(Currency c:allCureency){
                         allCurrencyProperty.add(new CurrencyProperty(c));
                     }
@@ -123,5 +170,4 @@ public class CurrencyScreenController extends XchController
             ex.printStackTrace();
         }
     }
-    
 }

@@ -22,6 +22,12 @@ import java.util.Collection;
 
 public class XchDatabase
 {
+
+    public XchDatabase()
+    {
+        this.allCurrency = new ArrayList<>();
+    }
+    
     public enum XchConnectionStatusEnum{
         Disconnect,
         Connected
@@ -30,6 +36,8 @@ public class XchDatabase
     
     private Connection conn;
 
+    private ArrayList<Currency> allCurrency;
+    
     public void connect(String server, String rootPassword){
         connect(server, rootPassword, "");
     }
@@ -81,6 +89,23 @@ public class XchDatabase
         
     }
     
+    public boolean delCurrencyByPK(int pk){
+        try{
+            Statement st = conn.createStatement();
+            boolean r = st.execute("delete from curr where pk = " + pk);
+            if (st.getUpdateCount()>0)
+                //TODO look in allCurrency object and remove the currency from here also
+                return true;
+            else
+                return false;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+                    
+        }
+        
+    }
+    
     public ArrayList<Currency> getAllCurrency(){
         try{
             Statement st = conn.createStatement();
@@ -91,6 +116,8 @@ public class XchDatabase
                 Currency curr = new Currency(rs.getInt("pk"), rs.getString("curr_name"), rs.getString("iso_symbol"), rs.getString("symbol"), rs.getString("note"), rs.getBoolean("inactive") );
                 list.add(curr);
             }
+            //TEST keep a copy of the list to be used later now still under test
+            allCurrency = list;
             
             return list;
         } catch (Exception e) {
@@ -106,7 +133,6 @@ public class XchDatabase
             ArrayList<Rate> list = new ArrayList();
             
             while(rs.next()){
-                //TODO get currency object from fixed collection no new 
                 Rate r = new Rate(rs.getInt("pk"), rs.getDate("rate_date"), getCurrencyByPK(rs.getInt("curr")), rs.getDouble("rate"), rs.getDouble("sell_price"), rs.getDouble("buy_price"), rs.getString("note"));
                 list.add(r);
             }
