@@ -6,6 +6,8 @@
 
 package xchangeit;
 
+import xchangeit.rate.Rate;
+import xchangeit.currency.Currency;
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
