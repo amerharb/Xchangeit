@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xchangeit.RateScreenController">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="247.0" layoutY="36.0" prefHeight="35.0" prefWidth="127.0" text="Rates" textAlignment="CENTER" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <TableView fx:id="rateTable" layoutX="64.0" layoutY="300.0" prefHeight="325.0" prefWidth="580.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+        <columns>
+          <TableColumn fx:id="pkCol" prefWidth="38.0" sortable="false" text="pk" />
+            <TableColumn fx:id="rateDateCol" prefWidth="77.0" text="Date" />
+          <TableColumn fx:id="currCol" prefWidth="110.0" sortable="false" text="Currency" />
+            <TableColumn fx:id="rateCol" prefWidth="86.0" text="Rate" />
+            <TableColumn fx:id="sellPriceCol" prefWidth="88.0" text="Sell Price" />
+            <TableColumn fx:id="buyPriceCol" prefWidth="90.0" text="Buy Price" />
+            <TableColumn fx:id="noteCol" prefWidth="90.0" text="Note" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
