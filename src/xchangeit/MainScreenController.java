@@ -151,7 +151,7 @@ public class MainScreenController implements Initializable
     {
         System.out.println("You clicked TransCurrIn");
         try {
-            showScreen(TransCurrInStage, "transactions/TransCurrInScreen.fxml");
+            showScreen(TransCurrInStage, "currIn/CurrInScreen.fxml");
         } catch (IOException ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -163,7 +163,7 @@ public class MainScreenController implements Initializable
     {
         System.out.println("You clicked TransCurrOut");
         try {
-            showScreen(TransCurrOutStage, "transactions/TransCurrOutScreen.fxml");
+            showScreen(TransCurrOutStage, "currOut/CurrOutScreen.fxml");
         } catch (IOException ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }

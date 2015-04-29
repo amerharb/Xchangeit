@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package xchangeit.transactions;
+package xchangeit.currIn;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,7 +15,7 @@ import javafx.fxml.Initializable;
  *
  * @author Amer
  */
-public class TransCurrOutScreenController implements Initializable
+public class CurrInScreenController implements Initializable
 {
 
     /**
