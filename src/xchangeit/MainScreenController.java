@@ -79,7 +79,7 @@ public class MainScreenController implements Initializable
     {
         System.out.println("You clicked Currency");
         try {
-            showScreen(CurrencyStage, "CurrencyScreen.fxml");
+            showScreen(CurrencyStage, "currency/CurrencyScreen.fxml");
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -90,7 +90,7 @@ public class MainScreenController implements Initializable
     {
         System.out.println("You clicked Rate");
         try {
-            showScreen(RateStage, "RateScreen.fxml");
+            showScreen(RateStage, "rate/RateScreen.fxml");
         } catch (IOException ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -127,7 +127,7 @@ public class MainScreenController implements Initializable
     {
         System.out.println("You clicked TransCashIn");
         try {
-            showScreen(TransCashInStage, "TransCashInScreen.fxml");
+            showScreen(TransCashInStage, "cashIn/CashInScreen.fxml");
         } catch (IOException ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -139,7 +139,7 @@ public class MainScreenController implements Initializable
     {
         System.out.println("You clicked TransCashOut");
         try {
-            showScreen(TransCashOutStage, "TransCashOutScreen.fxml");
+            showScreen(TransCashOutStage, "cashOut/CashOutScreen.fxml");
         } catch (IOException ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -151,7 +151,7 @@ public class MainScreenController implements Initializable
     {
         System.out.println("You clicked TransCurrIn");
         try {
-            showScreen(TransCurrInStage, "TransCurrInScreen.fxml");
+            showScreen(TransCurrInStage, "transactions/TransCurrInScreen.fxml");
         } catch (IOException ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -163,7 +163,7 @@ public class MainScreenController implements Initializable
     {
         System.out.println("You clicked TransCurrOut");
         try {
-            showScreen(TransCurrOutStage, "TransCurrOutScreen.fxml");
+            showScreen(TransCurrOutStage, "transactions/TransCurrOutScreen.fxml");
         } catch (IOException ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }

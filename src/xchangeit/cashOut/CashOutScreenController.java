@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package xchangeit.transactions;
+package xchangeit.cashOut;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,7 +15,7 @@ import javafx.fxml.Initializable;
  *
  * @author Amer
  */
-public class TransCashOutScreenController implements Initializable
+public class CashOutScreenController implements Initializable
 {
 
     /**
