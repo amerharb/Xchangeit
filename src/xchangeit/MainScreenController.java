@@ -103,7 +103,7 @@ public class MainScreenController implements Initializable
     {
         System.out.println("You clicked Buy");
         try {
-            showScreen(BuyStage, "BuyScreen.fxml");
+            showScreen(BuyStage, "buy/BuyScreen.fxml");
         } catch (IOException ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -115,7 +115,7 @@ public class MainScreenController implements Initializable
     {
         System.out.println("You clicked Sell");
         try {
-            showScreen(SellStage, "SellScreen.fxml");
+            showScreen(SellStage, "sell/SellScreen.fxml");
         } catch (IOException ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
