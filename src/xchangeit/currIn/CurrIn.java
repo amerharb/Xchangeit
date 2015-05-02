@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package xchangeit.cashIn;
+package xchangeit.currIn;
 
 import java.util.Date;
 import xchangeit.Transaction;
@@ -14,50 +14,58 @@ import xchangeit.currency.Currency;
  *
  * @author Amer
  */
-public class CashIn extends Transaction
+public class CurrIn extends Transaction
 {
-    private double cashAmount;
-    
-    public CashIn(int pk, Date transDate, String note, double cashAmount){
-        super(pk, transDate, note);
-        cashAmount = Math.abs(cashAmount); // the amout must be all time positive 
-        this.cashAmount = cashAmount;
+    private Currency currency;
+    private double currAmount;
+    private double rate;
 
-    }
-
-    public double getCashAmount()
+    public CurrIn(int pk, Date transDate, String note, Currency currency, double currAmount, double rate)
     {
-        return cashAmount;
+        super(pk, transDate, note);
+        this.currency = currency;
+        this.currAmount = Math.abs(currAmount);
+        this.rate = rate;
+        
     }
-    
+
+    public Currency getCurrency()
+    {
+        return currency;
+    }
+
+    public double getCurrAmount()
+    {
+        return currAmount;
+    }
+
+    public double getRate()
+    {
+        return rate;
+    }
+
     @Override
     public XchTransactionTypeeEnum getTransType()
     {
-        return XchTransactionTypeeEnum.CashIn;
+        return XchTransactionTypeeEnum.CurrIn;
     }
-
+    
     @Override
     public double getCash()
     {
-        return this.cashAmount;
+        return 0;
     }
 
     @Override
     public Currency getCurr()
     {
-        return null;
+        return currency;
     }
 
     @Override
     public double getCurrAmt()
     {
-        return 0;
-    }
-
-    @Override
-    public double getRate()
-    {
-        return 0;
+        return currAmount;
     }
 
     @Override
@@ -65,4 +73,5 @@ public class CashIn extends Transaction
     {
         return 0;
     }
+            
 }

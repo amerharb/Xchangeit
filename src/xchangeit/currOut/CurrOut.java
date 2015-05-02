@@ -3,34 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package xchangeit.cashOut;
+package xchangeit.currOut;
 
 import java.util.Date;
-import xchangeit.Transaction;
 import xchangeit.XchTransactionTypeeEnum;
-import xchangeit.cashIn.CashIn;
+import xchangeit.currIn.CurrIn;
+import xchangeit.currency.Currency;
 
 /**
  *
  * @author Amer
  */
-public class CashOut extends CashIn
+public class CurrOut extends CurrIn
 {
-    private double cashAmount;
-    
-    public CashOut(int pk, Date transDate, String note, double cashAmount){
-        super(pk, transDate, note,cashAmount);
+
+    public CurrOut(int pk, Date transDate, String note, Currency currency, double currAmount, double rate)
+    {
+        super(pk, transDate, note, currency, currAmount, rate);
     }
 
-    public double getCashAmount()
-    {
-        return cashAmount;
-    }
-    
     //this field return the value as it will be store in the database
     @Override
-    public double getCash(){ 
-        return -this.cashAmount;
+    public double getCurrAmt(){ 
+        return -this.getCurrAmount();
     }
 
     @Override
@@ -38,5 +33,6 @@ public class CashOut extends CashIn
     {
         return XchTransactionTypeeEnum.CashOut;
     }
+
 
 }
