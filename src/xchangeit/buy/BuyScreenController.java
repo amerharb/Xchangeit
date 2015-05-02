@@ -8,14 +8,14 @@ package xchangeit.buy;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
+import xchangeit.XchController;
 
 /**
  * FXML Controller class
  *
  * @author Amer
  */
-public class BuyScreenController implements Initializable
+public class BuyScreenController extends XchController
 {
 
     /**

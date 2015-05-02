@@ -8,14 +8,14 @@ package xchangeit.currOut;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
+import xchangeit.XchController;
 
 /**
  * FXML Controller class
  *
  * @author Amer
  */
-public class CurrOutScreenController implements Initializable
+public class CurrOutScreenController extends XchController
 {
 
     /**

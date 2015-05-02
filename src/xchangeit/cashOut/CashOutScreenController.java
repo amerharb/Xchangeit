@@ -8,14 +8,14 @@ package xchangeit.cashOut;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
+import xchangeit.XchController;
 
 /**
  * FXML Controller class
  *
  * @author Amer
  */
-public class CashOutScreenController implements Initializable
+public class CashOutScreenController extends XchController
 {
 
     /**
