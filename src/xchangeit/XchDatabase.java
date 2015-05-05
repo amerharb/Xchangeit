@@ -155,7 +155,7 @@ public class XchDatabase
         System.out.println("You Click Create Database");
         try{
             Statement st = conn.createStatement();
-            st.execute("drop database " + databaseName);
+            st.execute("drop database if exists " + databaseName);
             st.execute("create database " + databaseName);
             st.execute("use " + databaseName);
             st.execute("create table curr \n" +
