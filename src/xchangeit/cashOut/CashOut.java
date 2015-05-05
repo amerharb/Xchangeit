@@ -19,14 +19,9 @@ public class CashOut extends CashIn
     private double cashAmount;
     
     public CashOut(int pk, Date transDate, String note, double cashAmount){
-        super(pk, transDate, note,cashAmount);
+        super(pk, transDate, note, cashAmount);
     }
 
-    public double getCashAmount()
-    {
-        return cashAmount;
-    }
-    
     //this field return the value as it will be store in the database
     @Override
     public double getCash(){ 
