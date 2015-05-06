@@ -52,6 +52,7 @@ public class ConnectScreenController extends XchController
         db.connect(serverNameText.getText(), rootPasswordText.getText(), "Xchangeit");
         //TODO: find more logical way to close window
         serverNameText.getParent().getScene().getWindow().hide();
+        //System.out.println("you have connect to database");
 
     }
     
