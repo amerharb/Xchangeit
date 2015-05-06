@@ -47,12 +47,21 @@ public class ConnectScreenController extends XchController
     @FXML 
     private void handleOkButtonAction(ActionEvent event)
     {
-        System.out.println("You clicked OK");
+        try{
+        
         XchDatabase db = MainScreen.getDatabase();
         db.connect(serverNameText.getText(), rootPasswordText.getText(), "Xchangeit");
         //TODO: find more logical way to close window
         serverNameText.getParent().getScene().getWindow().hide();
-        //System.out.println("you have connect to database");
+        System.out.println("You clicked OK");
+        //System.out.println("you have connect to database");    
+        }catch(Exception e){
+            //if(db.connect=null){
+            System.out.println("error");    
+            }
+            
+        
+        
 
     }
     
