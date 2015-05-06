@@ -14,7 +14,7 @@
             <Label layoutX="26.0" layoutY="20.0" text="Server" />
             <Label layoutX="26.0" layoutY="65.0" text="Password" />
             <TextField fx:id="serverNameText" layoutX="114.0" layoutY="20.0" prefHeight="25.0" prefWidth="269.0" text="localhost" />
-            <PasswordField fx:id="rootPasswordText" layoutX="114.0" layoutY="61.0" prefHeight="25.0" prefWidth="269.0" promptText="the password is root" />
+            <PasswordField fx:id="rootPasswordText" layoutX="114.0" layoutY="61.0" prefHeight="25.0" prefWidth="269.0" promptText="the password is root" text="root" />
             <Button fx:id="okButton" layoutX="316.0" layoutY="103.0" mnemonicParsing="false" onAction="#handleOkButtonAction" prefHeight="25.0" prefWidth="120.0" text="OK" />
             <Button fx:id="cancelButton1" layoutX="178.0" layoutY="103.0" mnemonicParsing="false" onAction="#handleCreateDatabaseButtonAction" prefHeight="25.0" prefWidth="120.0" text="Create Database" />
             <Button fx:id="cancelButton" layoutX="34.0" layoutY="103.0" mnemonicParsing="false" onAction="#handleCancelButtonAction" prefHeight="25.0" prefWidth="120.0" text="Cancel" />
