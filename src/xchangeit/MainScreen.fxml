@@ -11,7 +11,7 @@
 
 <AnchorPane id="AnchorPane" fx:id="transCashInButton" prefHeight="295.0" prefWidth="440.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xchangeit.MainScreenController">
     <children>
-      <Pane layoutX="14.0" layoutY="20.0" prefHeight="257.0" prefWidth="150.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="60.0">
+      <Pane layoutX="14.0" layoutY="80.0" prefHeight="257.0" prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="80.0">
          <children>
             <Button fx:id="transCurrOutButton" layoutX="15.0" layoutY="160.0" onAction="#handleTransCurrOutAction" prefHeight="25.0" prefWidth="100.0" text="Trans Curr Out" />
             <Button fx:id="transCurrInButton" layoutX="15.0" layoutY="125.0" onAction="#handleTransCurrInAction" prefHeight="25.0" prefWidth="100.0" text="Trans Curr In" />
@@ -19,7 +19,7 @@
             <Button fx:id="transCashInButton1" layoutX="15.0" layoutY="40.0" onAction="#handleTransCashInAction" prefHeight="25.0" prefWidth="100.0" text="Trans Cash In" />
          </children>
       </Pane>
-      <Pane layoutX="250.0" layoutY="49.0" prefHeight="257.0" prefWidth="140.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="60.0">
+      <Pane layoutX="280.0" layoutY="80.0" prefHeight="257.0" prefWidth="140.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="80.0">
          <children>
             <Button fx:id="sellButton" layoutX="15.0" layoutY="125.0" onAction="#handleSellAction" prefHeight="25.0" prefWidth="100.0" text="Sell" />
               <Button fx:id="currencyButton" layoutX="15.0" layoutY="40.0" onAction="#handleCurrencyAction" prefHeight="25.0" prefWidth="100.0" text="Currency" />
@@ -27,21 +27,6 @@
             <Button fx:id="buyButton" layoutX="15.0" layoutY="160.0" onAction="#handleBuyAction" prefHeight="25.0" prefWidth="100.0" text="Buy" />
          </children>
       </Pane>
-      <Label alignment="CENTER" layoutX="142.0" layoutY="14.0" prefHeight="42.0" prefWidth="425.0" text="Xchangeit" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
-         <font>
-            <Font name="System Bold" size="30.0" />
-         </font>
-      </Label>
-      <Label layoutX="194.0" layoutY="70.0" text="Best Rates">
-         <font>
-            <Font name="System Bold Italic" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="296.0" layoutY="38.0" text="(global)">
-         <font>
-            <Font name="System Bold Italic" size="14.0" />
-         </font>
-      </Label>
       <MenuBar layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
           <Menu mnemonicParsing="false" text="Database">
@@ -76,5 +61,24 @@
           </Menu>
         </menus>
       </MenuBar>
+      <Pane layoutX="8.0" layoutY="27.0" prefHeight="61.0" prefWidth="434.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="42.0" prefWidth="425.0" text="Xchangeit" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+            <Label layoutX="286.0" layoutY="7.0" text="(global)">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="244.0" layoutY="37.0" text="Best Rates">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
     </children>
 </AnchorPane>
