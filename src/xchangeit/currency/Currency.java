@@ -22,10 +22,10 @@ public class Currency
 
     public Currency(int pk, String currName, String isoSymbol, String Symbol, String note, boolean inactive){
         this.pk = pk;
-        this.currName= currName;
+        this.currName = currName;
         this.isoSymbol = isoSymbol;
         this.Symbol = Symbol;
-        this.note= note;
+        this.note = note;
         this.inactive = inactive;
     }
     
@@ -93,7 +93,7 @@ public class Currency
         s = "'" + currName + "'";
         s += ", '" + isoSymbol + "'";
         s += ", '" + Symbol + "'";
-        if (note.isEmpty())
+        if (note == null || note.isEmpty())
             s += ", null";
         else
             s += ", '" + note + "'";
@@ -105,6 +105,30 @@ public class Currency
 
         return s;
     }
+
+    public String getUpdateStatment()
+    {
+        String s; //update statment will be stored here
+        
+        s = "update curr set ";
+        s += "curr_name = '" + currName + "'";
+        s += ", iso_symbol = '" + isoSymbol + "'";
+        s += ", symbol = '" + Symbol + "'";
+        if (note == null || note.isEmpty())
+            s += ", note = null";
+        else
+            s += ", note = '" + note + "'";
+
+        if (inactive)
+            s += ", inactive = true";
+        else
+            s += ", inactive = false";
+
+        s += " where pk = " + pk;
+        
+        return s;
+    }
+
 }
 
 

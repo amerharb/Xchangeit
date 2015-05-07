@@ -29,7 +29,7 @@ public class XchDatabase
     {
         this.allCurrency = new ArrayList<>();
     }
-    
+
     public enum XchConnectionStatusEnum{
         Disconnect,
         Connected
@@ -137,6 +137,20 @@ public class XchDatabase
             
             //TEST by changing this the collection currency 
             allCurrency.add(c);
+            
+        } catch (Exception e) {
+            //TODO idintifiy the error 
+            System.err.println("ERROR: " + e);
+
+        }
+    }
+    
+    public void updateCurrency(Currency c)
+    {
+    
+        try{
+            Statement st = conn.createStatement();
+            st.execute(c.getUpdateStatment());
             
         } catch (Exception e) {
             //TODO idintifiy the error 

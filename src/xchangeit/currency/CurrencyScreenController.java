@@ -97,6 +97,20 @@ public class CurrencyScreenController extends XchController
         }
     }
     
+    private void updateCurrencyFromTextFields(Currency c){
+        try{
+
+            c.setCurrName(currNameText.getText());
+            c.setIsoSymbol(isoSymbolText.getText());
+            c.setSymbol(symbolText.getText());
+            c.setNote(noteText.getText());
+            c.setInactive(inactiveCheck.isSelected());
+
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    
     @FXML
     private void handelDeleteCurrencyAction(ActionEvent event)
     {
@@ -120,12 +134,15 @@ public class CurrencyScreenController extends XchController
         
         System.out.println("You Click xxx");
         try{
-
+            updateCurrencyFromTextFields(selCurrencyProp);
+            DataBase.updateCurrency(selCurrencyProp);
+            fillCurrencyTable();
         }catch(Exception ex){
             ex.printStackTrace();
         }
     }
 
+    //TEMP: this method is just a template for any other method
     @FXML
     private void xxxAction(ActionEvent event)
     {
