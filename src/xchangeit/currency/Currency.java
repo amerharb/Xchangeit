@@ -85,6 +85,26 @@ public class Currency
     {
         this.inactive = inactive;
     }
+
+    public String getInsertValues()
+    {
+        String s; //insert value statment will be stored here
+        
+        s = "'" + currName + "'";
+        s += ", '" + isoSymbol + "'";
+        s += ", '" + Symbol + "'";
+        if (note.isEmpty())
+            s += ", null";
+        else
+            s += ", '" + note + "'";
+
+        if (inactive)
+            s += ", true";
+        else
+            s += ", false";
+
+        return s;
+    }
 }
 
 

@@ -34,6 +34,7 @@ public class XchDatabase
         Disconnect,
         Connected
     }
+    
     private XchConnectionStatusEnum status = XchConnectionStatusEnum.Disconnect;
     
     private Connection conn;
@@ -128,6 +129,22 @@ public class XchDatabase
         }
     }
 
+    public void addCurrency(Currency c){
+    
+        try{
+            Statement st = conn.createStatement();
+            st.execute("insert into curr(curr_name, iso_symbol, symbol, note, inactive) values (" + c.getInsertValues() + ")" );
+            
+            //TEST by changing this the collection currency 
+            allCurrency.add(c);
+            
+        } catch (Exception e) {
+            //TODO idintifiy the error 
+            System.err.println("ERROR: " + e);
+
+        }
+    }
+    
     public ArrayList<Rate> getAllRate(){
         try{
             Statement st = conn.createStatement();

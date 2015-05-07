@@ -52,8 +52,11 @@ public class CurrencyScreenController extends XchController
         
         System.out.println("You Click Currency Screen Add Button");
         try{
-            //TEST
-            allCurrencyProperty.add(new CurrencyProperty(33, "name", "sym", "Sym", "note", false));
+            //TODO fix the value of PK by retreve it from database later, check the value if string is empty, 
+            //inactive will be false becuase its a new value
+            Currency c = new Currency(0, currNameText.getText(), isoSymbolText.getText(), symbolText.getText(),noteText.getText(),false);
+            DataBase.addCurrency(c);
+            fillCurrencyTable();
         }catch(Exception ex){
             ex.printStackTrace();
         }
@@ -65,7 +68,6 @@ public class CurrencyScreenController extends XchController
         
         System.out.println("You Click on Table");
         try{
-
             fillFields();
         }catch(Exception ex){
             ex.printStackTrace();
