@@ -133,7 +133,7 @@ public class XchDatabase
     
         try{
             Statement st = conn.createStatement();
-            st.execute("insert into curr(curr_name, iso_symbol, symbol, note, inactive) values (" + c.getInsertValues() + ")" );
+            st.execute(c.getSqlInsertStatment());
             
             //TEST by changing this the collection currency 
             allCurrency.add(c);
@@ -150,7 +150,7 @@ public class XchDatabase
     
         try{
             Statement st = conn.createStatement();
-            st.execute(c.getUpdateStatment());
+            st.execute(c.getSqlUpdateStatment());
             
         } catch (Exception e) {
             //TODO idintifiy the error 

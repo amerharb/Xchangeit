@@ -86,11 +86,12 @@ public class Currency
         this.inactive = inactive;
     }
 
-    public String getInsertValues()
+    public String getSqlInsertStatment()
     {
         String s; //insert value statment will be stored here
         
-        s = "'" + currName + "'";
+        s = "insert into curr(curr_name, iso_symbol, symbol, note, inactive) values ("; 
+        s += "'" + currName + "'";
         s += ", '" + isoSymbol + "'";
         s += ", '" + Symbol + "'";
         if (note == null || note.isEmpty())
@@ -103,10 +104,12 @@ public class Currency
         else
             s += ", false";
 
+        s += ")";
+
         return s;
     }
 
-    public String getUpdateStatment()
+    public String getSqlUpdateStatment()
     {
         String s; //update statment will be stored here
         
