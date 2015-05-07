@@ -1,4 +1,4 @@
-drop database Xchangeit;
+drop database if exists Xchangeit;
 
 create database Xchangeit;
 
