@@ -65,6 +65,11 @@ public class Rate
         return rate;
     }
 
+    public String getRateAsString()
+    {
+        return String.valueOf(rate);
+    }
+
     public void setRate(double rate)
     {
         this.rate = rate;
@@ -75,6 +80,11 @@ public class Rate
         return sellPrice;
     }
 
+    public String getSellPriceAsString()
+    {
+        return String.valueOf(sellPrice);
+    }
+
     public void setSellPrice(double sellPrice)
     {
         this.sellPrice = sellPrice;
@@ -83,6 +93,11 @@ public class Rate
     public double getBuyPrice()
     {
         return buyPrice;
+    }
+
+    public String getBuyPriceAsString()
+    {
+        return String.valueOf(buyPrice);
     }
 
     public void setBuyPrice(double buyPrice)
@@ -98,6 +113,31 @@ public class Rate
     public void setNote(String note)
     {
         this.note = note;
+    }
+
+    public String getSqlInsertStatment()
+    {
+        String s; //insert value statment will be stored here
+        
+        s = "insert into rates(curr";
+        if (rateDate != null)
+            s += ", rate_date";
+            
+        s += ",rate ,sell_price ,buy_price, note) values ("; 
+        s += curr.getPk();
+        if (rateDate != null)
+            s += ", " + rateDate.toString();
+        s += ", " + rate;
+        s += ", " + sellPrice ;
+        s += ", " + buyPrice ;
+        if (note == null || note.isEmpty())
+            s += ", null";
+        else
+            s += ", '" + note + "'";
+
+        s += ")";
+
+        return s;
     }
 
 

@@ -25,11 +25,6 @@ import java.util.Collection;
 public class XchDatabase
 {
 
-    public XchDatabase()
-    {
-        this.allCurrency = new ArrayList<>();
-    }
-
     public enum XchConnectionStatusEnum{
         Disconnect,
         Connected
@@ -39,8 +34,16 @@ public class XchDatabase
     
     private Connection conn;
 
+    //TEST still under test
     private ArrayList<Currency> allCurrency;
+    private ArrayList<Rate> allRate;
     
+    public XchDatabase()
+    {
+        this.allCurrency = new ArrayList<>();
+        this.allRate = new ArrayList<>();
+    }
+
     public void connect(String server, String rootPassword){
         connect(server, rootPassword, "");
     }
@@ -145,8 +148,7 @@ public class XchDatabase
         }
     }
     
-    public void updateCurrency(Currency c)
-    {
+    public void updateCurrency(Currency c){
     
         try{
             Statement st = conn.createStatement();
@@ -169,6 +171,9 @@ public class XchDatabase
                 Rate r = new Rate(rs.getInt("pk"), rs.getDate("rate_date"), getCurrencyByPK(rs.getInt("curr")), rs.getDouble("rate"), rs.getDouble("sell_price"), rs.getDouble("buy_price"), rs.getString("note"));
                 list.add(r);
             }
+            
+            //TEST keep a copy of the rates that we grab from database
+            allRate = list;
             return list;
 
         } catch (Exception e) {
@@ -177,6 +182,38 @@ public class XchDatabase
         }
     }
 
+    public boolean delRateByPK(int pk){
+        try{
+            Statement st = conn.createStatement();
+            boolean r = st.execute("delete from rate where pk = " + pk);
+            if (st.getUpdateCount()>0)
+                //TODO look in allRate object and remove the rate from here also
+                return true;
+            else
+                return false;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+                    
+        }
+        
+    }
+    public void addRate(Rate r){
+    
+        try{
+            Statement st = conn.createStatement();
+            st.execute(r.getSqlInsertStatment());
+            
+            //TEST by changing this the collection currency 
+            allRate.add(r);
+            
+        } catch (Exception e) {
+            //TODO idintifiy the error 
+            System.err.println("ERROR: " + e);
+
+        }
+    }
+    
     public void createDatabase(){
         createDatabase("Xchangeit");
     }

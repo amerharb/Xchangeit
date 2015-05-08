@@ -47,8 +47,7 @@ public class CurrencyScreenController extends XchController
     CurrencyProperty selCurrencyProp;
     
     @FXML
-    private void handleAddCurrencyAction(ActionEvent event)
-    {
+    private void handleAddCurrencyAction(ActionEvent event){
         
         System.out.println("You Click Currency Screen Add Button");
         try{
@@ -63,8 +62,7 @@ public class CurrencyScreenController extends XchController
     }
 
     @FXML
-    private void rowClickAction(MouseEvent event)
-    {
+    private void rowClickAction(MouseEvent event){
         
         System.out.println("You Click on Table");
         try{
@@ -129,8 +127,7 @@ public class CurrencyScreenController extends XchController
     }
 
     @FXML
-    private void handelUpdateCurrencyAction(ActionEvent event)
-    {
+    private void handelUpdateCurrencyAction(ActionEvent event){
         
         System.out.println("You Click xxx");
         try{
@@ -144,8 +141,7 @@ public class CurrencyScreenController extends XchController
 
     //TEMP: this method is just a template for any other method
     @FXML
-    private void xxxAction(ActionEvent event)
-    {
+    private void xxxAction(ActionEvent event){
         
         System.out.println("You Click xxx");
         try{
@@ -155,8 +151,7 @@ public class CurrencyScreenController extends XchController
         }
     }
 
-    public void initialize(URL url, ResourceBundle rb)
-    {
+    public void initialize(URL url, ResourceBundle rb){
         try{
             fillCurrencyTable();
             fillFields();
@@ -165,8 +160,7 @@ public class CurrencyScreenController extends XchController
         }
     }
 
-    private void fillCurrencyTable()
-    {
+    private void fillCurrencyTable(){
         try{
             if (MainScreen != null){
                 DataBase = MainScreen.getDatabase();
