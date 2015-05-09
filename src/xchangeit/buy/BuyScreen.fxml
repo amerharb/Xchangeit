@@ -8,19 +8,25 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xchangeit.buy.BuyScreenController">
+<AnchorPane id="AnchorPane" prefHeight="318.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xchangeit.buy.BuyScreenController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="247.0" layoutY="36.0" prefHeight="35.0" prefWidth="127.0" text="Buy Currency" textAlignment="CENTER">
+      <Label layoutX="14.0" layoutY="81.0" prefHeight="17.0" prefWidth="117.0" text="Date" />
+      <DatePicker fx:id="rateDateDatePicker" layoutX="136.0" layoutY="77.0" prefHeight="25.0" prefWidth="149.0" />
+      <Label layoutX="14.0" layoutY="114.0" prefHeight="25.0" prefWidth="117.0" text="Currency" />
+      <ChoiceBox fx:id="currChoiceBox" layoutX="136.0" layoutY="114.0" prefHeight="25.0" prefWidth="149.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="247.0" layoutY="36.0" prefHeight="35.0" prefWidth="127.0" text="Buy Currency" textAlignment="CENTER" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Button layoutX="251.0" layoutY="302.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0" text="OK" />
-      <TextField layoutX="251.0" layoutY="236.0" prefHeight="25.0" prefWidth="98.0" />
-      <ChoiceBox layoutX="251.0" layoutY="126.0" prefHeight="25.0" prefWidth="98.0" />
-      <Label layoutX="14.0" layoutY="126.0" prefHeight="25.0" prefWidth="196.0" text="what currency customer want to sell" />
-      <Label layoutX="15.0" layoutY="236.0" prefHeight="25.0" prefWidth="148.0" text="how much you wanna sell" />
-      <ChoiceBox layoutX="251.0" layoutY="188.0" prefHeight="25.0" prefWidth="98.0" />
-      <Label layoutX="11.0" layoutY="188.0" prefHeight="25.0" prefWidth="155.0" text="what currency customer has" />
+      <Button fx:id="insertButton" layoutX="458.0" layoutY="258.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0" text="Insert" />
+      <TextField fx:id="currAmtText" layoutX="136.0" layoutY="152.0" prefHeight="25.0" prefWidth="149.0" />
+      <Label layoutX="14.0" layoutY="152.0" prefHeight="25.0" prefWidth="117.0" text="Currency Amount" />
+      <Label layoutX="14.0" layoutY="188.0" prefHeight="25.0" prefWidth="117.0" text="Cash Amount" />
+      <TextField fx:id="currAmtText1" layoutX="136.0" layoutY="188.0" prefHeight="25.0" prefWidth="149.0" />
+      <TextField fx:id="currAmtText11" layoutX="136.0" layoutY="223.0" prefHeight="25.0" prefWidth="149.0" />
+      <Label layoutX="14.0" layoutY="223.0" prefHeight="25.0" prefWidth="117.0" text="Rate" />
+      <TextField fx:id="currAmtText12" layoutX="136.0" layoutY="258.0" prefHeight="25.0" prefWidth="149.0" />
+      <Label layoutX="14.0" layoutY="258.0" prefHeight="25.0" prefWidth="117.0" text="Price" />
    </children>
 </AnchorPane>
