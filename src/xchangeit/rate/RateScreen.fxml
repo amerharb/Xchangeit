@@ -39,7 +39,7 @@
                 <Label layoutX="265.0" layoutY="49.0" prefHeight="17.0" prefWidth="60.0" text="Sell Price" />
                 <TextField fx:id="sellPriceText" layoutX="344.0" layoutY="45.0" />
                 <Label layoutX="265.0" layoutY="84.0" prefHeight="17.0" prefWidth="60.0" text="Buy Price" />
-                <TextField fx:id="butPriceText" layoutX="344.0" layoutY="80.0" />
+                <TextField fx:id="buyPriceText" layoutX="344.0" layoutY="80.0" />
                 <DatePicker fx:id="rateDateDatePicker" layoutX="100.0" layoutY="10.0" prefHeight="25.0" prefWidth="149.0" />
                 <ComboBox fx:id="currComboBox" layoutX="100.0" layoutY="45.0" prefWidth="150.0" />
             </children>
