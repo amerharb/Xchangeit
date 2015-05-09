@@ -15,6 +15,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import xchangeit.XchController;
@@ -48,7 +49,7 @@ public class RateScreenController extends XchController
     @FXML TableColumn<RateProperty, String> noteCol;
     
     @FXML DatePicker rateDateDatePicker;
-    @FXML ComboBox currComboBox;
+    @FXML ChoiceBox currChoiceBox;
     @FXML TextField rateText;
     @FXML TextField sellPriceText;
     @FXML TextField buyPriceText;
@@ -89,7 +90,7 @@ public class RateScreenController extends XchController
                 allRate = DataBase.getAllRate();
 
                 if (allRate != null) {
-                    ObservableList<RateProperty> allRatePropertys = FXCollections.observableArrayList();
+                    allRateProperty = FXCollections.observableArrayList();
                     for(Rate r:allRate){
                         allRateProperty.add(new RateProperty(r));
                     }
