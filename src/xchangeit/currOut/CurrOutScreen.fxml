@@ -7,10 +7,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="xchangeit.currOut.CurrOutScreenController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xchangeit.currOut.CurrOutScreenController">
     <children>
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="247.0" layoutY="45.0" prefHeight="35.0" prefWidth="127.0" text="Currency Out" textAlignment="CENTER">
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="247.0" layoutY="45.0" prefHeight="35.0" prefWidth="127.0" text="Currency Out" textAlignment="CENTER" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
             <font>
                 <Font name="System Bold" size="20.0" />
             </font>
