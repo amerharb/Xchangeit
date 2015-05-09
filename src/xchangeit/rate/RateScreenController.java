@@ -27,14 +27,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import xchangeit.*;
 import xchangeit.currency.Currency;
+import xchangeit.currency.CurrencyProperty;
 
 /**
  * FXML Controller class
  *
  * @author Amer
  */
-public class RateScreenController extends XchController
-{
+public class RateScreenController extends XchController{
 
     XchDatabase DataBase;     
 
@@ -49,14 +49,17 @@ public class RateScreenController extends XchController
     @FXML TableColumn<RateProperty, String> noteCol;
     
     @FXML DatePicker rateDateDatePicker;
-    @FXML ChoiceBox currChoiceBox;
+    @FXML ChoiceBox<CurrencyProperty> currChoiceBox;
     @FXML TextField rateText;
     @FXML TextField sellPriceText;
     @FXML TextField buyPriceText;
     @FXML TextArea noteText;
 
     ArrayList<Rate> allRate;
+    ArrayList<Currency> allCurrency;
+    
     ObservableList<RateProperty> allRateProperty = FXCollections.observableArrayList();
+    ObservableList<CurrencyProperty> allCurrencyProperty = FXCollections.observableArrayList();
 
     RateProperty selRateProp;
     
@@ -83,6 +86,27 @@ public class RateScreenController extends XchController
             ex.printStackTrace();
         }
     }
+    
+    private void fillCurrChoiceBox(){        
+        try{
+            if (MainScreen != null){
+                DataBase = MainScreen.getDatabase();
+                allCurrency = DataBase.getAllCurrency();
+
+                if (allCurrency != null) {
+                    allCurrencyProperty = FXCollections.observableArrayList();
+                    for(Currency c:allCurrency){
+                        allCurrencyProperty.add(new CurrencyProperty(c));
+                    }
+                    
+                    currChoiceBox.setItems(allCurrencyProperty);
+                }
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    
     private void fillRateTable(){
         try{
             if (MainScreen != null){
@@ -156,6 +180,7 @@ public class RateScreenController extends XchController
     {
         try{
             fillRateTable();
+            fillCurrChoiceBox();
         }catch(Exception ex) {
             ex.printStackTrace(); 
         }

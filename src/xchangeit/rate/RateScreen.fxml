@@ -14,6 +14,24 @@
                 <Font name="System Bold" size="20.0" />
             </font>
         </Label>
+        <AnchorPane layoutX="10.0" layoutY="45.0" prefHeight="115.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="45.0">
+            <children>
+                <Label layoutX="10.0" layoutY="14.0" prefWidth="90.0" text="Rate Date" />
+                <DatePicker fx:id="rateDateDatePicker" layoutX="100.0" layoutY="10.0" prefHeight="25.0" prefWidth="149.0" showWeekNumbers="true" />
+                <Label layoutX="10.0" layoutY="49.0" prefWidth="90.0" text="Currency" />
+                <ChoiceBox fx:id="currChoiceBox" layoutX="100.0" layoutY="45.0" prefWidth="150.0" />
+                <Label layoutX="10.0" layoutY="84.0" text="Note" />
+                <TextArea fx:id="noteText" layoutX="100.0" layoutY="80.0" prefHeight="25.0" prefWidth="149.0" />
+                <Label layoutX="318.0" layoutY="14.0" prefHeight="17.0" prefWidth="60.0" text="Rate" />
+                <TextField fx:id="rateText" layoutX="397.0" layoutY="10.0" />
+                <Label layoutX="318.0" layoutY="49.0" prefHeight="17.0" prefWidth="60.0" text="Sell Price" />
+                <TextField fx:id="sellPriceText" layoutX="397.0" layoutY="45.0" />
+                <Label layoutX="318.0" layoutY="84.0" prefHeight="17.0" prefWidth="60.0" text="Buy Price" />
+                <TextField fx:id="buyPriceText" layoutX="397.0" layoutY="80.0" />
+                <Button fx:id="newButton" layoutX="595.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleAddRateAction" prefHeight="25.0" prefWidth="60.0" text="New" />
+                <Button fx:id="deleteButton" layoutX="595.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleDeleteRateAction" prefHeight="25.0" prefWidth="60.0" text="Delete" />
+            </children>
+        </AnchorPane>
         <TableView fx:id="rateTable" layoutX="100.0" layoutY="300.0" onMouseClicked="#rowClickAction" prefHeight="244.0" prefWidth="580.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="170.0">
             <columns>
                 <TableColumn fx:id="pkCol" prefWidth="38.0" sortable="false" text="pk" />
@@ -25,24 +43,5 @@
                 <TableColumn fx:id="noteCol" prefWidth="163.0" text="Note" />
             </columns>
         </TableView>
-        <AnchorPane layoutX="10.0" layoutY="45.0" prefHeight="115.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="45.0">
-            <children>
-                <Button fx:id="newButton" layoutX="595.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleAddRateAction" prefHeight="25.0" prefWidth="60.0" text="New" />
-                <Button fx:id="deleteButton" layoutX="595.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleDeleteRateAction" prefHeight="25.0" prefWidth="60.0" text="Delete" />
-                <Label layoutX="10.0" layoutY="14.0" prefWidth="90.0" text="Rate Date" />
-                <Label layoutX="10.0" layoutY="49.0" prefWidth="90.0" text="Currency" />
-                <Label layoutX="10.0" layoutY="84.0" text="Note" />
-                <TextArea fx:id="noteText" layoutX="100.0" layoutY="80.0" prefHeight="25.0" prefWidth="149.0" />
-                <TextField fx:id="rateText" layoutX="397.0" layoutY="10.0" />
-                <CheckBox fx:id="inactiveCheck" alignment="CENTER_RIGHT" allowIndeterminate="true" contentDisplay="RIGHT" layoutX="265.0" layoutY="80.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="105.0" text="Inactive" visible="false" />
-                <Label layoutX="318.0" layoutY="14.0" prefHeight="17.0" prefWidth="60.0" text="Rate" />
-                <Label layoutX="318.0" layoutY="49.0" prefHeight="17.0" prefWidth="60.0" text="Sell Price" />
-                <TextField fx:id="sellPriceText" layoutX="397.0" layoutY="45.0" />
-                <Label layoutX="318.0" layoutY="84.0" prefHeight="17.0" prefWidth="60.0" text="Buy Price" />
-                <TextField fx:id="buyPriceText" layoutX="397.0" layoutY="80.0" />
-                <DatePicker fx:id="rateDateDatePicker" layoutX="100.0" layoutY="10.0" prefHeight="25.0" prefWidth="149.0" />
-            <ChoiceBox fx:id="currChoiceBox" layoutX="100.0" layoutY="45.0" prefWidth="150.0" />
-            </children>
-        </AnchorPane>
     </children>
 </AnchorPane>

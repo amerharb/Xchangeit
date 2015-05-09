@@ -64,5 +64,10 @@ public class CurrencyProperty extends Currency
     {
         return inactiveProperty;
     }
+    
+    @Override
+    public String toString(){
+        return super.getCurrName();
+    } 
 
 }

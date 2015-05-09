@@ -185,7 +185,7 @@ public class XchDatabase
     public boolean delRateByPK(int pk){
         try{
             Statement st = conn.createStatement();
-            boolean r = st.execute("delete from rate where pk = " + pk);
+            boolean r = st.execute("delete from rates where pk = " + pk);
             if (st.getUpdateCount()>0)
                 //TODO look in allRate object and remove the rate from here also
                 return true;
