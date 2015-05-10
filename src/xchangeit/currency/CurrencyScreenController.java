@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -40,6 +41,7 @@ public class CurrencyScreenController extends XchController
     @FXML Button updateButton;
     @FXML Button newButton;
     @FXML Button deleteButton;
+    @FXML Label  label;
     
     ArrayList<Currency> allCureency;
     ObservableList<CurrencyProperty> allCurrencyProperty = FXCollections.observableArrayList();
@@ -53,11 +55,32 @@ public class CurrencyScreenController extends XchController
         try{
             //TODO fix the value of PK by retreve it from database later, check the value if string is empty, 
             //inactive will be false becuase its a new value
+            if(String.valueOf(currNameText.getText()).isEmpty() ){
+            label.setText("currency name please");
+            }
+            else if(String.valueOf(isoSymbolText.getText()).isEmpty() ){
+            label.setText("iso symbol please");
+            }
+//            else if(isoSymbolText.getText() == isoSymbolText){
+//            label.setText("duplicate entry");    
+//            }
+            else if(String.valueOf(symbolText.getText()).isEmpty() ){
+            label.setText("symbol please");
+            }
+            else{
             Currency c = new Currency(0, currNameText.getText(), isoSymbolText.getText(), symbolText.getText(),noteText.getText(),false);
             DataBase.addCurrency(c);
             fillCurrencyTable();
+            //System.out.println("registered successfully");
+            label.setText(null);
+            }   
+                     
+            
+            
+          
         }catch(Exception ex){
-            ex.printStackTrace();
+            //ex.printStackTrace();
+        label.setText("system error");
         }
     }
 
@@ -106,6 +129,7 @@ public class CurrencyScreenController extends XchController
 
         }catch(Exception ex){
             ex.printStackTrace();
+            System.out.println("system error");
         }
     }
     
