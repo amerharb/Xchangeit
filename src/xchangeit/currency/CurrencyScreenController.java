@@ -3,7 +3,6 @@ package xchangeit.currency;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +13,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import xchangeit.XchController;
 import xchangeit.XchDatabase;
@@ -21,7 +21,7 @@ import xchangeit.XchDatabase;
 public class CurrencyScreenController extends XchController
 {
 
-    XchDatabase DataBase;     
+    XchDatabase database;     
 
     @FXML TableView<CurrencyProperty> currencyTable;
     
@@ -41,10 +41,10 @@ public class CurrencyScreenController extends XchController
     @FXML Button updateButton;
     @FXML Button newButton;
     @FXML Button deleteButton;
-    @FXML Label  label;
+    @FXML Label  warningLabel;
     
-    ArrayList<Currency> allCureency;
-    ObservableList<CurrencyProperty> allCurrencyProperty = FXCollections.observableArrayList();
+//    ArrayList<Currency> allCureency;
+//    ObservableList<CurrencyProperty> allCurrencyProperty = FXCollections.observableArrayList();
 
     CurrencyProperty selCurrencyProp;
     
@@ -56,23 +56,23 @@ public class CurrencyScreenController extends XchController
             //TODO fix the value of PK by retreve it from database later, check the value if string is empty, 
             //inactive will be false becuase its a new value
             if(String.valueOf(currNameText.getText()).isEmpty() ){
-            label.setText("currency name please");
+                warningLabel.setText("currency name please");
             }
             else if(String.valueOf(isoSymbolText.getText()).isEmpty() ){
-            label.setText("iso symbol please");
+                warningLabel.setText("iso symbol please");
             }
 //            else if(isoSymbolText.getText() == isoSymbolText){
-//            label.setText("duplicate entry");    
+//            warningLabel.setText("duplicate entry");    
 //            }
             else if(String.valueOf(symbolText.getText()).isEmpty() ){
-            label.setText("symbol please");
+                warningLabel.setText("symbol please");
             }
             else{
-            Currency c = new Currency(0, currNameText.getText(), isoSymbolText.getText(), symbolText.getText(),noteText.getText(),false);
-            DataBase.addCurrency(c);
-            fillCurrencyTable();
-            //System.out.println("registered successfully");
-            label.setText(null);
+                Currency c = new Currency(0, currNameText.getText(), isoSymbolText.getText(), symbolText.getText(),noteText.getText(),false);
+                database.addCurrency(c);
+                fillCurrencyTable();
+                //System.out.println("registered successfully");
+                warningLabel.setText(null);
             }   
                      
             
@@ -80,7 +80,7 @@ public class CurrencyScreenController extends XchController
           
         }catch(Exception ex){
             //ex.printStackTrace();
-        label.setText("system error");
+            warningLabel.setText("system error");
         }
     }
 
@@ -140,7 +140,7 @@ public class CurrencyScreenController extends XchController
         System.out.println("You Click delete currency");
         try{
             if (selCurrencyProp != null){
-                if (DataBase.delCurrencyByPK(selCurrencyProp.getPk())){
+                if (database.delCurrencyByPK(selCurrencyProp.getPk())){
                     fillCurrencyTable();
                 }
             }
@@ -156,7 +156,7 @@ public class CurrencyScreenController extends XchController
         System.out.println("You Click xxx");
         try{
             updateCurrencyFromTextFields(selCurrencyProp);
-            DataBase.updateCurrency(selCurrencyProp);
+            database.updateCurrency(selCurrencyProp);
             fillCurrencyTable();
         }catch(Exception ex){
             ex.printStackTrace();
@@ -187,14 +187,14 @@ public class CurrencyScreenController extends XchController
     private void fillCurrencyTable(){
         try{
             if (MainScreen != null){
-                DataBase = MainScreen.getDatabase();
-                allCureency = DataBase.getAllCurrency();
+                database = MainScreen.getDatabase();
+                //allCureency = database.getAllCurrency();
 
-                if (allCureency != null){
-                    allCurrencyProperty = FXCollections.observableArrayList();
-                    for(Currency c:allCureency){
-                        allCurrencyProperty.add(new CurrencyProperty(c));
-                    }
+                if (database.getAllCurrency() != null){
+//                    allCurrencyProperty = FXCollections.observableArrayList();
+//                    for(Currency c:allCureency){
+//                        allCurrencyProperty.add(new CurrencyProperty(c));
+//                    }
 
                     pkCol.setCellValueFactory(cellData -> cellData.getValue().getPkProperty().asObject());
                     currNameCol.setCellValueFactory(cellData -> cellData.getValue().getCurrNameProperty());
@@ -202,7 +202,18 @@ public class CurrencyScreenController extends XchController
                     symbolCol.setCellValueFactory(cellData -> cellData.getValue().getSymbolProperty());
                     noteCol.setCellValueFactory(cellData -> cellData.getValue().getNoteProperty());
 
-                    currencyTable.setItems(allCurrencyProperty);
+//                    currencyTable.setItems(allCurrencyProperty);
+                    currencyTable.setItems(database.getLastGrabedCurrencyProperty());
+
+/* another way to fill the table
+                    pkCol.setText("pk");
+                    currNameCol.setText("currName");
+                    //...
+                    pkCol.setCellValueFactory(new PropertyValueFactory<CurrencyProperty, Integer>("pk"));
+                    currNameCol.setCellValueFactory(new PropertyValueFactory<CurrencyProperty, String>("currName"));
+                    //...
+                    currencyTable.getItems().setAll(database.getLastGrabedCurrencyProperty());
+*/
                 }
             }
         }catch(Exception ex) {
