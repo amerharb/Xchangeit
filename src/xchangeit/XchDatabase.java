@@ -45,6 +45,18 @@ public class XchDatabase
     private ObservableList<RateProperty> allRateProperty;
     private ObservableList<CurrencyProperty> allCurrencyProperty;
 
+    private boolean currencyNeedRefresh; // this is an indicator that something has been changed in currency 
+    private boolean RateNeedRefresh; // this is an indicator that something has been changed in Rate 
+    
+    private void setCurrencyNeedRefreshAndDepedency(){
+        currencyNeedRefresh = true;
+        RateNeedRefresh = true;
+    }
+    
+    private void setRateNeedRefreshAndDepedency(){
+        RateNeedRefresh = true;
+    }
+    
     public XchDatabase()
     {
         this.allCurrency = new ArrayList<>();
@@ -135,11 +147,12 @@ public class XchDatabase
             }
             //TEST keep a copy of the list to be used later now still under test
             allCurrency = list;
-            allCurrencyProperty = FXCollections.observableArrayList();
+            allCurrencyProperty.clear();
+            //allCurrencyProperty = FXCollections.observableArrayList();
             for(Currency c:allCurrency){
                allCurrencyProperty.add(new CurrencyProperty(c));
             }
-           
+            currencyNeedRefresh = false;
             return list;
         } catch (Exception e) {
             System.err.println("ERROR: " + e);
@@ -155,7 +168,8 @@ public class XchDatabase
             
             //TEST by changing this the collection currency 
             allCurrency.add(c);
-            
+            allCurrencyProperty.add(new CurrencyProperty(c));
+            setCurrencyNeedRefreshAndDepedency();
         } catch (Exception e) {
             //TODO idintifiy the error 
             System.err.println("ERROR: " + e);
@@ -168,7 +182,7 @@ public class XchDatabase
         try{
             Statement st = conn.createStatement();
             st.execute(c.getSqlUpdateStatment());
-            
+            setCurrencyNeedRefreshAndDepedency();
         } catch (Exception e) {
             //TODO idintifiy the error 
             System.err.println("ERROR: " + e);
@@ -199,7 +213,8 @@ public class XchDatabase
                 return list; //return empty list becuase there no currency
             }
             
-            allRateProperty = FXCollections.observableArrayList();
+            allRateProperty.clear();
+            //allRateProperty = FXCollections.observableArrayList();
             while(rs.next()){
                 CurrencyProperty rateCurrProp = null; // I found it kind of stupid that i have to init this var to null in order to make it work 
                 //look for the currency 
@@ -215,7 +230,7 @@ public class XchDatabase
             }
             
             allRate = list;
-
+            RateNeedRefresh = false;
             return list;
 
         } catch (Exception e) {
@@ -240,28 +255,28 @@ public class XchDatabase
         }
     }
     
-    public ArrayList<Rate> getLastGrabedRate(){
-        return allRate;
-    }
-    
-    public ObservableList<RateProperty> getLastGrabedRateProperty(){
-        return allRateProperty;
-    }
-    
     public void addRate(Rate r){
     
         try{
             Statement st = conn.createStatement();
             st.execute(r.getSqlInsertStatment());
             
-            //TEST by changing this the collection currency 
             allRate.add(r);
+            allRateProperty.add(new RateProperty(r));
             
         } catch (Exception e) {
             //TODO idintifiy the error 
             System.err.println("ERROR: " + e);
 
         }
+    }
+    
+    public ArrayList<Rate> getLastGrabedRate(){
+        return allRate;
+    }
+    
+    public ObservableList<RateProperty> getLastGrabedRateProperty(){
+        return allRateProperty;
     }
     
     public void createDatabase(){

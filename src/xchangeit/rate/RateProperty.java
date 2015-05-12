@@ -30,6 +30,7 @@ public class RateProperty extends Rate
     private final SimpleStringProperty noteProperty;
    
     public RateProperty(Rate r) throws Exception{
+        //TODO review the casting here it does not seem correct 
         this(r.getPk(), r.getRateDate(), (CurrencyProperty)r.getCurr(), r.getRate(), r.getSellPrice(), r.getBuyPrice(), r.getNote());
     }
 
