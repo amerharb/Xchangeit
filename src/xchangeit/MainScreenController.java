@@ -28,15 +28,15 @@ import javafx.stage.Stage;
 public class MainScreenController implements Initializable 
 {
 
-    private Stage ConnectStage;
-    private Stage CurrencyStage;
-    private Stage RateStage;
-    private Stage BuyStage;
-    private Stage SellStage;
-    private Stage TransCashInStage;
-    private Stage TransCashOutStage;
-    private Stage TransCurrInStage;
-    private Stage TransCurrOutStage;
+    private Stage connectStage;
+    private Stage currencyStage;
+    private Stage rateStage;
+    private Stage buyStage;
+    private Stage sellStage;
+    private Stage transCashInStage;
+    private Stage transCashOutStage;
+    private Stage transCurrInStage;
+    private Stage transCurrOutStage;
     
     private XchDatabase Database = new XchDatabase();
     
@@ -52,10 +52,10 @@ public class MainScreenController implements Initializable
     {
         System.out.println("You clicked Connect");
         try {
-            showScreen(ConnectStage, "ConnectScreen.fxml");
+            showScreen(connectStage, "ConnectScreen.fxml");
         } catch (IOException ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
-            ConnectStage = null;
+            connectStage = null;
         }
 
     }
@@ -68,7 +68,7 @@ public class MainScreenController implements Initializable
             Database.Disconnect();
         } catch (Exception ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
-            ConnectStage = null;
+            connectStage = null;
         }
 
     }
@@ -78,7 +78,7 @@ public class MainScreenController implements Initializable
     {
         System.out.println("You clicked Currency");
         try {
-            showScreen(CurrencyStage, "currency/CurrencyScreen.fxml");
+            showScreen(currencyStage, "currency/CurrencyScreen.fxml");
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -89,7 +89,7 @@ public class MainScreenController implements Initializable
     {
         System.out.println("You clicked Rate");
         try {
-            showScreen(RateStage, "rate/RateScreen.fxml");
+            showScreen(rateStage, "rate/RateScreen.fxml");
         } catch (IOException ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -102,7 +102,7 @@ public class MainScreenController implements Initializable
     {
         System.out.println("You clicked Buy");
         try {
-            showScreen(BuyStage, "buy/BuyScreen.fxml");
+            showScreen(buyStage, "buy/BuyScreen.fxml");
         } catch (IOException ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -114,7 +114,7 @@ public class MainScreenController implements Initializable
     {
         System.out.println("You clicked Sell");
         try {
-            showScreen(SellStage, "sell/SellScreen.fxml");
+            showScreen(sellStage, "sell/SellScreen.fxml");
         } catch (IOException ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -126,7 +126,7 @@ public class MainScreenController implements Initializable
     {
         System.out.println("You clicked TransCashIn");
         try {
-            showScreen(TransCashInStage, "cashIn/CashInScreen.fxml");
+            showScreen(transCashInStage, "cashIn/CashInScreen.fxml");
         } catch (IOException ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -138,7 +138,7 @@ public class MainScreenController implements Initializable
     {
         System.out.println("You clicked TransCashOut");
         try {
-            showScreen(TransCashOutStage, "cashOut/CashOutScreen.fxml");
+            showScreen(transCashOutStage, "cashOut/CashOutScreen.fxml");
         } catch (IOException ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -149,7 +149,7 @@ public class MainScreenController implements Initializable
     private void handleTransCurrInAction(ActionEvent event){
         System.out.println("You clicked TransCurrIn");
         try {
-            showScreen(TransCurrInStage, "currIn/CurrInScreen.fxml");
+            showScreen(transCurrInStage, "currIn/CurrInScreen.fxml");
         } catch (IOException ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -160,7 +160,7 @@ public class MainScreenController implements Initializable
     private void handleTransCurrOutAction(ActionEvent event){
         System.out.println("You clicked TransCurrOut");
         try {
-            showScreen(TransCurrOutStage, "currOut/CurrOutScreen.fxml");
+            showScreen(transCurrOutStage, "currOut/CurrOutScreen.fxml");
         } catch (IOException ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
