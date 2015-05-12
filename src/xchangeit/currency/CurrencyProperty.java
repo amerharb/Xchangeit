@@ -34,7 +34,7 @@ public class CurrencyProperty extends Currency
         this.noteProperty= new SimpleStringProperty(note);
         this.inactiveProperty = new SimpleBooleanProperty(inactive);
     }
-
+    
     public SimpleIntegerProperty getPkProperty()
     {
         return pkProperty;
@@ -64,5 +64,10 @@ public class CurrencyProperty extends Currency
     {
         return inactiveProperty;
     }
+    
+    @Override
+    public String toString(){
+        return super.getCurrName();
+    } 
 
 }

@@ -15,6 +15,10 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import xchangeit.currency.CurrencyProperty;
+import xchangeit.rate.RateProperty;
 
 /**
  *
@@ -38,10 +42,17 @@ public class XchDatabase
     private ArrayList<Currency> allCurrency;
     private ArrayList<Rate> allRate;
     
+    private ObservableList<RateProperty> allRateProperty;
+    private ObservableList<CurrencyProperty> allCurrencyProperty;
+
     public XchDatabase()
     {
         this.allCurrency = new ArrayList<>();
         this.allRate = new ArrayList<>();
+        
+        this.allCurrencyProperty = FXCollections.observableArrayList();
+        this.allRateProperty = FXCollections.observableArrayList();
+
     }
 
     public void connect(String server, String rootPassword){
@@ -124,7 +135,11 @@ public class XchDatabase
             }
             //TEST keep a copy of the list to be used later now still under test
             allCurrency = list;
-            
+            allCurrencyProperty = FXCollections.observableArrayList();
+            for(Currency c:allCurrency){
+               allCurrencyProperty.add(new CurrencyProperty(c));
+            }
+           
             return list;
         } catch (Exception e) {
             System.err.println("ERROR: " + e);
@@ -161,19 +176,46 @@ public class XchDatabase
         }
     }
     
+    public ArrayList<Currency> getLastGrabedCurrency(){
+        return allCurrency;
+    }
+    
+    public ObservableList<CurrencyProperty> getLastGrabedCurrencyProperty(){
+        return allCurrencyProperty;
+    }
+    
     public ArrayList<Rate> getAllRate(){
         try{
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("select pk, rate_date, curr, rate, sell_price, buy_price, note from rates" );
             ArrayList<Rate> list = new ArrayList();
             
-            while(rs.next()){
-                Rate r = new Rate(rs.getInt("pk"), rs.getDate("rate_date"), getCurrencyByPK(rs.getInt("curr")), rs.getDouble("rate"), rs.getDouble("sell_price"), rs.getDouble("buy_price"), rs.getString("note"));
-                list.add(r);
+            if (allCurrency == null || allCurrency.isEmpty()){
+                getAllCurrency(); //fill currency if it is empty
             }
             
-            //TEST keep a copy of the rates that we grab from database
+            if (allCurrency.isEmpty()){
+                allRate = list;
+                return list; //return empty list becuase there no currency
+            }
+            
+            allRateProperty = FXCollections.observableArrayList();
+            while(rs.next()){
+                CurrencyProperty rateCurrProp = null; // I found it kind of stupid that i have to init this var to null in order to make it work 
+                //look for the currency 
+                for (CurrencyProperty c:allCurrencyProperty){
+                    if (c.getPk() == rs.getInt("curr")){
+                        rateCurrProp = c;
+                        break;
+                    }
+                }
+                Rate r = new Rate(rs.getInt("pk"), rs.getDate("rate_date"), rateCurrProp, rs.getDouble("rate"), rs.getDouble("sell_price"), rs.getDouble("buy_price"), rs.getString("note"));
+                list.add(r);
+                allRateProperty.add(new RateProperty(r));
+            }
+            
             allRate = list;
+
             return list;
 
         } catch (Exception e) {
@@ -185,7 +227,7 @@ public class XchDatabase
     public boolean delRateByPK(int pk){
         try{
             Statement st = conn.createStatement();
-            boolean r = st.execute("delete from rate where pk = " + pk);
+            boolean r = st.execute("delete from rates where pk = " + pk);
             if (st.getUpdateCount()>0)
                 //TODO look in allRate object and remove the rate from here also
                 return true;
@@ -196,8 +238,16 @@ public class XchDatabase
             return false;
                     
         }
-        
     }
+    
+    public ArrayList<Rate> getLastGrabedRate(){
+        return allRate;
+    }
+    
+    public ObservableList<RateProperty> getLastGrabedRateProperty(){
+        return allRateProperty;
+    }
+    
     public void addRate(Rate r){
     
         try{

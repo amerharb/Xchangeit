@@ -10,9 +10,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
@@ -27,16 +24,16 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import xchangeit.*;
 import xchangeit.currency.Currency;
+import xchangeit.currency.CurrencyProperty;
 
 /**
  * FXML Controller class
  *
  * @author Amer
  */
-public class RateScreenController extends XchController
-{
+public class RateScreenController extends XchController{
 
-    XchDatabase DataBase;     
+    XchDatabase database;     
 
     @FXML TableView<RateProperty> rateTable;
     
@@ -49,14 +46,17 @@ public class RateScreenController extends XchController
     @FXML TableColumn<RateProperty, String> noteCol;
     
     @FXML DatePicker rateDateDatePicker;
-    @FXML ChoiceBox currChoiceBox;
+    @FXML ChoiceBox<CurrencyProperty> currChoiceBox;
     @FXML TextField rateText;
     @FXML TextField sellPriceText;
     @FXML TextField buyPriceText;
     @FXML TextArea noteText;
 
-    ArrayList<Rate> allRate;
-    ObservableList<RateProperty> allRateProperty = FXCollections.observableArrayList();
+//    ArrayList<Rate> allRate;
+    //ArrayList<Currency> allCurrency;
+    
+    //ObservableList<RateProperty> allRateProperty = FXCollections.observableArrayList();
+    //ObservableList<CurrencyProperty> allCurrencyProperty = FXCollections.observableArrayList();
 
     RateProperty selRateProp;
     
@@ -65,6 +65,8 @@ public class RateScreenController extends XchController
 
             selRateProp = rateTable.getSelectionModel().getSelectedItem();
             if (selRateProp != null){
+                //TODO fill date and currency
+                currChoiceBox.setValue(selRateProp.getCurrProperty());
                 rateText.setText(selRateProp.getRateAsString());
                 sellPriceText.setText(selRateProp.getSellPriceAsString());
                 buyPriceText.setText(selRateProp.getBuyPriceAsString());
@@ -73,7 +75,7 @@ public class RateScreenController extends XchController
             }else{
                 
                 //rateDateDatePicker.valueProperty() = New ObjectProperty<LocalDateTime.now()>; 
-  //              curr
+                currChoiceBox.setValue(null);
                 rateText.clear();
                 sellPriceText.clear();
                 buyPriceText.clear();
@@ -83,17 +85,56 @@ public class RateScreenController extends XchController
             ex.printStackTrace();
         }
     }
+    
+    private void fillCurrChoiceBox(){        
+        try{
+            if (database.getLastGrabedRate() != null) {
+                
+//                allCurrency = new ArrayList<Currency>();
+//                for (Rate r:allRate){
+//                    if (!allCurrency.contains(r.getCurr()))
+//                        allCurrency.add(r.getCurr());
+//                }
+                //allCurrency = database.getAlreadyLastCurrency();
+                //this proc is now done inside XchDatabase
+//                allCurrencyProperty = FXCollections.observableArrayList();
+//                for(Currency c:allCurrency){
+//                    allCurrencyProperty.add(new CurrencyProperty(c));
+//                }
+                currChoiceBox.setItems(database.getLastGrabedCurrencyProperty());
+           }
+            
+//            if (MainScreen != null){
+//                database = MainScreen.getDatabase();
+//                allCurrency = database.getAllCurrency();
+//
+//                if (allCurrency != null) {
+//                    allCurrencyProperty = FXCollections.observableArrayList();
+//                    for(Currency c:allCurrency){
+//                        allCurrencyProperty.add(new CurrencyProperty(c));
+//                    }
+//                    
+//                    currChoiceBox.setItems(allCurrencyProperty);
+//                }
+//            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    
     private void fillRateTable(){
         try{
             if (MainScreen != null){
-                DataBase = MainScreen.getDatabase();
-                allRate = DataBase.getAllRate();
+                database = MainScreen.getDatabase();
+                database.getAllRate();
 
-                if (allRate != null) {
-                    allRateProperty = FXCollections.observableArrayList();
-                    for(Rate r:allRate){
-                        allRateProperty.add(new RateProperty(r));
-                    }
+                if (database.getLastGrabedRate() != null) {
+                    //this done from insdie the XchDatabase
+//                    allRateProperty = FXCollections.observableArrayList();
+//                    for(Rate r:allRate){
+//                        allRateProperty.add(new RateProperty(r));
+//                    }
+                    
                     pkCol.setCellValueFactory(cellData -> cellData.getValue().getPkProperty().asObject());
                     rateDateCol.setCellValueFactory(cellData -> cellData.getValue().getRateDateProperty());
                     currCol.setCellValueFactory(cellData -> cellData.getValue().getCurrProperty().getCurrNameProperty());
@@ -102,7 +143,7 @@ public class RateScreenController extends XchController
                     buyPriceCol.setCellValueFactory(cellData -> cellData.getValue().getBuyPriceProperty().asObject());
                     noteCol.setCellValueFactory(cellData -> cellData.getValue().getNoteProperty());
 
-                    rateTable.setItems(allRateProperty);
+                    rateTable.setItems(database.getLastGrabedRateProperty());
                 }
             }
         }catch(Exception ex) {
@@ -117,8 +158,8 @@ public class RateScreenController extends XchController
         try{
             //TODO fix the value of PK by retreve it from database later, check the value if string is empty, 
             //Rate r = new Rate(0, rateDateDatePicker.getValue(), currComboBox.getValue(), rateText.getText(), sellPriceText.getText(), buyPriceText.getText(), noteText.getText());
-            Rate r = new Rate(0, new Date(), DataBase.getCurrencyByPK(1), Double.valueOf(rateText.getText()), Double.valueOf(sellPriceText.getText()), Double.valueOf(buyPriceText.getText()), noteText.getText());
-            DataBase.addRate(r);
+            Rate r = new Rate(0, new Date(), database.getCurrencyByPK(1), Double.valueOf(rateText.getText()), Double.valueOf(sellPriceText.getText()), Double.valueOf(buyPriceText.getText()), noteText.getText());
+            database.addRate(r);
             fillRateTable();
         }catch(Exception ex){
             ex.printStackTrace();
@@ -130,7 +171,7 @@ public class RateScreenController extends XchController
         System.out.println("You Click RateScreen Delete Button");
         try{
             if (selRateProp != null){
-                if (DataBase.delRateByPK(selRateProp.getPk())){
+                if (database.delRateByPK(selRateProp.getPk())){
                     fillRateTable();
                 }
             }
@@ -156,6 +197,7 @@ public class RateScreenController extends XchController
     {
         try{
             fillRateTable();
+            fillCurrChoiceBox();
         }catch(Exception ex) {
             ex.printStackTrace(); 
         }

@@ -18,7 +18,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 /**
@@ -147,8 +146,7 @@ public class MainScreenController implements Initializable
     }
     
     @FXML
-    private void handleTransCurrInAction(ActionEvent event)
-    {
+    private void handleTransCurrInAction(ActionEvent event){
         System.out.println("You clicked TransCurrIn");
         try {
             showScreen(TransCurrInStage, "currIn/CurrInScreen.fxml");
@@ -159,8 +157,7 @@ public class MainScreenController implements Initializable
     }
     
     @FXML
-    private void handleTransCurrOutAction(ActionEvent event)
-    {
+    private void handleTransCurrOutAction(ActionEvent event){
         System.out.println("You clicked TransCurrOut");
         try {
             showScreen(TransCurrOutStage, "currOut/CurrOutScreen.fxml");
@@ -193,13 +190,11 @@ public class MainScreenController implements Initializable
     }
     
     @Override
-    public void initialize(URL url, ResourceBundle rb)
-    {
+    public void initialize(URL url, ResourceBundle rb){
         XchController.setMainScreen(this);
     }    
 
-    public XchDatabase getDatabase()
-    {
+    public XchDatabase getDatabase(){
         return Database;
     }
     

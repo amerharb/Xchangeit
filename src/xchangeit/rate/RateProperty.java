@@ -29,23 +29,26 @@ public class RateProperty extends Rate
     private final SimpleDoubleProperty buyPriceProperty;
     private final SimpleStringProperty noteProperty;
    
-    public RateProperty(Rate r){
-        this(r.getPk(), r.getRateDate(), r.getCurr(), r.getRate(), r.getSellPrice(), r.getBuyPrice(), r.getNote());
+    public RateProperty(Rate r) throws Exception{
+        this(r.getPk(), r.getRateDate(), (CurrencyProperty)r.getCurr(), r.getRate(), r.getSellPrice(), r.getBuyPrice(), r.getNote());
     }
 
-    public RateProperty(int pk, Date rateDate, Currency curr, double rate, double sellPrice, double buyPrice, String note){
+    public RateProperty(int pk, Date rateDate, CurrencyProperty currProp, double rate, double sellPrice, double buyPrice, String note) throws Exception, ExceptionInInitializerError {
         
-        super(pk, rateDate, curr, rate, sellPrice, buyPrice, note);
+        super(pk, rateDate, currProp, rate, sellPrice, buyPrice, note);
         this.pkProperty = new SimpleIntegerProperty(pk);
         this.rateDateProperty = new SimpleObjectProperty(rateDate);
-        if (curr == null)
-            this.currProperty = new CurrencyProperty(0,"","","","",false);
-        else
-            this.currProperty = new CurrencyProperty(curr);
+        if (currProp == null){
+            //TODO error stop the construction
+            throw new Exception("error");
+        }else
+            this.currProperty = currProp;
+        
         this.rateProperty = new SimpleDoubleProperty(rate);
         this.sellPriceProperty = new SimpleDoubleProperty(sellPrice);
         this.buyPriceProperty = new SimpleDoubleProperty(buyPrice);
         this.noteProperty = new SimpleStringProperty(note);
+        System.out.println("end of consturncot");
     }
 
     public SimpleIntegerProperty getPkProperty()
