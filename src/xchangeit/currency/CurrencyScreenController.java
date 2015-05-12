@@ -61,9 +61,6 @@ public class CurrencyScreenController extends XchController
             else if(String.valueOf(isoSymbolText.getText()).isEmpty() ){
                 warningLabel.setText("iso symbol please");
             }
-//            else if(isoSymbolText.getText() == isoSymbolText){
-//            warningLabel.setText("duplicate entry");    
-//            }
             else if(String.valueOf(symbolText.getText()).isEmpty() ){
                 warningLabel.setText("symbol please");
             }
