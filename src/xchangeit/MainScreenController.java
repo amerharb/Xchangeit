@@ -28,15 +28,15 @@ import javafx.stage.Stage;
 public class MainScreenController implements Initializable 
 {
 
-    Stage ConnectStage;
-    Stage CurrencyStage;
-    Stage RateStage;
-    Stage BuyStage;
-    Stage SellStage;
-    Stage TransCashInStage;
-    Stage TransCashOutStage;
-    Stage TransCurrInStage;
-    Stage TransCurrOutStage;
+    private Stage ConnectStage;
+    private Stage CurrencyStage;
+    private Stage RateStage;
+    private Stage BuyStage;
+    private Stage SellStage;
+    private Stage TransCashInStage;
+    private Stage TransCashOutStage;
+    private Stage TransCurrInStage;
+    private Stage TransCurrOutStage;
     
     private XchDatabase Database = new XchDatabase();
     
