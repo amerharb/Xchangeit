@@ -25,6 +25,6 @@
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <Label layoutX="34.0" layoutY="219.0" prefHeight="31.0" prefWidth="423.0" text="A new database will be created with the name Xchangeit by clicking 'create database'" />
+      <Label layoutX="34.0" layoutY="219.0" prefHeight="31.0" prefWidth="423.0" text="A new database will be created called Xchangeit by clicking 'create database'" />
    </children>
 </AnchorPane>
