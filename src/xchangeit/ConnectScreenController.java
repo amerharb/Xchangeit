@@ -26,10 +26,10 @@ import javafx.scene.layout.AnchorPane;
 public class ConnectScreenController extends XchController
 {
 
-    @FXML AnchorPane connectPane;
-    @FXML TextField serverNameText;
+    @FXML private AnchorPane connectPane;
+    @FXML private TextField serverNameText;
     
-    @FXML PasswordField rootPasswordText;
+    @FXML private PasswordField rootPasswordText;
     
     @FXML 
     private void handleCreateDatabaseButtonAction(ActionEvent event)
