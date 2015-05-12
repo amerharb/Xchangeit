@@ -23,25 +23,25 @@ public class CurrencyScreenController extends XchController
 
     XchDatabase database;     
 
-    @FXML TableView<CurrencyProperty> currencyTable;
+    @FXML private TableView<CurrencyProperty> currencyTable;
     
-    @FXML TableColumn<CurrencyProperty, Integer> pkCol;
-    @FXML TableColumn<CurrencyProperty, String> currNameCol;
-    @FXML TableColumn<CurrencyProperty, String> isoCol;
-    @FXML TableColumn<CurrencyProperty, String> symbolCol;
-    @FXML TableColumn<CurrencyProperty, String> noteCol;
-    @FXML TableColumn<CurrencyProperty, String> inactiveCol;
+    @FXML private TableColumn<CurrencyProperty, Integer> pkCol;
+    @FXML private TableColumn<CurrencyProperty, String> currNameCol;
+    @FXML private TableColumn<CurrencyProperty, String> isoCol;
+    @FXML private TableColumn<CurrencyProperty, String> symbolCol;
+    @FXML private TableColumn<CurrencyProperty, String> noteCol;
+    @FXML private TableColumn<CurrencyProperty, String> inactiveCol;
     
-    @FXML TextField currNameText;
-    @FXML TextField isoSymbolText;
-    @FXML TextField symbolText;
-    @FXML TextArea noteText;
-    @FXML CheckBox inactiveCheck;
+    @FXML private TextField currNameText;
+    @FXML private TextField isoSymbolText;
+    @FXML private TextField symbolText;
+    @FXML private TextArea noteText;
+    @FXML private CheckBox inactiveCheck;
     
-    @FXML Button updateButton;
-    @FXML Button newButton;
-    @FXML Button deleteButton;
-    @FXML Label  warningLabel;
+    @FXML private Button updateButton;
+    @FXML private Button newButton;
+    @FXML private Button deleteButton;
+    @FXML private Label  warningLabel;
     
 //    ArrayList<Currency> allCureency;
 //    ObservableList<CurrencyProperty> allCurrencyProperty = FXCollections.observableArrayList();

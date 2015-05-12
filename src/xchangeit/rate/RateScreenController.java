@@ -37,20 +37,20 @@ public class RateScreenController extends XchController{
 
     @FXML TableView<RateProperty> rateTable;
     
-    @FXML TableColumn<RateProperty, Integer> pkCol;
-    @FXML TableColumn<RateProperty, Date> rateDateCol;
-    @FXML TableColumn<RateProperty, String> currCol;
-    @FXML TableColumn<RateProperty, Double> rateCol;
-    @FXML TableColumn<RateProperty, Double> sellPriceCol;
-    @FXML TableColumn<RateProperty, Double> buyPriceCol;
-    @FXML TableColumn<RateProperty, String> noteCol;
+    @FXML private TableColumn<RateProperty, Integer> pkCol;
+    @FXML private TableColumn<RateProperty, Date> rateDateCol;
+    @FXML private TableColumn<RateProperty, String> currCol;
+    @FXML private TableColumn<RateProperty, Double> rateCol;
+    @FXML private TableColumn<RateProperty, Double> sellPriceCol;
+    @FXML private TableColumn<RateProperty, Double> buyPriceCol;
+    @FXML private TableColumn<RateProperty, String> noteCol;
     
-    @FXML DatePicker rateDateDatePicker;
-    @FXML ChoiceBox<CurrencyProperty> currChoiceBox;
-    @FXML TextField rateText;
-    @FXML TextField sellPriceText;
-    @FXML TextField buyPriceText;
-    @FXML TextArea noteText;
+    @FXML private DatePicker rateDateDatePicker;
+    @FXML private ChoiceBox<CurrencyProperty> currChoiceBox;
+    @FXML private TextField rateText;
+    @FXML private TextField sellPriceText;
+    @FXML private TextField buyPriceText;
+    @FXML private TextArea noteText;
 
 //    ArrayList<Rate> allRate;
     //ArrayList<Currency> allCurrency;
