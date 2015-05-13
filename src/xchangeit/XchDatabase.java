@@ -224,10 +224,12 @@ public class XchDatabase
                         break;
                     }
                 }
-                Rate r = new Rate(rs.getInt("pk"), rs.getDate("rate_date"), rateCurrProp, rs.getDouble("rate"), rs.getDouble("sell_price"), rs.getDouble("buy_price"), rs.getString("note"));
-                list.add(r);
-                allRateProperty.add(new RateProperty(r));
-            }
+                if (rateCurrProp != null){ //thats mean currency not found maybe delete it by mistake from database or mistake in the currency collection here
+                    Rate r = new Rate(rs.getInt("pk"), rs.getDate("rate_date"), rateCurrProp, rs.getDouble("rate"), rs.getDouble("sell_price"), rs.getDouble("buy_price"), rs.getString("note"));
+                    list.add(r);
+                    allRateProperty.add(new RateProperty(r));
+                }
+             }
             
             allRate = list;
             RateNeedRefresh = false;

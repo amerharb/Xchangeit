@@ -41,7 +41,7 @@ public class RateProperty extends Rate
         this.rateDateProperty = new SimpleObjectProperty(rateDate);
         if (currProp == null){
             //TODO error stop the construction
-            throw new Exception("error");
+            throw new Exception("error: currency can not be null when you create rate");
         }else
             this.currProperty = currProp;
         
@@ -49,7 +49,6 @@ public class RateProperty extends Rate
         this.sellPriceProperty = new SimpleDoubleProperty(sellPrice);
         this.buyPriceProperty = new SimpleDoubleProperty(buyPrice);
         this.noteProperty = new SimpleStringProperty(note);
-        System.out.println("end of consturncot");
     }
 
     public SimpleIntegerProperty getPkProperty()
