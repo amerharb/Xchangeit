@@ -7,21 +7,25 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xchangeit.currIn.CurrInScreenController">
+<AnchorPane id="AnchorPane" prefHeight="318.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xchangeit.currOut.CurrOutScreenController">
     <children>
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="247.0" layoutY="45.0" prefHeight="35.0" prefWidth="127.0" text="Currency In" textAlignment="CENTER" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="247.0" layoutY="36.0" prefHeight="35.0" prefWidth="127.0" text="Currency Out" textAlignment="CENTER" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
             <font>
                 <Font name="System Bold" size="20.0" />
             </font>
         </Label>
-        <ChoiceBox layoutX="142.0" layoutY="146.0" prefWidth="150.0"/>
-        <DatePicker layoutX="142.0" layoutY="107.0" prefHeight="25.0" prefWidth="150.0" />
-        <TextField layoutX="143.0" layoutY="188.0" />
-        <TextField layoutX="143.0" layoutY="227.0" /> 
-        <Label layoutX="14.0" layoutY="111.0" prefHeight="19.0" prefWidth="34.0" text="Date" />
-        <Label layoutX="14.0" layoutY="150.0" text="Currency" />
-        <Label layoutX="14.0" layoutY="191.0" prefHeight="19.0" prefWidth="102.0" text="Currency Amount" />
-        <Label layoutX="12.0" layoutY="231.0" text="Rate" />
-              
+        <Button fx:id="insertButton" layoutX="462.0" layoutY="223.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0" text="Insert" />
+        <Label layoutX="14.0" layoutY="81.0" prefHeight="17.0" prefWidth="117.0" text="Date" />
+        <DatePicker fx:id="transDateDatePicker" layoutX="136.0" layoutY="77.0" prefHeight="25.0" prefWidth="149.0" />
+        <Label layoutX="14.0" layoutY="114.0" prefHeight="25.0" prefWidth="117.0" text="Currency" />
+        <ChoiceBox fx:id="currChoiceBox" layoutX="136.0" layoutY="114.0" prefHeight="25.0" prefWidth="149.0" />
+        <TextField fx:id="currAmtText" layoutX="136.0" layoutY="152.0" prefHeight="25.0" prefWidth="149.0" />
+        <Label layoutX="14.0" layoutY="155.0" prefHeight="19.0" prefWidth="102.0" text="Currency Amount" />
+        <Label layoutX="14.0" layoutY="188.0" prefHeight="25.0" prefWidth="117.0" text="Cash Amount" />
+        <TextField fx:id="cashAmtText" layoutX="136.0" layoutY="188.0" prefHeight="25.0" prefWidth="149.0" /> 
+        <TextField fx:id="rateText" layoutX="136.0" layoutY="223.0" prefHeight="25.0" prefWidth="149.0" />
+        <Label layoutX="14.0" layoutY="223.0" prefHeight="25.0" prefWidth="117.0" text="Rate" />
+        <TextArea fx:id="noteText" layoutX="429.0" layoutY="77.0" prefHeight="57.0" prefWidth="149.0" />
+        <Label layoutX="339.0" layoutY="77.0" text="Note" />
     </children>
 </AnchorPane>
