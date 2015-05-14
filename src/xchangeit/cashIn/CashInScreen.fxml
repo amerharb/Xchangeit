@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="318.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xchangeit.currOut.CurrOutScreenController">
+<AnchorPane id="AnchorPane" prefHeight="318.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xchangeit.cashIn.CashInScreenController">
     <children>
          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="247.0" layoutY="36.0" prefHeight="35.0" prefWidth="127.0" text="Cash In" textAlignment="CENTER" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
             <font>
