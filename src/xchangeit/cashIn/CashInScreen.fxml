@@ -14,7 +14,10 @@
                 <Font name="System Bold" size="20.0" />
             </font>
         </Label>
-        <Button fx:id="cashInButton" layoutX="462.0" layoutY="223.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0" text="Insert" />
+        <Button fx:id="cashInButton" layoutX="462.0" layoutY="223.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0" text="Transfer cash in">
+         <font>
+            <Font size="11.0" />
+         </font></Button>
         <Label layoutX="14.0" layoutY="81.0" prefHeight="17.0" prefWidth="117.0" text="Date" />
         <DatePicker fx:id="transDateDatePicker" layoutX="136.0" layoutY="77.0" prefHeight="25.0" prefWidth="149.0" />
         <Label layoutX="14.0" layoutY="147.0" prefHeight="25.0" prefWidth="117.0" text="Cash Amount" />
