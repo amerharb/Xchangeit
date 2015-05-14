@@ -10,9 +10,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import xchangeit.XchController;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+// (unused import) import xchangeit.XchController;
+// (unused import) import javafx.scene.Parent;
+// (unused import) import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -30,6 +30,12 @@ public class ConnectScreenController extends XchController
     @FXML private TextField serverNameText;
     
     @FXML private PasswordField rootPasswordText;
+    @FXML
+    private Button okButton;
+    @FXML
+    private Button cancelButton1;
+    @FXML
+    private Button cancelButton;
     
     @FXML 
     private void handleCreateDatabaseButtonAction(ActionEvent event)
