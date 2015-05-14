@@ -200,20 +200,22 @@ public class XchDatabase
     
     public ArrayList<Rate> getAllRate(){
         try{
+            allRate.clear();
+            allRateProperty.clear();
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("select pk, rate_date, curr, rate, sell_price, buy_price, note from rates" );
-            ArrayList<Rate> list = new ArrayList();
+//            ArrayList<Rate> list = new ArrayList();
             
             if (allCurrency == null || allCurrency.isEmpty()){
                 getAllCurrency(); //fill currency if it is empty
             }
             
             if (allCurrency.isEmpty()){
-                allRate = list;
-                return list; //return empty list becuase there no currency
+//                allRate = list;
+                allCurrencyProperty.clear();
+                return allRate; //return empty list becuase there no currency
             }
             
-            allRateProperty.clear();
             //allRateProperty = FXCollections.observableArrayList();
             while(rs.next()){
                 CurrencyProperty rateCurrProp = null; // I found it kind of stupid that i have to init this var to null in order to make it work 
@@ -226,14 +228,14 @@ public class XchDatabase
                 }
                 if (rateCurrProp != null){ //thats mean currency not found maybe delete it by mistake from database or mistake in the currency collection here
                     Rate r = new Rate(rs.getInt("pk"), rs.getDate("rate_date"), rateCurrProp, rs.getDouble("rate"), rs.getDouble("sell_price"), rs.getDouble("buy_price"), rs.getString("note"));
-                    list.add(r);
+                    allRate.add(r);
                     allRateProperty.add(new RateProperty(r));
                 }
              }
             
-            allRate = list;
+//            allRate = list;
             RateNeedRefresh = false;
-            return list;
+            return allRate;
 
         } catch (Exception e) {
             System.err.println("ERROR: " + e);
