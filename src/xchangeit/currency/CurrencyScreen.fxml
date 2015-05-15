@@ -38,7 +38,7 @@
                 <TextField fx:id="isoSymbolText" layoutX="100.0" layoutY="45.0" />
                 <TextField fx:id="symbolText" layoutX="100.0" layoutY="80.0" />
                 <CheckBox fx:id="inactiveCheck" alignment="CENTER_RIGHT" allowIndeterminate="true" contentDisplay="RIGHT" layoutX="265.0" layoutY="80.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="105.0" text="Inactive" visible="false" />
-                <Label layoutX="265.0" layoutY="14.0" prefWidth="90.0" text="Note" />
+                <Label layoutX="309.0" layoutY="14.0" prefHeight="17.0" prefWidth="40.0" text="Note" />
             <Label fx:id="warningLabel" layoutX="356.0" layoutY="84.0" prefHeight="25.0" prefWidth="169.0" textFill="#e81818" />
             </children>
         </AnchorPane>
