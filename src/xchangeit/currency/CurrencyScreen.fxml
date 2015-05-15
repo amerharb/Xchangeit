@@ -27,9 +27,9 @@
         </TableView>
         <AnchorPane prefHeight="115.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="45.0">
             <children>
-                <Button fx:id="updateButton" layoutX="595.0" layoutY="45.0" mnemonicParsing="false" onAction="#handelUpdateCurrencyAction" prefHeight="25.0" prefWidth="60.0" text="Update" />
-                <Button fx:id="newButton" layoutX="595.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleAddCurrencyAction" prefHeight="25.0" prefWidth="60.0" text="New" />
-                <Button fx:id="deleteButton" layoutX="595.0" layoutY="80.0" mnemonicParsing="false" onAction="#handelDeleteCurrencyAction" prefHeight="25.0" prefWidth="60.0" text="Delete" />
+                <Button fx:id="updateButton" layoutX="565.0" layoutY="45.0" mnemonicParsing="false" onAction="#handelUpdateCurrencyAction" prefHeight="25.0" prefWidth="90.0" text="Update" />
+                <Button fx:id="newButton" layoutX="565.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleAddCurrencyAction" prefHeight="25.0" prefWidth="90.0" text="Add Currency" />
+                <Button fx:id="deleteButton" layoutX="565.0" layoutY="80.0" mnemonicParsing="false" onAction="#handelDeleteCurrencyAction" prefHeight="25.0" prefWidth="90.0" text="Delete" />
                 <Label layoutX="10.0" layoutY="14.0" prefWidth="90.0" text="Currency Name" />
                 <Label layoutX="10.0" layoutY="49.0" prefWidth="90.0" text="ISO Symbol" />
                 <Label layoutX="10.0" layoutY="84.0" text="Symbol" />
