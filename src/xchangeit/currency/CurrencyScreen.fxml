@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -10,7 +11,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="435.0" prefWidth="693.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xchangeit.currency.CurrencyScreenController">
     <children>
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="237.0" layoutY="26.0" prefHeight="35.0" prefWidth="127.0" text="Currency" textAlignment="CENTER" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+        <Label alignment="CENTER" blendMode="DARKEN" contentDisplay="CENTER" layoutX="237.0" layoutY="26.0" prefHeight="35.0" prefWidth="127.0" text="Currency" textAlignment="CENTER" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
             <font>
             <Font name="System Bold" size="20.0" />
             </font>
@@ -27,9 +28,9 @@
         </TableView>
         <AnchorPane prefHeight="115.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="45.0">
             <children>
-                <Button fx:id="updateButton" layoutX="595.0" layoutY="45.0" mnemonicParsing="false" onAction="#handelUpdateCurrencyAction" prefHeight="25.0" prefWidth="60.0" text="Update" />
-                <Button fx:id="newButton" layoutX="595.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleAddCurrencyAction" prefHeight="25.0" prefWidth="60.0" text="New" />
-                <Button fx:id="deleteButton" layoutX="595.0" layoutY="80.0" mnemonicParsing="false" onAction="#handelDeleteCurrencyAction" prefHeight="25.0" prefWidth="60.0" text="Delete" />
+                <Button fx:id="updateButton" layoutX="565.0" layoutY="45.0" mnemonicParsing="false" onAction="#handelUpdateCurrencyAction" prefHeight="25.0" prefWidth="90.0" text="Update" />
+                <Button fx:id="newButton" layoutX="565.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleAddCurrencyAction" prefHeight="25.0" prefWidth="90.0" text="Add Currency" />
+                <Button fx:id="deleteButton" layoutX="565.0" layoutY="80.0" mnemonicParsing="false" onAction="#handelDeleteCurrencyAction" prefHeight="25.0" prefWidth="90.0" text="Delete" />
                 <Label layoutX="10.0" layoutY="14.0" prefWidth="90.0" text="Currency Name" />
                 <Label layoutX="10.0" layoutY="49.0" prefWidth="90.0" text="ISO Symbol" />
                 <Label layoutX="10.0" layoutY="84.0" text="Symbol" />
@@ -38,8 +39,13 @@
                 <TextField fx:id="isoSymbolText" layoutX="100.0" layoutY="45.0" />
                 <TextField fx:id="symbolText" layoutX="100.0" layoutY="80.0" />
                 <CheckBox fx:id="inactiveCheck" alignment="CENTER_RIGHT" allowIndeterminate="true" contentDisplay="RIGHT" layoutX="265.0" layoutY="80.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="105.0" text="Inactive" visible="false" />
-                <Label layoutX="265.0" layoutY="14.0" prefWidth="90.0" text="Note" />
+                <Label layoutX="309.0" layoutY="14.0" prefHeight="17.0" prefWidth="40.0" text="Note" />
             <Label fx:id="warningLabel" layoutX="356.0" layoutY="84.0" prefHeight="25.0" prefWidth="169.0" textFill="#e81818" />
+            <ImageView blendMode="DARKEN" fitHeight="68.0" fitWidth="90.0" layoutX="259.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../currency%20screen.jpg" />
+               </image>
+            </ImageView>
             </children>
         </AnchorPane>
     </children>

@@ -55,7 +55,10 @@ public class CurrencyScreenController extends XchController
         try{
             //TODO fix the value of PK by retreve it from database later, check the value if string is empty, 
             //inactive will be false becuase its a new value
-            if(String.valueOf(currNameText.getText()).isEmpty() ){
+            if(String.valueOf(currNameText.getText()).isEmpty() && String.valueOf(isoSymbolText.getText()).isEmpty() && String.valueOf(symbolText.getText()).isEmpty()){
+               warningLabel.setText("Add the information first"); 
+            }
+            else if(String.valueOf(currNameText.getText()).isEmpty() ){
                 warningLabel.setText("currency name please");
             }
             else if(String.valueOf(isoSymbolText.getText()).isEmpty() ){
