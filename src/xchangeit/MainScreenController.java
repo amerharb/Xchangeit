@@ -52,7 +52,12 @@ public class MainScreenController implements Initializable
     {
         System.out.println("You clicked Connect");
         try {
-            showScreen(connectStage, "ConnectScreen.fxml");
+            if  (connectStage == null){ //for first time
+                connectStage  = new Stage();
+                connectStage.setScene(GetScene("ConnectScreen.fxml"));
+            }
+            connectStage.show();
+            connectStage.toFront();
         } catch (IOException ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
             connectStage = null;
@@ -78,7 +83,12 @@ public class MainScreenController implements Initializable
     {
         System.out.println("You clicked Currency");
         try {
-            showScreen(currencyStage, "currency/CurrencyScreen.fxml");
+            if  (currencyStage == null){ //for first time
+                currencyStage  = new Stage();
+                currencyStage.setScene(GetScene("currency/CurrencyScreen.fxml"));
+            }
+            currencyStage.show();
+            currencyStage.toFront();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -89,7 +99,12 @@ public class MainScreenController implements Initializable
     {
         System.out.println("You clicked Rate");
         try {
-            showScreen(rateStage, "rate/RateScreen.fxml");
+            if  (rateStage == null){ //for first time
+                rateStage  = new Stage();
+                rateStage.setScene(GetScene("rate/RateScreen.fxml"));
+            }
+            rateStage.show();
+            rateStage.toFront();
         } catch (IOException ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -102,7 +117,12 @@ public class MainScreenController implements Initializable
     {
         System.out.println("You clicked Buy");
         try {
-            showScreen(buyStage, "buy/BuyScreen.fxml");
+            if  (buyStage == null){ //for first time
+                buyStage  = new Stage();
+                buyStage.setScene(GetScene("buy/BuyScreen.fxml"));
+            }
+            buyStage.show();
+            buyStage.toFront();
         } catch (IOException ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -114,7 +134,12 @@ public class MainScreenController implements Initializable
     {
         System.out.println("You clicked Sell");
         try {
-            showScreen(sellStage, "sell/SellScreen.fxml");
+            if  (sellStage == null){ //for first time
+                sellStage  = new Stage();
+                sellStage.setScene(GetScene("sell/SellScreen.fxml"));
+            }
+            sellStage.show();
+            sellStage.toFront();
         } catch (IOException ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -126,7 +151,12 @@ public class MainScreenController implements Initializable
     {
         System.out.println("You clicked TransCashIn");
         try {
-            showScreen(transCashInStage, "cashIn/CashInScreen.fxml");
+            if  (transCashInStage == null){ //for first time
+                transCashInStage  = new Stage();
+                transCashInStage.setScene(GetScene("cashIn/CashInScreen.fxml"));
+            }
+            transCashInStage.show();
+            transCashInStage.toFront();
         } catch (IOException ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -138,7 +168,12 @@ public class MainScreenController implements Initializable
     {
         System.out.println("You clicked TransCashOut");
         try {
-            showScreen(transCashOutStage, "cashOut/CashOutScreen.fxml");
+            if  (transCashOutStage == null){ //for first time
+                transCashOutStage  = new Stage();
+                transCashOutStage.setScene(GetScene("cashOut/CashOutScreen.fxml"));
+            }
+            transCashOutStage.show();
+            transCashOutStage.toFront();
         } catch (IOException ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -149,7 +184,12 @@ public class MainScreenController implements Initializable
     private void handleTransCurrInAction(ActionEvent event){
         System.out.println("You clicked TransCurrIn");
         try {
-            showScreen(transCurrInStage, "currIn/CurrInScreen.fxml");
+            if  (transCurrInStage == null){ //for first time
+                transCurrInStage  = new Stage();
+                transCurrInStage.setScene(GetScene("currIn/CurrInScreen.fxml"));
+            }
+            transCurrInStage.show();
+            transCurrInStage.toFront();
         } catch (IOException ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -160,13 +200,27 @@ public class MainScreenController implements Initializable
     private void handleTransCurrOutAction(ActionEvent event){
         System.out.println("You clicked TransCurrOut");
         try {
-            showScreen(transCurrOutStage, "currOut/CurrOutScreen.fxml");
+            if  (transCurrOutStage == null){ //for first time
+                transCurrOutStage  = new Stage();
+                transCurrOutStage.setScene(GetScene("currOut/CurrOutScreen.fxml"));
+            }
+            transCurrOutStage.show();
+            transCurrOutStage.toFront();
         } catch (IOException ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
     
+    private Scene GetScene(String fxmlFile) throws IOException{
+
+        Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
+        Scene scene = new Scene(root);
+        return scene;
+        
+    }
+    
+    //TODEL to delete this method 
     private void showScreen(Stage stage, String fxmlFile) throws IOException{
         try{
             if (stage == null){
@@ -174,10 +228,6 @@ public class MainScreenController implements Initializable
                 stage = new Stage();
                 
                 Parent root = loader.load(getClass().getResource(fxmlFile));
-                //NOTE: no need to list line as it has been made a static and added to the initionlization method below
-                //XchController.setMainScreen(this);
-                //XchController cnt = loader.getController();
-                //cnt.setMainScreen(this);
                 
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
