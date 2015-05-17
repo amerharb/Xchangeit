@@ -101,5 +101,4 @@ public class CashIn extends Transaction
         return s;
     }
 
-
 }

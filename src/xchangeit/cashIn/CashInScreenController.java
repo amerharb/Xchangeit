@@ -23,11 +23,6 @@ import xchangeit.XchDatabase;
  */
 public class CashInScreenController extends XchController
 {
-
-    /**
-     * Initializes the controller class.
-     */
-
     private XchDatabase database;
     
     @FXML private TextField transDateText;
@@ -35,7 +30,7 @@ public class CashInScreenController extends XchController
     @FXML private TextArea noteText;
     
     @FXML
-    private void handleCashInAction(ActionEvent event){
+    private void handleAddAction(ActionEvent event){
         
         System.out.println("You Click Cash In Screen Add Button");
         try{

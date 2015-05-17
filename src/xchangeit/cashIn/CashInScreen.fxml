@@ -20,7 +20,7 @@
         <TextField fx:id="cashAmtText" layoutX="138.0" layoutY="106.0" prefHeight="25.0" prefWidth="149.0" />
         <Label layoutX="14.0" layoutY="151.0" text="Note" />
         <TextArea fx:id="noteText" layoutX="138.0" layoutY="149.0" prefHeight="57.0" prefWidth="149.0" />
-        <Button layoutX="355.0" layoutY="178.0" mnemonicParsing="false" onAction="#handleCashInAction" prefHeight="25.0" prefWidth="98.0" text="Add">
+        <Button layoutX="355.0" layoutY="178.0" mnemonicParsing="false" onAction="#handleAddAction" prefHeight="25.0" prefWidth="98.0" text="Add">
          <font>
             <Font size="11.0" />
          </font></Button>
