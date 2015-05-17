@@ -5,7 +5,7 @@
  */
 package xchangeit.currIn;
 
-import java.util.Date;
+import java.sql.Timestamp;
 import xchangeit.Transaction;
 import xchangeit.XchTransactionTypeeEnum;
 import xchangeit.currency.Currency;
@@ -20,7 +20,7 @@ public class CurrIn extends Transaction
     private double currAmount;
     private double rate;
 
-    public CurrIn(int pk, Date transDate, String note, Currency currency, double currAmount, double rate)
+    public CurrIn(int pk, Timestamp transDate, String note, Currency currency, double currAmount, double rate)
     {
         super(pk, transDate, note);
         this.currency = currency;

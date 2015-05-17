@@ -7,23 +7,17 @@
 package xchangeit.rate;
 
 import java.net.URL;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.util.ArrayList;
 
+import java.sql.Timestamp;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import xchangeit.XchController;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import xchangeit.*;
 import xchangeit.currency.Currency;
@@ -41,7 +35,7 @@ public class RateScreenController extends XchController{
     @FXML TableView<RateProperty> rateTable;
     
     @FXML private TableColumn<RateProperty, Integer> pkCol;
-    @FXML private TableColumn<RateProperty, java.sql.Timestamp> rateDateCol;
+    @FXML private TableColumn<RateProperty, Timestamp> rateDateCol;
     @FXML private TableColumn<RateProperty, String> currCol;
     @FXML private TableColumn<RateProperty, Double> rateCol;
     @FXML private TableColumn<RateProperty, Double> sellPriceCol;
@@ -125,22 +119,12 @@ public class RateScreenController extends XchController{
         System.out.println("You Click RateScreen Add Button");
         try{
             //TODO fix the value of PK by retreve it from database later, check the value if string is empty, 
-            java.sql.Timestamp st = getTimeStamp(rateDateText.getText());
+            Timestamp st = getTimeStamp(rateDateText.getText());
             Rate r = new Rate(0, st, currChoiceBox.getValue(), rateText.getText(), sellPriceText.getText(), buyPriceText.getText(), noteText.getText());
             database.addRate(r);
             fillRateTable();
         }catch(Exception ex){
             ex.printStackTrace();
-        }
-    }
-    
-    private java.sql.Timestamp getTimeStamp(String datetime){
-        try{
-
-            java.sql.Timestamp st = java.sql.Timestamp.valueOf(datetime);
-            return st;
-        }catch(Exception ex){
-            return null;
         }
     }
     

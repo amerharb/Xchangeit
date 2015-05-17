@@ -6,6 +6,7 @@
 
 package xchangeit.rate;
 
+import java.sql.Timestamp;
 import xchangeit.currency.Currency;
 import xchangeit.currency.CurrencyProperty;
 
@@ -34,7 +35,7 @@ public class RateProperty extends Rate
         this(r.getPk(), r.getRateDate(), (CurrencyProperty)r.getCurr(), r.getRate(), r.getSellPrice(), r.getBuyPrice(), r.getNote());
     }
 
-    public RateProperty(int pk, java.sql.Timestamp rateDate, CurrencyProperty currProp, double rate, double sellPrice, double buyPrice, String note) throws Exception, ExceptionInInitializerError {
+    public RateProperty(int pk, Timestamp rateDate, CurrencyProperty currProp, double rate, double sellPrice, double buyPrice, String note) throws Exception, ExceptionInInitializerError {
         
         super(pk, rateDate, currProp, rate, sellPrice, buyPrice, note);
         this.pkProperty = new SimpleIntegerProperty(pk);

@@ -7,7 +7,7 @@
 package xchangeit.rate;
 
 import xchangeit.currency.Currency;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  *
@@ -16,18 +16,18 @@ import java.sql.Date;
 public class Rate
 {
     private int pk;
-    private java.sql.Timestamp rateDate;
+    private Timestamp rateDate;
     private Currency curr;
     private double rate;
     private double sellPrice;
     private double buyPrice;			
     private String note;
     
-    public Rate(int pk, java.sql.Timestamp rateDate, Currency curr, String rate, String sellPrice, String buyPrice, String note){
+    public Rate(int pk, Timestamp rateDate, Currency curr, String rate, String sellPrice, String buyPrice, String note){
         this(pk, rateDate, curr, Double.valueOf(rate), Double.valueOf(sellPrice), Double.valueOf(buyPrice), note);
     }
 
-    public Rate(int pk, java.sql.Timestamp rateDate, Currency curr, double rate, double sellPrice, double buyPrice, String note){
+    public Rate(int pk, Timestamp rateDate, Currency curr, double rate, double sellPrice, double buyPrice, String note){
         this.pk = pk;
         this.rateDate = rateDate;
         this.curr = curr;
@@ -44,12 +44,12 @@ public class Rate
         return pk;
     }
 
-    public java.sql.Timestamp getRateDate()
+    public Timestamp getRateDate()
     {
         return rateDate;
     }
 
-    public void setRateDate(java.sql.Timestamp rateDate)
+    public void setRateDate(Timestamp rateDate)
     {
         this.rateDate = rateDate;
     }

@@ -5,7 +5,7 @@
  */
 package xchangeit.buy;
 
-import java.util.Date;
+import java.sql.Timestamp;
 import xchangeit.Transaction;
 import xchangeit.XchTransactionTypeeEnum;
 import static xchangeit.XchTransactionTypeeEnum.CashOut;
@@ -44,7 +44,7 @@ public class Buy extends CurrIn
         return XchTransactionTypeeEnum.Buy;
     }
     
-    public Buy(int pk, Date transDate, String note, Currency currency, 
+    public Buy(int pk, Timestamp transDate, String note, Currency currency, 
             double currAmount, double rate, double cashAmount, double price)
     {
         super(pk, transDate, note, currency, currAmount, rate);

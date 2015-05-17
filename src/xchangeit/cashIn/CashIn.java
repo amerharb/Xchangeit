@@ -5,7 +5,7 @@
  */
 package xchangeit.cashIn;
 
-import java.util.Date;
+import java.sql.Timestamp;
 import xchangeit.Transaction;
 import xchangeit.XchTransactionTypeeEnum;
 import xchangeit.currency.Currency;
@@ -18,7 +18,7 @@ public class CashIn extends Transaction
 {
     private double cashAmount;
     
-    public CashIn(int pk, Date transDate, String note, double cashAmount){
+    public CashIn(int pk, Timestamp transDate, String note, double cashAmount){
         super(pk, transDate, note);
         cashAmount = Math.abs(cashAmount); // the amout must be all time positive 
         this.cashAmount = cashAmount;

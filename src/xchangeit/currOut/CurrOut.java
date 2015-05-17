@@ -5,7 +5,7 @@
  */
 package xchangeit.currOut;
 
-import java.util.Date;
+import java.sql.Timestamp;
 import xchangeit.XchTransactionTypeeEnum;
 import xchangeit.currIn.CurrIn;
 import xchangeit.currency.Currency;
@@ -17,7 +17,7 @@ import xchangeit.currency.Currency;
 public class CurrOut extends CurrIn
 {
 
-    public CurrOut(int pk, Date transDate, String note, Currency currency, double currAmount, double rate)
+    public CurrOut(int pk, Timestamp transDate, String note, Currency currency, double currAmount, double rate)
     {
         super(pk, transDate, note, currency, currAmount, rate);
     }

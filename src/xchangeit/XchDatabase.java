@@ -223,9 +223,9 @@ public class XchDatabase
                     }
                 }
                 if (rateCurrProp != null){ 
-                    java.sql.Timestamp d = rs.getTimestamp("rate_date");
-                    Rate r = new Rate(rs.getInt("pk"), d, rateCurrProp, rs.getDouble("rate"), rs.getDouble("sell_price"), rs.getDouble("buy_price"), rs.getString("note"));
-                    System.out.println(d.getTime());
+                    Timestamp ts = rs.getTimestamp("rate_date");
+                    Rate r = new Rate(rs.getInt("pk"), ts, rateCurrProp, rs.getDouble("rate"), rs.getDouble("sell_price"), rs.getDouble("buy_price"), rs.getString("note"));
+
                     allRate.add(r);
                     allRateProperty.add(new RateProperty(r));
                 }else{//thats mean currency not found maybe delete it by mistake from database or mistake in the currency collection here ... dont know what to do in this case yet

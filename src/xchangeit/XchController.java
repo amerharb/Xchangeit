@@ -7,6 +7,7 @@
 package xchangeit;
 
 import javafx.fxml.Initializable;
+import java.sql.Timestamp;
 
 /**
  *
@@ -19,4 +20,15 @@ public abstract class XchController implements Initializable
         MainScreen = mainScreenController;
     }
         
+    protected Timestamp getTimeStamp(String datetime){
+        try{
+
+            Timestamp st = Timestamp.valueOf(datetime);
+            return st;
+        }catch(Exception ex){
+            return null;
+        }
+    }
+    
+
 }

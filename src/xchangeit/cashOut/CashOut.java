@@ -5,7 +5,7 @@
  */
 package xchangeit.cashOut;
 
-import java.util.Date;
+import java.sql.Timestamp;
 import xchangeit.Transaction;
 import xchangeit.XchTransactionTypeeEnum;
 import xchangeit.cashIn.CashIn;
@@ -18,7 +18,7 @@ public class CashOut extends CashIn
 {
     private double cashAmount;
     
-    public CashOut(int pk, Date transDate, String note, double cashAmount){
+    public CashOut(int pk, Timestamp transDate, String note, double cashAmount){
         super(pk, transDate, note, cashAmount);
     }
 

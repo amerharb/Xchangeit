@@ -5,7 +5,7 @@
  */
 package xchangeit.sell;
 
-import java.util.Date;
+import java.sql.Timestamp;
 import xchangeit.XchTransactionTypeeEnum;
 import xchangeit.buy.Buy;
 import xchangeit.currency.Currency;
@@ -17,7 +17,7 @@ import xchangeit.currency.Currency;
 public class Sell extends Buy
 {
 
-    public Sell(int pk, Date transDate, String note, Currency currency, double currAmount, double rate, double cashAmount, double price)
+    public Sell(int pk, Timestamp transDate, String note, Currency currency, double currAmount, double rate, double cashAmount, double price)
     {
         super(pk, transDate, note, currency, currAmount, rate, cashAmount, price);
     }

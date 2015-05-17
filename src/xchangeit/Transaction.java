@@ -5,7 +5,7 @@
  */
 package xchangeit;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  *
@@ -14,17 +14,17 @@ import java.util.Date;
 public abstract class Transaction implements XchTransactoinInterface
 {
     private int pk;
-    private Date transDate;
+    private Timestamp transDate;
     private String note;
     
-    public Transaction(int pk, Date transDate, String note){
+    public Transaction(int pk, Timestamp transDate, String note){
         
         this.pk = pk;
         this.transDate = transDate;
         this.note = note;
     }
     
-    public Date getTransDate()
+    public Timestamp getTransDate()
     {
         return transDate;
     }
