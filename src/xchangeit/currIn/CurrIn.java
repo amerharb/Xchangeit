@@ -20,6 +20,11 @@ public class CurrIn extends Transaction
     private double currAmount;
     private double rate;
 
+    public CurrIn(int pk, Timestamp transDate, String note, Currency currency, String currAmount, String rate)
+    {
+        this(pk, transDate, note, currency, Double.valueOf(currAmount), Double.valueOf(rate));
+    }
+    
     public CurrIn(int pk, Timestamp transDate, String note, Currency currency, double currAmount, double rate)
     {
         super(pk, transDate, note);
@@ -72,40 +77,6 @@ public class CurrIn extends Transaction
     public double getSellBuyPrice()
     {
         return 0;
-    }
-
-    @Override
-    public String getSqlInsertStatment()
-    {
-        //TODO
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        /*String s; //insert value statment will be stored here
-        
-        s = "insert into trans(";
-        if (getTransDate() != null){
-            s += "trans_date, ";
-        }   
-        
-        //keep this line only to copy from here later
-        //s += "trans_type, cash, curr, curr_amt, rate, sell_buy_price, note) values(";
-        s += "trans_type, cash,  note) values(";
-                
-        if (getTransDate() != null){
-            s += "'" + getTransDate().toString() + "', ";
-        }
-        
-        s += "2"; //trans type is 2 for cash in
-        s += ", " + String.valueOf(getCash());
-        
-        if (getNote() == null || getNote().isEmpty())
-            s += ", null";
-        else
-            s += ", '" + getNote() + "'";
-
-        s += ")";
-
-        return s;
-*/
     }
             
 }

@@ -68,7 +68,7 @@ public class CashIn extends Transaction
     {
         return 0;
     }
-    
+    /*
     @Override
     public String getSqlInsertStatment()
     {
@@ -99,5 +99,5 @@ public class CashIn extends Transaction
 
         return s;
     }
-
+*/
 }

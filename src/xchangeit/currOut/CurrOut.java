@@ -31,7 +31,7 @@ public class CurrOut extends CurrIn
     @Override
     public XchTransactionTypeeEnum getTransType()
     {
-        return XchTransactionTypeeEnum.CashOut;
+        return XchTransactionTypeeEnum.CurrOut;
     }
 
 

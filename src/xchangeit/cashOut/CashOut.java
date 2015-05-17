@@ -36,7 +36,7 @@ public class CashOut extends CashIn
     {
         return XchTransactionTypeeEnum.CashOut;
     }
-    
+/*    
     @Override
     public String getSqlInsertStatment()
     {
@@ -65,6 +65,6 @@ public class CashOut extends CashIn
 
         return s;
     }
-
+*/
 
 }
