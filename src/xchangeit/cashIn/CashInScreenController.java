@@ -40,8 +40,8 @@ public class CashInScreenController extends XchController
         System.out.println("You Click Cash In Screen Add Button");
         try{
             Timestamp st = getTimeStamp(transDateText.getText());
-            CashIn ci = new CashIn(0, st, noteText.getText(), Double.valueOf(cashAmtText.getText()));
-            //database.addRate(r);
+            CashIn ci = new CashIn(0, st, noteText.getText(), cashAmtText.getText());
+            database.addTrans(ci);
             
         }catch(Exception ex){
             ex.printStackTrace();

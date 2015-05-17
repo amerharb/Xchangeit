@@ -18,6 +18,10 @@ public class CashIn extends Transaction
 {
     private double cashAmount;
     
+    public CashIn(int pk, Timestamp transDate, String note, String cashAmount){
+        this(pk, transDate, note, Double.valueOf(cashAmount));
+    }
+    
     public CashIn(int pk, Timestamp transDate, String note, double cashAmount){
         super(pk, transDate, note);
         cashAmount = Math.abs(cashAmount); // the amout must be all time positive 
@@ -65,4 +69,37 @@ public class CashIn extends Transaction
     {
         return 0;
     }
+    
+    @Override
+    public String getSqlInsertStatment()
+    {
+         String s; //insert value statment will be stored here
+        
+        s = "insert into trans(";
+        if (getTransDate() != null){
+            s += "trans_date, ";
+        }   
+        
+        //keep this line only to copy from here later
+        //s += "trans_type, cash, curr, curr_amt, rate, sell_buy_price, note) values(";
+        s += "trans_type, cash,  note) values(";
+                
+        if (getTransDate() != null){
+            s += "'" + getTransDate().toString() + "', ";
+        }
+        
+        s += "2"; //trans type is 2 for cash in
+        s += ", " + String.valueOf(getCash());
+        
+        if (getNote() == null || getNote().isEmpty())
+            s += ", null";
+        else
+            s += ", '" + getNote() + "'";
+
+        s += ")";
+
+        return s;
+    }
+
+
 }

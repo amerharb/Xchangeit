@@ -23,5 +23,7 @@ public interface XchTransactoinInterface
     public double getRate();
     public double getSellBuyPrice();
     public String getNote();
+
+    public String getSqlInsertStatment();
     
 }

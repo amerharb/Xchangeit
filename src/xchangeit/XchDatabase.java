@@ -8,6 +8,7 @@ package xchangeit;
 
 import xchangeit.rate.Rate;
 import xchangeit.currency.Currency;
+import xchangeit.XchTransactoinInterface;
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import xchangeit.cashIn.CashIn;
 import xchangeit.currency.CurrencyProperty;
 import xchangeit.rate.RateProperty;
 
@@ -42,26 +44,26 @@ public class XchDatabase
     //TEST still under test
     private ArrayList<Currency> allCurrency;
     private ArrayList<Rate> allRate;
+    private ArrayList<XchTransactoinInterface> allTrans;
     
     private ObservableList<RateProperty> allRateProperty;
     private ObservableList<CurrencyProperty> allCurrencyProperty;
 
     private boolean currencyNeedRefresh; // this is an indicator that something has been changed in currency 
     private boolean rateNeedRefresh; // this is an indicator that something has been changed in Rate 
+    private boolean transNeedRefresh; //this is an indicator that somehting has been changed in Trans table
     
     private void setCurrencyNeedRefreshAndDepedency(){
         currencyNeedRefresh = true;
         rateNeedRefresh = true;
+        transNeedRefresh = true;
     }
-    
-    private void setRateNeedRefreshAndDepedency(){
-        rateNeedRefresh = true;
-    }
-    
+        
     public XchDatabase()
     {
         this.allCurrency = new ArrayList<>();
         this.allRate = new ArrayList<>();
+        this.allTrans = new ArrayList<>();
         
         this.allCurrencyProperty = FXCollections.observableArrayList();
         this.allRateProperty = FXCollections.observableArrayList();
@@ -260,7 +262,6 @@ public class XchDatabase
     }
     
     public void addRate(Rate r){
-    
         try{
             Statement st = conn.createStatement();
             st.execute(r.getSqlInsertStatment());
@@ -269,6 +270,7 @@ public class XchDatabase
                 allRate.add(r);
                 allRateProperty.add(new RateProperty(r));
             }
+            rateNeedRefresh = true;
             
         } catch (Exception e) {
             //TODO idintifiy the error 
@@ -284,7 +286,27 @@ public class XchDatabase
     public ObservableList<RateProperty> getLastGrabedRateProperty(){
         return allRateProperty;
     }
-    
+
+    public void addTrans(XchTransactoinInterface t)
+    {
+        try{
+            Statement st = conn.createStatement();
+            String s = t.getSqlInsertStatment();
+            st.execute(s);
+            
+            if (st.getUpdateCount() > 0){
+                allTrans.add(t);
+            }
+            transNeedRefresh = true;
+            
+        } catch (Exception e) {
+            //TODO idintifiy the error 
+            System.err.println("ERROR: " + e);
+
+        }
+    }
+
+
     public void createDatabase(){
         createDatabase("Xchangeit");
     }
