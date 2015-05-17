@@ -7,7 +7,7 @@
 package xchangeit.rate;
 
 import xchangeit.currency.Currency;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
@@ -16,14 +16,18 @@ import java.util.Date;
 public class Rate
 {
     private int pk;
-    private Date rateDate;
+    private java.sql.Timestamp rateDate;
     private Currency curr;
     private double rate;
     private double sellPrice;
     private double buyPrice;			
     private String note;
     
-    public Rate(int pk, Date rateDate, Currency curr, double rate, double sellPrice, double buyPrice, String note){
+    public Rate(int pk, java.sql.Timestamp rateDate, Currency curr, String rate, String sellPrice, String buyPrice, String note){
+        this(pk, rateDate, curr, Double.valueOf(rate), Double.valueOf(sellPrice), Double.valueOf(buyPrice), note);
+    }
+
+    public Rate(int pk, java.sql.Timestamp rateDate, Currency curr, double rate, double sellPrice, double buyPrice, String note){
         this.pk = pk;
         this.rateDate = rateDate;
         this.curr = curr;
@@ -40,12 +44,12 @@ public class Rate
         return pk;
     }
 
-    public Date getRateDate()
+    public java.sql.Timestamp getRateDate()
     {
         return rateDate;
     }
 
-    public void setRateDate(Date rateDate)
+    public void setRateDate(java.sql.Timestamp rateDate)
     {
         this.rateDate = rateDate;
     }
@@ -119,14 +123,15 @@ public class Rate
     {
         String s; //insert value statment will be stored here
         
-        s = "insert into rates(curr";
-        if (rateDate != null)
-            s += ", rate_date";
-            
-        s += ",rate ,sell_price ,buy_price, note) values ("; 
+        s = "insert into rates(curr, ";
+        if (rateDate != null){
+            s += "rate_date, ";
+        }    
+        s += "rate, sell_price, buy_price, note) values ("; 
         s += curr.getPk();
-        if (rateDate != null)
+        if (rateDate != null){
             s += ", " + rateDate.toString();
+        }
         s += ", " + rate;
         s += ", " + sellPrice ;
         s += ", " + buyPrice ;

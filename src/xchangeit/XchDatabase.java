@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import javafx.collections.FXCollections;
@@ -46,15 +47,15 @@ public class XchDatabase
     private ObservableList<CurrencyProperty> allCurrencyProperty;
 
     private boolean currencyNeedRefresh; // this is an indicator that something has been changed in currency 
-    private boolean RateNeedRefresh; // this is an indicator that something has been changed in Rate 
+    private boolean rateNeedRefresh; // this is an indicator that something has been changed in Rate 
     
     private void setCurrencyNeedRefreshAndDepedency(){
         currencyNeedRefresh = true;
-        RateNeedRefresh = true;
+        rateNeedRefresh = true;
     }
     
     private void setRateNeedRefreshAndDepedency(){
-        RateNeedRefresh = true;
+        rateNeedRefresh = true;
     }
     
     public XchDatabase()
@@ -130,7 +131,7 @@ public class XchDatabase
         } catch (Exception ex) {
             ex.printStackTrace();
             return false;
-                    
+ 
         }
         
     }
@@ -139,21 +140,18 @@ public class XchDatabase
         try{
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("select pk, curr_name, iso_symbol, symbol, note, inactive from curr " );
-            ArrayList<Currency> list = new ArrayList();
-            
+
+            allCurrency.clear();
+            allCurrencyProperty.clear();
             while(rs.next()){
                 Currency curr = new Currency(rs.getInt("pk"), rs.getString("curr_name"), rs.getString("iso_symbol"), rs.getString("symbol"), rs.getString("note"), rs.getBoolean("inactive") );
-                list.add(curr);
+                allCurrency.add(curr);
+                allCurrencyProperty.add(new CurrencyProperty(curr));
             }
-            //TEST keep a copy of the list to be used later now still under test
-            allCurrency = list;
-            allCurrencyProperty.clear();
-            //allCurrencyProperty = FXCollections.observableArrayList();
-            for(Currency c:allCurrency){
-               allCurrencyProperty.add(new CurrencyProperty(c));
-            }
+            
             currencyNeedRefresh = false;
-            return list;
+            return allCurrency;
+        
         } catch (Exception e) {
             System.err.println("ERROR: " + e);
             return null;
@@ -204,14 +202,12 @@ public class XchDatabase
             allRateProperty.clear();
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("select pk, rate_date, curr, rate, sell_price, buy_price, note from rates" );
-//            ArrayList<Rate> list = new ArrayList();
             
             if (allCurrency == null || allCurrency.isEmpty()){
                 getAllCurrency(); //fill currency if it is empty
             }
             
             if (allCurrency.isEmpty()){
-//                allRate = list;
                 allCurrencyProperty.clear();
                 return allRate; //return empty list becuase there no currency
             }
@@ -226,15 +222,19 @@ public class XchDatabase
                         break;
                     }
                 }
-                if (rateCurrProp != null){ //thats mean currency not found maybe delete it by mistake from database or mistake in the currency collection here
-                    Rate r = new Rate(rs.getInt("pk"), rs.getDate("rate_date"), rateCurrProp, rs.getDouble("rate"), rs.getDouble("sell_price"), rs.getDouble("buy_price"), rs.getString("note"));
+                if (rateCurrProp != null){ 
+                    java.sql.Timestamp d = rs.getTimestamp("rate_date");
+                    Rate r = new Rate(rs.getInt("pk"), d, rateCurrProp, rs.getDouble("rate"), rs.getDouble("sell_price"), rs.getDouble("buy_price"), rs.getString("note"));
+                    System.out.println(d.getTime());
                     allRate.add(r);
                     allRateProperty.add(new RateProperty(r));
+                }else{//thats mean currency not found maybe delete it by mistake from database or mistake in the currency collection here ... dont know what to do in this case yet
+                    
                 }
              }
             
 //            allRate = list;
-            RateNeedRefresh = false;
+            rateNeedRefresh = false;
             return allRate;
 
         } catch (Exception e) {
@@ -265,8 +265,10 @@ public class XchDatabase
             Statement st = conn.createStatement();
             st.execute(r.getSqlInsertStatment());
             
-            allRate.add(r);
-            allRateProperty.add(new RateProperty(r));
+            if (st.getUpdateCount() > 0){
+                allRate.add(r);
+                allRateProperty.add(new RateProperty(r));
+            }
             
         } catch (Exception e) {
             //TODO idintifiy the error 

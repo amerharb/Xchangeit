@@ -17,7 +17,6 @@
         <AnchorPane layoutX="10.0" layoutY="45.0" prefHeight="115.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="45.0">
             <children>
                 <Label layoutX="10.0" layoutY="14.0" prefWidth="90.0" text="Rate Date" />
-                <DatePicker fx:id="rateDateDatePicker" layoutX="100.0" layoutY="10.0" prefHeight="25.0" prefWidth="149.0" showWeekNumbers="true" />
                 <Label layoutX="10.0" layoutY="49.0" prefWidth="90.0" text="Currency" />
                 <ChoiceBox fx:id="currChoiceBox" layoutX="100.0" layoutY="45.0" prefWidth="150.0" />
                 <Label layoutX="10.0" layoutY="84.0" text="Note" />
@@ -30,6 +29,7 @@
                 <TextField fx:id="buyPriceText" layoutX="397.0" layoutY="80.0" />
                 <Button fx:id="newButton" layoutX="595.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleAddRateAction" prefHeight="25.0" prefWidth="60.0" text="New" />
                 <Button fx:id="deleteButton" layoutX="595.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleDeleteRateAction" prefHeight="25.0" prefWidth="60.0" text="Delete" />
+            <TextField fx:id="rateDateText" layoutX="101.0" layoutY="10.0" />
             </children>
         </AnchorPane>
         <TableView fx:id="rateTable" layoutX="100.0" layoutY="300.0" onMouseClicked="#rowClickAction" prefHeight="244.0" prefWidth="580.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="170.0">
