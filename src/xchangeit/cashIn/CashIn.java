@@ -23,9 +23,8 @@ public class CashIn extends Transaction
     }
     
     public CashIn(int pk, Timestamp transDate, String note, double cashAmount){
-        super(pk, transDate, note);
-        cashAmount = Math.abs(cashAmount); // the amout must be all time positive 
-        this.cashAmount = cashAmount;
+        super(pk, transDate, note); 
+        this.cashAmount = Math.abs(cashAmount); // the amout must be all time positive;
 
     }
 
