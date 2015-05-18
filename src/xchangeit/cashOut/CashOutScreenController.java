@@ -8,6 +8,7 @@ package xchangeit.cashOut;
 
 import java.net.URL;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,13 +29,22 @@ public class CashOutScreenController extends XchController
     @FXML private TextArea noteText;
     
     @FXML
+    private void handleNowDateTimeAction(ActionEvent event){
+        transDateText.setText(java.sql.Timestamp.valueOf(LocalDateTime.now()).toString());
+    }
+    
+    @FXML
     private void handleAddAction(ActionEvent event){
         
         System.out.println("You Click Cash Out Screen Add Button");
         try{
             Timestamp st = getTimeStamp(transDateText.getText());
             CashOut co = new CashOut(0, st, noteText.getText(), cashAmtText.getText());
-            database.addTrans(co);
+            if (database.addTrans(co)){
+                transDateText.clear();
+                cashAmtText.clear();
+                noteText.clear();
+            }
             
         }catch(Exception ex){
             ex.printStackTrace();

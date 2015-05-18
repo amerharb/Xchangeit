@@ -8,6 +8,7 @@ package xchangeit.cashIn;
 
 import java.sql.Timestamp;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,7 +28,13 @@ public class CashInScreenController extends XchController
     @FXML private TextField transDateText;
     @FXML private TextField cashAmtText;
     @FXML private TextArea noteText;
+
+    @FXML
+    private void handleNowDateTimeAction(ActionEvent event){
+        transDateText.setText(java.sql.Timestamp.valueOf(LocalDateTime.now()).toString());
+    }
     
+
     @FXML
     private void handleAddAction(ActionEvent event){
         
@@ -35,7 +42,11 @@ public class CashInScreenController extends XchController
         try{
             Timestamp st = getTimeStamp(transDateText.getText());
             CashIn ci = new CashIn(0, st, noteText.getText(), cashAmtText.getText());
-            database.addTrans(ci);
+            if (database.addTrans(ci)){
+                transDateText.clear();
+                cashAmtText.clear();
+                noteText.clear();
+            }
             
         }catch(Exception ex){
             ex.printStackTrace();

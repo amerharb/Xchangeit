@@ -24,5 +24,10 @@
          <font>
             <Font size="11.0" />
          </font></Button>
+      <Button layoutX="287.0" layoutY="69.0" mnemonicParsing="false" onAction="#handleNowDateTimeAction" prefHeight="25.0" prefWidth="27.0" text="N">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

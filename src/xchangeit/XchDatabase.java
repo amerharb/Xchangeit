@@ -349,7 +349,7 @@ public class XchDatabase
         return allRateProperty;
     }
 
-    public void addTrans(XchTransactoinInterface t)
+    public boolean addTrans(XchTransactoinInterface t)
     {
         try{
             Statement st = conn.createStatement();
@@ -358,12 +358,14 @@ public class XchDatabase
             
             if (st.getUpdateCount() > 0){
                 allTrans.add(t);
-            }
-            transNeedRefresh = true;
+                transNeedRefresh = true;
+                return true;
+            }else{return false;}
             
         } catch (Exception e) {
             //TODO idintifiy the error 
             System.err.println("ERROR: " + e);
+            return false;
 
         }
     }
