@@ -14,8 +14,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import xchangeit.XchController;
-import xchangeit.XchDatabase;
-import xchangeit.cashIn.CashIn;
 
 /**
  * FXML Controller class
@@ -24,8 +22,7 @@ import xchangeit.cashIn.CashIn;
  */
 public class CashOutScreenController extends XchController
 {
-    private XchDatabase database;
-    
+
     @FXML private TextField transDateText;
     @FXML private TextField cashAmtText;
     @FXML private TextArea noteText;
@@ -48,7 +45,7 @@ public class CashOutScreenController extends XchController
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        database = MainScreen.getDatabase();
+        //TODO
     }    
     
 }

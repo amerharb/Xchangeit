@@ -23,8 +23,7 @@ import xchangeit.XchDatabase;
  */
 public class CashInScreenController extends XchController
 {
-    private XchDatabase database;
-    
+
     @FXML private TextField transDateText;
     @FXML private TextField cashAmtText;
     @FXML private TextArea noteText;
@@ -46,7 +45,7 @@ public class CashInScreenController extends XchController
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        database = MainScreen.getDatabase();
+        //TODO
     }    
     
 }

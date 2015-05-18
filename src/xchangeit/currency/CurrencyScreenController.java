@@ -13,15 +13,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import xchangeit.XchController;
 import xchangeit.XchDatabase;
 
 public class CurrencyScreenController extends XchController
 {
-
-    XchDatabase database;     
 
     @FXML private TableView<CurrencyProperty> currencyTable;
     
@@ -187,14 +184,7 @@ public class CurrencyScreenController extends XchController
     private void fillCurrencyTable(){
         try{
             if (MainScreen != null){
-                database = MainScreen.getDatabase();
-                //allCureency = database.getAllCurrency();
-
                 if (database.getAllCurrency() != null){
-//                    allCurrencyProperty = FXCollections.observableArrayList();
-//                    for(Currency c:allCureency){
-//                        allCurrencyProperty.add(new CurrencyProperty(c));
-//                    }
 
                     pkCol.setCellValueFactory(cellData -> cellData.getValue().getPkProperty().asObject());
                     currNameCol.setCellValueFactory(cellData -> cellData.getValue().getCurrNameProperty());
@@ -202,18 +192,8 @@ public class CurrencyScreenController extends XchController
                     symbolCol.setCellValueFactory(cellData -> cellData.getValue().getSymbolProperty());
                     noteCol.setCellValueFactory(cellData -> cellData.getValue().getNoteProperty());
 
-//                    currencyTable.setItems(allCurrencyProperty);
                     currencyTable.setItems(database.getLastGrabedCurrencyProperty());
 
-/* another way to fill the table
-                    pkCol.setText("pk");
-                    currNameCol.setText("currName");
-                    //...
-                    pkCol.setCellValueFactory(new PropertyValueFactory<CurrencyProperty, Integer>("pk"));
-                    currNameCol.setCellValueFactory(new PropertyValueFactory<CurrencyProperty, String>("currName"));
-                    //...
-                    currencyTable.getItems().setAll(database.getLastGrabedCurrencyProperty());
-*/
                 }
             }
         }catch(Exception ex) {

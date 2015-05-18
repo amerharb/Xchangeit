@@ -10,9 +10,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-// (unused import) import xchangeit.XchController;
-// (unused import) import javafx.scene.Parent;
-// (unused import) import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -30,23 +27,17 @@ public class ConnectScreenController extends XchController
     @FXML private TextField serverNameText;
     
     @FXML private PasswordField rootPasswordText;
-    @FXML
-    private Button okButton;
-    @FXML
-    private Button cancelButton1;
-    @FXML
-    private Button cancelButton;
     
     @FXML 
     private void handleCreateDatabaseButtonAction(ActionEvent event)
     {
         System.out.println("You clicked Create Database");
-        XchDatabase db = MainScreen.getDatabase();
-        if (db.getStatus() == XchDatabase.XchConnectionStatusEnum.Connected)
-            db.Disconnect();
+        //XchDatabase db = MainScreen.getDatabase();
+        if (database.getStatus() == XchDatabase.XchConnectionStatusEnum.Connected)
+            database.Disconnect();
         
-        db.connect(serverNameText.getText(), rootPasswordText.getText());
-        db.createDatabase();
+        database.connect(serverNameText.getText(), rootPasswordText.getText());
+        database.createDatabase();
         
     }
     
@@ -55,8 +46,8 @@ public class ConnectScreenController extends XchController
     {
         try{
         
-        XchDatabase db = MainScreen.getDatabase();
-        db.connect(serverNameText.getText(), rootPasswordText.getText(), "Xchangeit");
+        //XchDatabase db = MainScreen.getDatabase();
+        database.connect(serverNameText.getText(), rootPasswordText.getText(), "Xchangeit");
         //TODO: find more logical way to close window
         serverNameText.getParent().getScene().getWindow().hide();
         System.out.println("You clicked OK");

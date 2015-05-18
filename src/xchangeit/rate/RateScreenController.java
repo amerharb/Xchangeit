@@ -19,8 +19,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import xchangeit.*;
-import xchangeit.currency.Currency;
 import xchangeit.currency.CurrencyProperty;
 
 /**
@@ -29,8 +27,6 @@ import xchangeit.currency.CurrencyProperty;
  * @author Amer
  */
 public class RateScreenController extends XchController{
-
-    XchDatabase database;     
 
     @FXML TableView<RateProperty> rateTable;
     
@@ -92,7 +88,6 @@ public class RateScreenController extends XchController{
     private void fillRateTable(){
         try{
             if (MainScreen != null){
-                database = MainScreen.getDatabase();
                 database.getAllRate();
 
                 if (database.getLastGrabedRate() != null) {

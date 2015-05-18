@@ -15,11 +15,13 @@ import java.sql.Timestamp;
  */
 public abstract class XchController implements Initializable
 {
-    protected static MainScreenController MainScreen;
-    public static void setMainScreen(MainScreenController mainScreenController){
-        MainScreen = mainScreenController;
-    }
+//    public static void setMainScreen(MainScreenController mainScreenController){
+//        MainScreen = mainScreenController;
+//    }
         
+    protected static MainScreenController MainScreen;
+    protected static XchDatabase database;
+
     protected Timestamp getTimeStamp(String datetime){
         try{
 

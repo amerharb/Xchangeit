@@ -25,8 +25,7 @@ import xchangeit.currency.CurrencyProperty;
  */
 public class CurrOutScreenController extends XchController
 {
-    private XchDatabase database;
-    
+
     @FXML private TextField transDateText;
     @FXML private ChoiceBox<CurrencyProperty> currChoiceBox;
     @FXML private TextField currAmtText;
@@ -50,7 +49,6 @@ public class CurrOutScreenController extends XchController
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        database = MainScreen.getDatabase();
         if (database.getLastGrabedCurrencyProperty() == null || database.getLastGrabedCurrencyProperty().isEmpty()) {
             database.getAllCurrency();
         }

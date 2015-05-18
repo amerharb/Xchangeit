@@ -15,8 +15,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import xchangeit.XchController;
-import xchangeit.XchDatabase;
-import xchangeit.currIn.CurrIn;
 import xchangeit.currency.CurrencyProperty;
 
 /**
@@ -26,8 +24,7 @@ import xchangeit.currency.CurrencyProperty;
  */
 public class CurrInScreenController extends XchController
 {
-    private XchDatabase database;
-    
+
     @FXML private TextField transDateText;
     @FXML private ChoiceBox<CurrencyProperty> currChoiceBox;
     @FXML private TextField currAmtText;
@@ -51,7 +48,7 @@ public class CurrInScreenController extends XchController
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        database = MainScreen.getDatabase();
+
         if (database.getLastGrabedCurrencyProperty() == null || database.getLastGrabedCurrencyProperty().isEmpty()) {
             database.getAllCurrency();
         }

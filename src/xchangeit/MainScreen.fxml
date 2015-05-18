@@ -80,9 +80,14 @@
                         <SeparatorMenuItem mnemonicParsing="false" />
                         <MenuItem mnemonicParsing="false" onAction="#handleTransCurrInAction" text="Currency in" />
                         <MenuItem mnemonicParsing="false" onAction="#handleTransCurrOutAction" text="Currency out" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Display All Transactions" />
                      </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Reports">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="All Transactions" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                      <MenuItem mnemonicParsing="false" text="Latest Rates" />
+                    </items>
                   </Menu>
                </menus>
             </MenuBar>

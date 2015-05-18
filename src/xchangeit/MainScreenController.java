@@ -38,7 +38,7 @@ public class MainScreenController implements Initializable
     private Stage transCurrInStage;
     private Stage transCurrOutStage;
     
-    private XchDatabase Database = new XchDatabase();
+    private final XchDatabase database = new XchDatabase();
     
     @FXML
     private void handleExitAction(ActionEvent event)
@@ -70,7 +70,7 @@ public class MainScreenController implements Initializable
     {
         System.out.println("You clicked Disconnect");
         try {
-            Database.Disconnect();
+            database.Disconnect();
         } catch (Exception ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
             connectStage = null;
@@ -241,11 +241,13 @@ public class MainScreenController implements Initializable
     
     @Override
     public void initialize(URL url, ResourceBundle rb){
-        XchController.setMainScreen(this);
+        //XchController.setMainScreen(this);
+        XchController.MainScreen = this;
+        XchController.database = this.database;
     }    
 
-    public XchDatabase getDatabase(){
-        return Database;
-    }
-    
+//    public XchDatabase getDatabase(){
+//        return database;
+//    }
+//    
 }
