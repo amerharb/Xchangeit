@@ -27,7 +27,6 @@ import xchangeit.currency.CurrencyProperty;
 public class BuyScreenController extends XchController
 {
 
-
     @FXML private TextField transDateText;
     @FXML private TextField cashText;
     @FXML private ChoiceBox<CurrencyProperty> currChoiceBox;
@@ -36,7 +35,6 @@ public class BuyScreenController extends XchController
     @FXML private TextField SellBuyPriceText;
     @FXML private TextArea noteText;
     
-
     @FXML
     private void handleAddAction(ActionEvent event){
         
