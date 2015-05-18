@@ -74,7 +74,7 @@ public class XchDatabase
         connect(server, rootPassword, "");
     }
     
-    public void connect(String server, String rootPassword, String databaseName){
+    public boolean connect(String server, String rootPassword, String databaseName){
         try {
             if (!databaseName.isEmpty())
                 databaseName = "/" + databaseName;
@@ -83,13 +83,15 @@ public class XchDatabase
             String URL = "jdbc:mysql://" + server + ":3306" + databaseName + "?user=root&password=" + rootPassword;
             conn = DriverManager.getConnection(URL);
             status = XchConnectionStatusEnum.Connected;
+            return true;
         } catch (Exception e) {
             System.err.println("ERROR: " + e);
+            return false;
         }
 
     }
     
-    public void Disconnect() {
+    public boolean disconnect() {
     
         try{
             conn.close();
@@ -99,8 +101,10 @@ public class XchDatabase
             allRate.clear();
             allRateProperty.clear();
             allTrans.clear();
-        } catch (Exception e) {
-            System.err.println("ERROR: " + e);
+            return true;
+        } catch (Exception ex) {
+            System.err.println("ERROR: " + ex);
+            return false;
         }
 
 }

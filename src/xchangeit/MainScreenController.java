@@ -18,12 +18,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
-
-/**
- *
- * @author Amer
- */
 
 public class MainScreenController implements Initializable 
 {
@@ -40,6 +37,24 @@ public class MainScreenController implements Initializable
     
     private final XchDatabase database = new XchDatabase();
     
+    @FXML private Button cashInButton;
+    @FXML private Button cashOutButton;
+    @FXML private Button currInButton;
+    @FXML private Button currOutButton;
+    @FXML private Button buyButton;
+    @FXML private Button sellButton;
+    @FXML private Button currencyButton;
+    @FXML private Button rateButton;
+    
+    @FXML private MenuItem cashInMenu;
+    @FXML private MenuItem cashOutMenu;
+    @FXML private MenuItem currInMenu;
+    @FXML private MenuItem currOutMenu;
+    @FXML private MenuItem buyMenu;
+    @FXML private MenuItem sellMenu;
+    @FXML private MenuItem currencyMenu;
+    @FXML private MenuItem rateMenu;
+    
     @FXML
     private void handleExitAction(ActionEvent event)
     {
@@ -52,7 +67,7 @@ public class MainScreenController implements Initializable
     {
         System.out.println("You clicked Connect");
         try {
-            if  (connectStage == null){ //for first time
+            if (connectStage == null){ //for first time
                 connectStage  = new Stage();
                 connectStage.setScene(GetScene("ConnectScreen.fxml"));
             }
@@ -70,7 +85,9 @@ public class MainScreenController implements Initializable
     {
         System.out.println("You clicked Disconnect");
         try {
-            database.Disconnect();
+            if (database.disconnect()){
+                setButtonsDisable(true);
+            }
         } catch (Exception ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
             connectStage = null;
@@ -184,7 +201,7 @@ public class MainScreenController implements Initializable
     private void handleTransCurrInAction(ActionEvent event){
         System.out.println("You clicked TransCurrIn");
         try {
-            if  (transCurrInStage == null){ //for first time
+            if (transCurrInStage == null){ //for first time
                 transCurrInStage  = new Stage();
                 transCurrInStage.setScene(GetScene("currIn/CurrInScreen.fxml"));
             }
@@ -246,8 +263,24 @@ public class MainScreenController implements Initializable
         XchController.database = this.database;
     }    
 
-//    public XchDatabase getDatabase(){
-//        return database;
-//    }
-//    
+    public void setButtonsDisable(boolean en)
+    {
+        cashInButton.disableProperty().set(en);
+        cashOutButton.disableProperty().set(en);
+        currInButton.disableProperty().set(en);
+        currOutButton.disableProperty().set(en);
+        buyButton.disableProperty().set(en);
+        sellButton.disableProperty().set(en);
+        currencyButton.disableProperty().set(en);
+        rateButton.disableProperty().set(en);
+
+        cashInMenu.disableProperty().set(en);
+        cashOutMenu.disableProperty().set(en);
+        currInMenu.disableProperty().set(en);
+        currOutMenu.disableProperty().set(en);
+        buyMenu.disableProperty().set(en);
+        sellMenu.disableProperty().set(en);
+        currencyMenu.disableProperty().set(en);
+        rateMenu.disableProperty().set(en);
+}
 }

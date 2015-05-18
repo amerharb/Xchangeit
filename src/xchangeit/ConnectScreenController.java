@@ -34,7 +34,7 @@ public class ConnectScreenController extends XchController
         System.out.println("You clicked Create Database");
         //XchDatabase db = mainScreen.getDatabase();
         if (database.getStatus() == XchDatabase.XchConnectionStatusEnum.Connected)
-            database.Disconnect();
+            database.disconnect();
         
         database.connect(serverNameText.getText(), rootPasswordText.getText());
         database.createDatabase();
@@ -44,18 +44,18 @@ public class ConnectScreenController extends XchController
     @FXML 
     private void handleOkButtonAction(ActionEvent event)
     {
+        System.out.println("You clicked Connect");
         try{
         
-        //XchDatabase db = mainScreen.getDatabase();
-        database.connect(serverNameText.getText(), rootPasswordText.getText(), "Xchangeit");
-        //TODO: find more logical way to close window
-        serverNameText.getParent().getScene().getWindow().hide();
-        System.out.println("You clicked OK");
-        //System.out.println("you have connect to database");    
-        }catch(Exception e){
-            //if(db.connect=null){
+            if (database.connect(serverNameText.getText(), rootPasswordText.getText(), "Xchangeit")){
+                mainScreen.setButtonsDisable(false);
+            };
+            //TODO: find more logical way to close window
+            serverNameText.getParent().getScene().getWindow().hide();
+        }catch(Exception ex){
+            ex.printStackTrace();
             System.out.println("error");    
-            }
+        }
             
         
         

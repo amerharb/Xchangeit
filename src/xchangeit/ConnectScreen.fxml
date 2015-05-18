@@ -15,9 +15,9 @@
             <Label layoutX="26.0" layoutY="65.0" text="Password" />
             <TextField fx:id="serverNameText" layoutX="114.0" layoutY="20.0" prefHeight="25.0" prefWidth="269.0" text="localhost" />
             <PasswordField fx:id="rootPasswordText" layoutX="114.0" layoutY="61.0" prefHeight="25.0" prefWidth="269.0" promptText="the password is root" text="root" />
-            <Button fx:id="okButton" layoutX="316.0" layoutY="103.0" mnemonicParsing="false" onAction="#handleOkButtonAction" prefHeight="25.0" prefWidth="120.0" text="Connect" />
+            <Button fx:id="okButton" defaultButton="true" layoutX="316.0" layoutY="103.0" mnemonicParsing="false" onAction="#handleOkButtonAction" prefHeight="25.0" prefWidth="120.0" text="Connect" />
             <Button fx:id="cancelButton1" layoutX="178.0" layoutY="103.0" mnemonicParsing="false" onAction="#handleCreateDatabaseButtonAction" prefHeight="25.0" prefWidth="120.0" text="Create Database" />
-            <Button fx:id="cancelButton" layoutX="34.0" layoutY="103.0" mnemonicParsing="false" onAction="#handleCancelButtonAction" prefHeight="25.0" prefWidth="120.0" text="Cancel" />
+            <Button fx:id="cancelButton" cancelButton="true" layoutX="34.0" layoutY="103.0" mnemonicParsing="false" onAction="#handleCancelButtonAction" prefHeight="25.0" prefWidth="120.0" text="Cancel" />
          </children>
       </Pane>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="10.0" text="Connect" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -25,6 +25,6 @@
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <Label layoutX="34.0" layoutY="219.0" prefHeight="31.0" prefWidth="423.0" text="A new database will be created called Xchangeit by clicking 'create database'" />
+      <Label layoutX="14.0" layoutY="219.0" prefHeight="31.0" prefWidth="423.0" text="A new database will be created called Xchangeit by clicking 'create database'" />
    </children>
 </AnchorPane>
