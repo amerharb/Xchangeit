@@ -45,6 +45,13 @@ public class Buy extends CurrIn
     }
     
     public Buy(int pk, Timestamp transDate, String note, Currency currency, 
+            String currAmount, String rate, String cashAmount, String price)
+    {
+       
+        this(pk, transDate, note, currency, Double.valueOf(currAmount), Double.valueOf(rate), Double.valueOf(cashAmount), Double.valueOf(price));
+    }
+
+    public Buy(int pk, Timestamp transDate, String note, Currency currency, 
             double currAmount, double rate, double cashAmount, double price)
     {
         super(pk, transDate, note, currency, currAmount, rate);

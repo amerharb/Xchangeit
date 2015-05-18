@@ -7,13 +7,16 @@
 package xchangeit.buy;
 
 import java.net.URL;
+import java.sql.Timestamp;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import xchangeit.XchController;
+import xchangeit.currIn.CurrIn;
 import xchangeit.currency.CurrencyProperty;
 
 /**
@@ -24,11 +27,8 @@ import xchangeit.currency.CurrencyProperty;
 public class BuyScreenController extends XchController
 {
 
-    /**
-     * Initializes the controller class.
-     */
-    
-    @FXML private DatePicker transDateDatePicker;
+
+    @FXML private TextField transDateText;
     @FXML private TextField cashText;
     @FXML private ChoiceBox<CurrencyProperty> currChoiceBox;
     @FXML private TextField currAmtText;
@@ -36,10 +36,30 @@ public class BuyScreenController extends XchController
     @FXML private TextField SellBuyPriceText;
     @FXML private TextArea noteText;
     
+
+    @FXML
+    private void handleAddAction(ActionEvent event){
+        
+        System.out.println("You Click Buy Screen Add Button");
+        try{
+            Timestamp st = getTimeStamp(transDateText.getText()); 
+            Buy b = new Buy(0, st, noteText.getText(), currChoiceBox.getValue(), 
+                    currAmtText.getText(), rateText.getText(), cashText.getText(), SellBuyPriceText.getText());
+            database.addTrans(b);
+            
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
+
+        if (database.getLastGrabedCurrencyProperty() == null || database.getLastGrabedCurrencyProperty().isEmpty()) {
+            database.getAllCurrency();
+        }
+        currChoiceBox.setItems(database.getLastGrabedCurrencyProperty());
     }    
     
 }
