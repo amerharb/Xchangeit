@@ -65,16 +65,12 @@ public class CurrencyScreenController extends XchController
                 warningLabel.setText("symbol please");
             }
             else{
-                Currency c = new Currency(0, currNameText.getText(), isoSymbolText.getText(), symbolText.getText(),noteText.getText(),false);
+                Currency c = new Currency(0, currNameText.getText(), isoSymbolText.getText(), symbolText.getText(), noteText.getText(), false);
                 database.addCurrency(c);
-                fillCurrencyTable();
-                //System.out.println("registered successfully");
+                //fillCurrencyTable(); should be automatic
                 warningLabel.setText(null);
             }   
-                     
             
-            
-          
         }catch(Exception ex){
             //ex.printStackTrace();
             warningLabel.setText("system error");
@@ -115,14 +111,14 @@ public class CurrencyScreenController extends XchController
         }
     }
     
-    private void updateCurrencyFromTextFields(Currency c){
+    private void updateCurrencyFromTextFields(CurrencyProperty c){
         try{
-
-            c.setCurrName(currNameText.getText());
-            c.setIsoSymbol(isoSymbolText.getText());
-            c.setSymbol(symbolText.getText());
-            c.setNote(noteText.getText());
-            c.setInactive(inactiveCheck.isSelected());
+            
+            c.getCurrNameProperty().set(currNameText.getText());
+            c.getIsoSymbolProperty().set(isoSymbolText.getText());
+            c.getSymbolProperty().set(symbolText.getText());
+            c.getNoteProperty().set(noteText.getText());
+            c.setInactive(false); //currency no need to update this value its hidden
 
         }catch(Exception ex){
             ex.printStackTrace();
@@ -137,8 +133,10 @@ public class CurrencyScreenController extends XchController
         System.out.println("You Click delete currency");
         try{
             if (selCurrencyProp != null){
-                if (database.delCurrencyByPK(selCurrencyProp.getPk())){
-                    fillCurrencyTable();
+//                if (database.delCurrencyByPK(selCurrencyProp.getPk())){
+                if (database.delCurrency(selCurrencyProp)){
+                    //no need it should be done automatic
+                    //fillCurrencyTable();
                 }
             }
             fillFields();
@@ -150,11 +148,11 @@ public class CurrencyScreenController extends XchController
     @FXML
     private void handelUpdateCurrencyAction(ActionEvent event){
         
-        System.out.println("You Click xxx");
+        System.out.println("You Click update Currency");
         try{
             updateCurrencyFromTextFields(selCurrencyProp);
             database.updateCurrency(selCurrencyProp);
-            fillCurrencyTable();
+            //fillCurrencyTable(); //no need to 
         }catch(Exception ex){
             ex.printStackTrace();
         }
@@ -174,6 +172,7 @@ public class CurrencyScreenController extends XchController
 
     public void initialize(URL url, ResourceBundle rb){
         try{
+            database.buildAllCurrency();
             fillCurrencyTable();
             fillFields();
         }catch(Exception ex) {
@@ -183,19 +182,13 @@ public class CurrencyScreenController extends XchController
 
     private void fillCurrencyTable(){
         try{
-            if (mainScreen != null){
-                if (database.getAllCurrency() != null){
+            pkCol.setCellValueFactory(cellData -> cellData.getValue().getPkProperty().asObject());
+            currNameCol.setCellValueFactory(cellData -> cellData.getValue().getCurrNameProperty());
+            isoCol.setCellValueFactory(cellData -> cellData.getValue().getIsoSymbolProperty());
+            symbolCol.setCellValueFactory(cellData -> cellData.getValue().getSymbolProperty());
+            noteCol.setCellValueFactory(cellData -> cellData.getValue().getNoteProperty());
 
-                    pkCol.setCellValueFactory(cellData -> cellData.getValue().getPkProperty().asObject());
-                    currNameCol.setCellValueFactory(cellData -> cellData.getValue().getCurrNameProperty());
-                    isoCol.setCellValueFactory(cellData -> cellData.getValue().getIsoSymbolProperty());
-                    symbolCol.setCellValueFactory(cellData -> cellData.getValue().getSymbolProperty());
-                    noteCol.setCellValueFactory(cellData -> cellData.getValue().getNoteProperty());
-
-                    currencyTable.setItems(database.getLastGrabedCurrencyProperty());
-
-                }
-            }
+            currencyTable.setItems(database.getAllCurrencyProperty());
         }catch(Exception ex) {
             ex.printStackTrace();
         }

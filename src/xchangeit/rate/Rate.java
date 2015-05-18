@@ -44,6 +44,11 @@ public class Rate
         return pk;
     }
 
+    public void setPK(int pk)
+    {
+        this.pk = pk;
+    }
+
     public Timestamp getRateDate()
     {
         return rateDate;

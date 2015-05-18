@@ -16,7 +16,7 @@ public class Currency
     private int pk;
     private String currName;
     private String isoSymbol;
-    private String Symbol;
+    private String symbol;
     private String note;
     private boolean inactive;			
 
@@ -24,7 +24,7 @@ public class Currency
         this.pk = pk;
         this.currName = currName;
         this.isoSymbol = isoSymbol;
-        this.Symbol = Symbol;
+        this.symbol = Symbol;
         this.note = note;
         this.inactive = inactive;
     }
@@ -34,6 +34,11 @@ public class Currency
     public int getPk()
     {
         return pk;
+    }
+
+    public void setPK(int pk) //to update the PK after insert in the database
+    {
+        this.pk = pk;
     }
 
     public String getCurrName()
@@ -58,12 +63,12 @@ public class Currency
 
     public String getSymbol()
     {
-        return Symbol;
+        return symbol;
     }
 
     public void setSymbol(String Symbol)
     {
-        this.Symbol = Symbol;
+        this.symbol = Symbol;
     }
 
     public String getNote()
@@ -91,13 +96,13 @@ public class Currency
         String s; //insert value statment will be stored here
         
         s = "insert into curr(curr_name, iso_symbol, symbol, note, inactive) values ("; 
-        s += "'" + currName + "'";
-        s += ", '" + isoSymbol + "'";
-        s += ", '" + Symbol + "'";
-        if (note == null || note.isEmpty())
+        s += "'" + getCurrName() + "'";
+        s += ", '" + getIsoSymbol() + "'";
+        s += ", '" + getSymbol() + "'";
+        if (getNote() == null || getNote().isEmpty())
             s += ", null";
         else
-            s += ", '" + note + "'";
+            s += ", '" + getNote() + "'";
 
         if (inactive)
             s += ", true";
@@ -114,13 +119,13 @@ public class Currency
         String s; //update statment will be stored here
         
         s = "update curr set ";
-        s += "curr_name = '" + currName + "'";
-        s += ", iso_symbol = '" + isoSymbol + "'";
-        s += ", symbol = '" + Symbol + "'";
-        if (note == null || note.isEmpty())
+        s += "curr_name = '" + getCurrName() + "'";
+        s += ", iso_symbol = '" + getIsoSymbol() + "'";
+        s += ", symbol = '" + getSymbol() + "'";
+        if (getNote() == null || getNote().isEmpty())
             s += ", note = null";
         else
-            s += ", note = '" + note + "'";
+            s += ", note = '" + getNote() + "'";
 
         if (inactive)
             s += ", inactive = true";

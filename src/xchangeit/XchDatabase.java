@@ -94,6 +94,11 @@ public class XchDatabase
         try{
             conn.close();
             status = XchConnectionStatusEnum.Disconnect;
+            allCurrency.clear();
+            allCurrencyProperty.clear();
+            allRate.clear();
+            allRateProperty.clear();
+            allTrans.clear();
         } catch (Exception e) {
             System.err.println("ERROR: " + e);
         }
@@ -103,42 +108,42 @@ public class XchDatabase
         return status;
     }
     
-    public Currency getCurrencyByPK(int pk){
-        try{
-            Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("select curr_name, iso_symbol, symbol, note, inactive from curr where pk = " + pk);
-
-            if (rs.first()){
-                Currency curr = new Currency(pk, rs.getString("curr_name"), rs.getString("iso_symbol"), rs.getString("symbol"), rs.getString("note"), rs.getBoolean("inactive") );
-                return curr;
-            }else{
-                return null;
-            }
-        } catch (Exception e) {
-            System.err.println("ERROR: " + e);
-            return null;
-        }
-        
-    }
+//    public Currency getCurrencyByPK(int pk){
+//        try{
+//            Statement st = conn.createStatement();
+//            ResultSet rs = st.executeQuery("select curr_name, iso_symbol, symbol, note, inactive from curr where pk = " + pk);
+//
+//            if (rs.first()){
+//                Currency curr = new Currency(pk, rs.getString("curr_name"), rs.getString("iso_symbol"), rs.getString("symbol"), rs.getString("note"), rs.getBoolean("inactive") );
+//                return curr;
+//            }else{
+//                return null;
+//            }
+//        } catch (Exception e) {
+//            System.err.println("ERROR: " + e);
+//            return null;
+//        }
+//        
+//    }
+//    
+//    public boolean delCurrencyByPK(int pk){
+//        try{
+//            Statement st = conn.createStatement();
+//            boolean r = st.execute("delete from curr where pk = " + pk);
+//            if (st.getUpdateCount()>0)
+//                //TODO look in allCurrency object and remove the currency from here also
+//                return true;
+//            else
+//                return false;
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//            return false;
+// 
+//        }
+//        
+//    }
     
-    public boolean delCurrencyByPK(int pk){
-        try{
-            Statement st = conn.createStatement();
-            boolean r = st.execute("delete from curr where pk = " + pk);
-            if (st.getUpdateCount()>0)
-                //TODO look in allCurrency object and remove the currency from here also
-                return true;
-            else
-                return false;
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return false;
- 
-        }
-        
-    }
-    
-    public ArrayList<Currency> getAllCurrency(){
+    public void buildAllCurrency(){ // this method will fill the all currency object 
         try{
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("select pk, curr_name, iso_symbol, symbol, note, inactive from curr " );
@@ -146,12 +151,20 @@ public class XchDatabase
             allCurrency.clear();
             allCurrencyProperty.clear();
             while(rs.next()){
-                Currency curr = new Currency(rs.getInt("pk"), rs.getString("curr_name"), rs.getString("iso_symbol"), rs.getString("symbol"), rs.getString("note"), rs.getBoolean("inactive") );
-                allCurrency.add(curr);
-                allCurrencyProperty.add(new CurrencyProperty(curr));
+                CurrencyProperty currProp = new CurrencyProperty(rs.getInt("pk"), rs.getString("curr_name"), rs.getString("iso_symbol"), rs.getString("symbol"), rs.getString("note"), rs.getBoolean("inactive") );
+                allCurrency.add(currProp);
+                allCurrencyProperty.add(currProp);
             }
             
             currencyNeedRefresh = false;
+        
+        } catch (Exception e) {
+            System.err.println("ERROR: " + e);
+        }
+    }
+
+    public ArrayList<Currency> getAllCurrency(){
+        try{
             return allCurrency;
         
         } catch (Exception e) {
@@ -160,61 +173,92 @@ public class XchDatabase
         }
     }
 
-    public void addCurrency(Currency c){
+    public boolean delCurrency(Currency c){
+        try{
+            Statement st = conn.createStatement();
+            st.execute("delete from curr where pk = " + c.getPk());
+            if (st.getUpdateCount()>0){
+                allCurrency.remove(c);
+                allCurrencyProperty.remove(c);
+                return true;
+            }
+            else {return false;}
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+        
+    }
+    
+    public Currency addCurrency(Currency c){ // this method will return the Currency that actually added and it will ignore the one passed, in case of error it will return null.
     
         try{
             Statement st = conn.createStatement();
-            st.execute(c.getSqlInsertStatment());
-            
-            //TEST by changing this the collection currency 
-            allCurrency.add(c);
-            allCurrencyProperty.add(new CurrencyProperty(c));
-            setCurrencyNeedRefreshAndDepedency();
-        } catch (Exception e) {
-            //TODO idintifiy the error 
-            System.err.println("ERROR: " + e);
+            String s = c.getSqlInsertStatment();
+            st.executeUpdate(s,Statement.RETURN_GENERATED_KEYS);
+            if (st.getUpdateCount() > 0){
+                //get the PK that generated
+                ResultSet rs = st.getGeneratedKeys();
 
+                if (rs.next()) {
+                    c.setPK(rs.getInt(1));
+                }
+                rs.close();
+ 
+                CurrencyProperty currProp = new CurrencyProperty(c);
+                allCurrency.add(currProp);
+                allCurrencyProperty.add(currProp);
+                setCurrencyNeedRefreshAndDepedency();
+                return currProp;
+            }else {return null;}
+        }catch(Exception ex) {
+            //TODO idintifiy the error 
+            System.err.println("ERROR: " + ex);
+            return null;
         }
     }
     
-    public void updateCurrency(Currency c){
+    public boolean updateCurrency(Currency c){
     
         try{
             Statement st = conn.createStatement();
-            st.execute(c.getSqlUpdateStatment());
-            setCurrencyNeedRefreshAndDepedency();
-        } catch (Exception e) {
+            String s=c.getSqlUpdateStatment();
+            st.execute(s);
+            if (st.getUpdateCount() > 0){
+                setCurrencyNeedRefreshAndDepedency();
+                return true;
+            }else{return false;}
+        } catch (Exception ex) {
             //TODO idintifiy the error 
-            System.err.println("ERROR: " + e);
-
+            System.err.println("ERROR: " + ex);
+            return false;
         }
     }
     
-    public ArrayList<Currency> getLastGrabedCurrency(){
-        return allCurrency;
-    }
-    
-    public ObservableList<CurrencyProperty> getLastGrabedCurrencyProperty(){
+//    public ArrayList<Currency> getLastGrabedCurrency(){
+//        return allCurrency;
+//    }
+//    
+    public ObservableList<CurrencyProperty> getAllCurrencyProperty(){
         return allCurrencyProperty;
     }
     
-    public ArrayList<Rate> getAllRate(){
+    public void BuildAllRate(){
         try{
             allRate.clear();
             allRateProperty.clear();
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("select pk, rate_date, curr, rate, sell_price, buy_price, note from rates" );
             
-            if (allCurrency == null || allCurrency.isEmpty()){
-                getAllCurrency(); //fill currency if it is empty
+            if (currencyNeedRefresh || allCurrency.isEmpty()){
+                buildAllCurrency(); //fill currency if it is empty
             }
             
             if (allCurrency.isEmpty()){
                 allCurrencyProperty.clear();
-                return allRate; //return empty list becuase there no currency
+                return; //exit from here, there is no rates if there is no currency
             }
             
-            //allRateProperty = FXCollections.observableArrayList();
             while(rs.next()){
                 CurrencyProperty rateCurrProp = null; // I found it kind of stupid that i have to init this var to null in order to make it work 
                 //look for the currency 
@@ -226,64 +270,78 @@ public class XchDatabase
                 }
                 if (rateCurrProp != null){ 
                     Timestamp ts = rs.getTimestamp("rate_date");
-                    Rate r = new Rate(rs.getInt("pk"), ts, rateCurrProp, rs.getDouble("rate"), rs.getDouble("sell_price"), rs.getDouble("buy_price"), rs.getString("note"));
+                    RateProperty r = new RateProperty(rs.getInt("pk"), ts, rateCurrProp, rs.getDouble("rate"), rs.getDouble("sell_price"), rs.getDouble("buy_price"), rs.getString("note"));
 
                     allRate.add(r);
-                    allRateProperty.add(new RateProperty(r));
+                    allRateProperty.add(r);
                 }else{//thats mean currency not found maybe delete it by mistake from database or mistake in the currency collection here ... dont know what to do in this case yet
                     
                 }
              }
             
-//            allRate = list;
             rateNeedRefresh = false;
-            return allRate;
 
+        } catch (Exception e) {
+            System.err.println("ERROR: " + e);
+        }
+        
+    }
+    
+    public ArrayList<Rate> getAllRate(){
+        try{
+            return allRate;
         } catch (Exception e) {
             System.err.println("ERROR: " + e);
             return null;
         }
     }
 
-    public boolean delRateByPK(int pk){
+    public boolean delRate(Rate r){
         try{
             Statement st = conn.createStatement();
-            boolean r = st.execute("delete from rates where pk = " + pk);
-            if (st.getUpdateCount()>0)
-                //TODO look in allRate object and remove the rate from here also
+            st.execute("delete from rates where pk = " + r.getPk());
+            if (st.getUpdateCount()>0){
+                allRate.remove(r);
+                allRateProperty.remove(r);
                 return true;
-            else
-                return false;
+            }else{return false;}
         } catch (Exception ex) {
             ex.printStackTrace();
             return false;
-                    
         }
+
     }
     
-    public void addRate(Rate r){
+    public Rate addRate(Rate r){ // this method will return the Rate that actually added and it will ignore the one passed, in case of error it will return null.
         try{
             Statement st = conn.createStatement();
-            st.execute(r.getSqlInsertStatment());
+            String s = r.getSqlInsertStatment();
+            st.executeUpdate(s,Statement.RETURN_GENERATED_KEYS);
             
             if (st.getUpdateCount() > 0){
-                allRate.add(r);
-                allRateProperty.add(new RateProperty(r));
-            }
-            rateNeedRefresh = true;
-            
-        } catch (Exception e) {
-            //TODO idintifiy the error 
-            System.err.println("ERROR: " + e);
+                //get the PK that generated
+                ResultSet rs = st.getGeneratedKeys();
 
+                if (rs.next()) {
+                    r.setPK(rs.getInt(1));
+                }
+                rs.close();
+                
+                RateProperty rateProp = new RateProperty(r);
+                allRate.add(rateProp);
+                allRateProperty.add(rateProp);
+                rateNeedRefresh = true; //
+                return rateProp;
+            }else{return null;}
+            
+        } catch (Exception ex) {
+            //TODO idintifiy the error 
+            System.err.println("ERROR: " + ex);
+            return null;
         }
     }
     
-    public ArrayList<Rate> getLastGrabedRate(){
-        return allRate;
-    }
-    
-    public ObservableList<RateProperty> getLastGrabedRateProperty(){
+    public ObservableList<RateProperty> getAllRateProperty(){
         return allRateProperty;
     }
 
@@ -331,7 +389,8 @@ public class XchDatabase
                             "	,note                           nvarchar(100)           	null\n" +
                             "	,inactive			bit	 			null \n" +
                             ");\n");
-            st.execute(                            "create table rates\n" +
+            
+            st.execute(     "create table rates\n" +
                             "(\n" +
                             "	pk                              int				not null\n" +
                             "					auto_increment Primary key\n" +
@@ -344,7 +403,8 @@ public class XchDatabase
                             "	,buy_price			float				not null # from buy transaction \n" +
                             "        ,note                           nvarchar(100)                   null # could be use full to register the info of rate source\n" +
                             ");\n" );
-            st.execute(                            "create table trans\n" +
+            
+            st.execute(     "create table trans\n" +
                             "(\n" +
                             "	pk				int				not null\n" +
                             "					auto_increment Primary key\n" +

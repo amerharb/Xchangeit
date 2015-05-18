@@ -45,21 +45,41 @@ public class CurrencyProperty extends Currency
         return currNameProperty;
     }
 
+    @Override
+    public String getCurrName(){
+        return currNameProperty.get();
+    }
+    
     public SimpleStringProperty getIsoSymbolProperty()
     {
         return isoSymbolProperty;
     }
 
+    @Override
+    public String getIsoSymbol(){
+        return isoSymbolProperty.get();
+    }
+    
     public SimpleStringProperty getSymbolProperty()
     {
         return symbolProperty;
     }
 
+    @Override
+    public String getSymbol(){
+        return symbolProperty.get();
+    }
+    
     public SimpleStringProperty getNoteProperty()
     {
         return noteProperty;
     }
 
+    @Override
+    public String getNote(){
+        return noteProperty.get();
+    }
+    
     public SimpleBooleanProperty isInactiveProperty()
     {
         return inactiveProperty;

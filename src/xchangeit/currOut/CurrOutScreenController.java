@@ -49,10 +49,10 @@ public class CurrOutScreenController extends XchController
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        if (database.getLastGrabedCurrencyProperty() == null || database.getLastGrabedCurrencyProperty().isEmpty()) {
+        if (database.getAllCurrencyProperty() == null || database.getAllCurrencyProperty().isEmpty()) {
             database.getAllCurrency();
         }
-        currChoiceBox.setItems(database.getLastGrabedCurrencyProperty());
+        currChoiceBox.setItems(database.getAllCurrencyProperty());
     }    
     
 }

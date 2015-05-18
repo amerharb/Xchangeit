@@ -74,34 +74,20 @@ public class RateScreenController extends XchController{
         }
     }
     
-    private void fillCurrChoiceBox(){        
-        try{
-            if (database.getLastGrabedRate() != null) {
-                currChoiceBox.setItems(database.getLastGrabedCurrencyProperty());
-            }
-            
-        }catch(Exception ex){
-            ex.printStackTrace();
-        }
-    }
-    
     private void fillRateTable(){
         try{
             if (mainScreen != null){
-                database.getAllRate();
+                database.BuildAllRate();
 
-                if (database.getLastGrabedRate() != null) {
+                pkCol.setCellValueFactory(cellData -> cellData.getValue().getPkProperty().asObject());
+                rateDateCol.setCellValueFactory(cellData -> cellData.getValue().getRateDateProperty());
+                currCol.setCellValueFactory(cellData -> cellData.getValue().getCurrProperty().getCurrNameProperty());
+                rateCol.setCellValueFactory(cellData -> cellData.getValue().getRateProperty().asObject());
+                sellPriceCol.setCellValueFactory(cellData -> cellData.getValue().getSellPriceProperty().asObject());
+                buyPriceCol.setCellValueFactory(cellData -> cellData.getValue().getBuyPriceProperty().asObject());
+                noteCol.setCellValueFactory(cellData -> cellData.getValue().getNoteProperty());
 
-                    pkCol.setCellValueFactory(cellData -> cellData.getValue().getPkProperty().asObject());
-                    rateDateCol.setCellValueFactory(cellData -> cellData.getValue().getRateDateProperty());
-                    currCol.setCellValueFactory(cellData -> cellData.getValue().getCurrProperty().getCurrNameProperty());
-                    rateCol.setCellValueFactory(cellData -> cellData.getValue().getRateProperty().asObject());
-                    sellPriceCol.setCellValueFactory(cellData -> cellData.getValue().getSellPriceProperty().asObject());
-                    buyPriceCol.setCellValueFactory(cellData -> cellData.getValue().getBuyPriceProperty().asObject());
-                    noteCol.setCellValueFactory(cellData -> cellData.getValue().getNoteProperty());
-
-                    rateTable.setItems(database.getLastGrabedRateProperty());
-                }
+                rateTable.setItems(database.getAllRateProperty());
             }
         }catch(Exception ex) {
             ex.printStackTrace();
@@ -117,7 +103,7 @@ public class RateScreenController extends XchController{
             Timestamp st = getTimeStamp(rateDateText.getText());
             Rate r = new Rate(0, st, currChoiceBox.getValue(), rateText.getText(), sellPriceText.getText(), buyPriceText.getText(), noteText.getText());
             database.addRate(r);
-            fillRateTable();
+            //fillRateTable(); no need should be automatic
         }catch(Exception ex){
             ex.printStackTrace();
         }
@@ -127,8 +113,8 @@ public class RateScreenController extends XchController{
     private void handleDeleteRateAction(ActionEvent event){
         try{
             if (selRateProp != null){
-                if (database.delRateByPK(selRateProp.getPk())){
-                    fillRateTable();
+                if (database.delRate(selRateProp)){
+                    //fillRateTable(); non need
                 }
             }
             fillRateFields();
@@ -153,7 +139,7 @@ public class RateScreenController extends XchController{
     {
         try{
             fillRateTable();
-            fillCurrChoiceBox();
+            currChoiceBox.setItems(database.getAllCurrencyProperty());
         }catch(Exception ex) {
             ex.printStackTrace(); 
         }
