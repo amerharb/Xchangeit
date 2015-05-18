@@ -7,8 +7,16 @@
 package xchangeit.currOut;
 
 import java.net.URL;
+import java.sql.Timestamp;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import xchangeit.XchController;
+import xchangeit.XchDatabase;
+import xchangeit.currency.CurrencyProperty;
 
 /**
  * FXML Controller class
@@ -17,14 +25,36 @@ import xchangeit.XchController;
  */
 public class CurrOutScreenController extends XchController
 {
-
-    /**
-     * Initializes the controller class.
-     */
+    private XchDatabase database;
+    
+    @FXML private TextField transDateText;
+    @FXML private ChoiceBox<CurrencyProperty> currChoiceBox;
+    @FXML private TextField currAmtText;
+    @FXML private TextField rateText;
+    @FXML private TextArea noteText;
+    
+    @FXML
+    private void handleAddAction(ActionEvent event){
+        
+        System.out.println("You Click Curr Out Screen Add Button");
+        try{
+            Timestamp st = getTimeStamp(transDateText.getText()); 
+            CurrOut co = new CurrOut(0, st, noteText.getText(), currChoiceBox.getValue(), currAmtText.getText(), rateText.getText());
+            database.addTrans(co);
+            
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
+        database = MainScreen.getDatabase();
+        if (database.getLastGrabedCurrencyProperty() == null || database.getLastGrabedCurrencyProperty().isEmpty()) {
+            database.getAllCurrency();
+        }
+        currChoiceBox.setItems(database.getLastGrabedCurrencyProperty());
     }    
     
 }

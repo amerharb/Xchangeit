@@ -24,6 +24,6 @@
       <TextField fx:id="rateText" layoutX="146.0" layoutY="197.0" prefHeight="25.0" prefWidth="149.0" />
       <Label layoutX="349.0" layoutY="87.0" text="Note" />
       <TextArea fx:id="noteText" layoutX="408.0" layoutY="83.0" prefHeight="70.0" prefWidth="149.0" />
-      <Button layoutX="408.0" layoutY="197.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Add" />
+      <Button layoutX="408.0" layoutY="197.0" mnemonicParsing="false" onAction="#handleAddAction" prefHeight="25.0" prefWidth="149.0" text="Add" />
     </children>
 </AnchorPane>

@@ -17,6 +17,11 @@ import xchangeit.currency.Currency;
 public class CurrOut extends CurrIn
 {
 
+    public CurrOut(int pk, Timestamp transDate, String note, Currency currency, String currAmount, String rate)
+    {
+        this(pk, transDate, note, currency, Double.valueOf(currAmount), Double.valueOf(rate));
+    }
+    
     public CurrOut(int pk, Timestamp transDate, String note, Currency currency, double currAmount, double rate)
     {
         super(pk, transDate, note, currency, currAmount, rate);
