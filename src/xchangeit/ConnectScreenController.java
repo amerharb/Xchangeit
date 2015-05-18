@@ -32,7 +32,7 @@ public class ConnectScreenController extends XchController
     private void handleCreateDatabaseButtonAction(ActionEvent event)
     {
         System.out.println("You clicked Create Database");
-        //XchDatabase db = MainScreen.getDatabase();
+        //XchDatabase db = mainScreen.getDatabase();
         if (database.getStatus() == XchDatabase.XchConnectionStatusEnum.Connected)
             database.Disconnect();
         
@@ -46,7 +46,7 @@ public class ConnectScreenController extends XchController
     {
         try{
         
-        //XchDatabase db = MainScreen.getDatabase();
+        //XchDatabase db = mainScreen.getDatabase();
         database.connect(serverNameText.getText(), rootPasswordText.getText(), "Xchangeit");
         //TODO: find more logical way to close window
         serverNameText.getParent().getScene().getWindow().hide();

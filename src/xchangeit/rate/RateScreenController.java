@@ -87,7 +87,7 @@ public class RateScreenController extends XchController{
     
     private void fillRateTable(){
         try{
-            if (MainScreen != null){
+            if (mainScreen != null){
                 database.getAllRate();
 
                 if (database.getLastGrabedRate() != null) {

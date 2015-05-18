@@ -183,7 +183,7 @@ public class CurrencyScreenController extends XchController
 
     private void fillCurrencyTable(){
         try{
-            if (MainScreen != null){
+            if (mainScreen != null){
                 if (database.getAllCurrency() != null){
 
                     pkCol.setCellValueFactory(cellData -> cellData.getValue().getPkProperty().asObject());
