@@ -74,6 +74,7 @@ public class MainScreenController implements Initializable
             if (connectStage == null){ //for first time
                 connectStage  = new Stage();
                 connectStage.setScene(GetScene("ConnectScreen.fxml"));
+                connectStage.setTitle("Connect To Database");
             }
             connectStage.show();
             connectStage.toFront();
@@ -125,6 +126,7 @@ public class MainScreenController implements Initializable
             if (rateStage == null){ //for first time
                 rateStage  = new Stage();
                 rateStage.setScene(GetScene("rate/RateScreen.fxml"));
+                rateStage.setTitle("Rates");
             }
             rateStage.show();
             rateStage.toFront();
@@ -143,6 +145,7 @@ public class MainScreenController implements Initializable
             if (buyStage == null){ //for first time
                 buyStage  = new Stage();
                 buyStage.setScene(GetScene("buy/BuyScreen.fxml"));
+                buyStage.setTitle("Buy");
             }
             buyStage.show();
             buyStage.toFront();
@@ -160,6 +163,7 @@ public class MainScreenController implements Initializable
             if (sellStage == null){ //for first time
                 sellStage  = new Stage();
                 sellStage.setScene(GetScene("sell/SellScreen.fxml"));
+                sellStage.setTitle("Sell");
             }
             sellStage.show();
             sellStage.toFront();
@@ -177,6 +181,7 @@ public class MainScreenController implements Initializable
             if (transCashInStage == null){ //for first time
                 transCashInStage  = new Stage();
                 transCashInStage.setScene(GetScene("cashIn/CashInScreen.fxml"));
+                transCashInStage.setTitle("Cash In");
             }
             transCashInStage.show();
             transCashInStage.toFront();
@@ -194,6 +199,7 @@ public class MainScreenController implements Initializable
             if (transCashOutStage == null){ //for first time
                 transCashOutStage  = new Stage();
                 transCashOutStage.setScene(GetScene("cashOut/CashOutScreen.fxml"));
+                transCashOutStage.setTitle("Cash Out");
             }
             transCashOutStage.show();
             transCashOutStage.toFront();
@@ -210,6 +216,7 @@ public class MainScreenController implements Initializable
             if (transCurrInStage == null){ //for first time
                 transCurrInStage  = new Stage();
                 transCurrInStage.setScene(GetScene("currIn/CurrInScreen.fxml"));
+                transCurrInStage.setTitle("Currency In");
             }
             transCurrInStage.show();
             transCurrInStage.toFront();
@@ -226,6 +233,7 @@ public class MainScreenController implements Initializable
             if (transCurrOutStage == null){ //for first time
                 transCurrOutStage  = new Stage();
                 transCurrOutStage.setScene(GetScene("currOut/CurrOutScreen.fxml"));
+                transCurrOutStage.setTitle("Currency Out");
             }
             transCurrOutStage.show();
             transCurrOutStage.toFront();
@@ -241,7 +249,7 @@ public class MainScreenController implements Initializable
         try {
             if (allTransStage == null){ //for first time
                 allTransStage  = new Stage();
-                allTransStage.setScene(GetScene("allTransScreen.fxml"));
+                allTransStage.setScene(GetScene("AllTransScreen.fxml"));
                 allTransStage.setTitle("All Transaction");
             }
             allTransStage.show();
@@ -258,7 +266,8 @@ public class MainScreenController implements Initializable
         try {
             if (latestRatesStage == null){ //for first time
                 latestRatesStage  = new Stage();
-                latestRatesStage.setScene(GetScene("latestRatesStageScreen.fxml"));
+                latestRatesStage.setScene(GetScene("LatestRatesScreen.fxml"));
+                latestRatesStage.setTitle("Latest Rates");
             }
             latestRatesStage.show();
             latestRatesStage.toFront();
@@ -275,6 +284,7 @@ public class MainScreenController implements Initializable
             if (aboutStage == null){ //for first time
                 aboutStage  = new Stage();
                 aboutStage.setScene(GetScene("aboutScreen.fxml"));
+                aboutStage.setTitle("About");
             }
             aboutStage.show();
             aboutStage.toFront();
