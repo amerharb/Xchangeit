@@ -43,14 +43,19 @@ public class CashInScreenController extends XchController
             Timestamp st = getTimeStamp(transDateText.getText());
             CashIn ci = new CashIn(0, st, noteText.getText(), cashAmtText.getText());
             if (database.addTrans(ci)){
-                transDateText.clear();
-                cashAmtText.clear();
-                noteText.clear();
+                clearFields();
             }
             
         }catch(Exception ex){
             ex.printStackTrace();
         }
+    }
+    
+    private void clearFields()
+    {
+        transDateText.clear();
+        cashAmtText.clear();
+        noteText.clear();
     }
     
     @Override

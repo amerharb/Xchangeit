@@ -41,9 +41,7 @@ public class CashOutScreenController extends XchController
             Timestamp st = getTimeStamp(transDateText.getText());
             CashOut co = new CashOut(0, st, noteText.getText(), cashAmtText.getText());
             if (database.addTrans(co)){
-                transDateText.clear();
-                cashAmtText.clear();
-                noteText.clear();
+                clearFields();
             }
             
         }catch(Exception ex){
@@ -57,5 +55,12 @@ public class CashOutScreenController extends XchController
     {
         //TODO
     }    
+
+    private void clearFields()
+    {
+        transDateText.clear();
+        cashAmtText.clear();
+        noteText.clear();
+    }
     
 }
