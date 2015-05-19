@@ -172,7 +172,6 @@ public class CurrencyScreenController extends XchController
 
     public void initialize(URL url, ResourceBundle rb){
         try{
-            database.buildAllCurrency();
             fillCurrencyTable();
             fillFields();
         }catch(Exception ex) {

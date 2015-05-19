@@ -83,7 +83,6 @@ public class RateScreenController extends XchController{
     private void fillRateTable(){
         try{
             if (mainScreen != null){
-                database.BuildAllRate();
 
                 pkCol.setCellValueFactory(cellData -> cellData.getValue().getPkProperty().asObject());
                 rateDateCol.setCellValueFactory(cellData -> cellData.getValue().getRateDateProperty());

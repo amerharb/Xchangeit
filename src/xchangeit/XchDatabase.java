@@ -53,12 +53,6 @@ public class XchDatabase
     private boolean rateNeedRefresh; // this is an indicator that something has been changed in Rate 
     private boolean transNeedRefresh; //this is an indicator that somehting has been changed in Trans table
     
-    private void setCurrencyNeedRefreshAndDepedency(){
-        currencyNeedRefresh = true;
-        rateNeedRefresh = true;
-        transNeedRefresh = true;
-    }
-        
     private void everythingNeedRefresh()
     {
         currencyNeedRefresh = true;
@@ -155,7 +149,7 @@ public class XchDatabase
 //        
 //    }
     
-    public void buildAllCurrency(){ // this method will fill the all currency object 
+    private void buildAllCurrency(){ // this method will fill the all currency object 
         try{
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("select pk, curr_name, iso_symbol, symbol, note, inactive from curr " );
@@ -169,7 +163,8 @@ public class XchDatabase
             }
             
             currencyNeedRefresh = false;
-        
+            rateNeedRefresh = true;
+            transNeedRefresh = true;
         } catch (Exception e) {
             System.err.println("ERROR: " + e);
         }
@@ -223,7 +218,6 @@ public class XchDatabase
                 CurrencyProperty currProp = new CurrencyProperty(c);
                 allCurrency.add(currProp);
                 allCurrencyProperty.add(currProp);
-                setCurrencyNeedRefreshAndDepedency();
                 return currProp;
             }else {return null;}
         }catch(Exception ex) {
@@ -240,7 +234,6 @@ public class XchDatabase
             String s=c.getSqlUpdateStatment();
             st.execute(s);
             if (st.getUpdateCount() > 0){
-                setCurrencyNeedRefreshAndDepedency();
                 return true;
             }else{return false;}
         } catch (Exception ex) {
@@ -261,7 +254,7 @@ public class XchDatabase
         return allCurrencyProperty;
     }
     
-    public void BuildAllRate(){
+    private void BuildAllRate(){
         try{
             allRate.clear();
             allRateProperty.clear();

@@ -87,6 +87,7 @@ public class MainScreenController implements Initializable
         try {
             if (database.disconnect()){
                 setButtonsDisable(true);
+                closeAllWindows();
             }
         } catch (Exception ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
@@ -237,7 +238,7 @@ public class MainScreenController implements Initializable
         
     }
     
-    //TODEL to delete this method 
+    //TODEL to delete this method not in use any more 
     private void showScreen(Stage stage, String fxmlFile) throws IOException{
         try{
             if (stage == null){
@@ -283,4 +284,40 @@ public class MainScreenController implements Initializable
         currencyMenu.disableProperty().set(en);
         rateMenu.disableProperty().set(en);
 }
+
+    private void closeAllWindows()
+    {
+        if (currencyStage != null){
+            currencyStage.close();
+            currencyStage = null;
+        }
+        if (rateStage != null){
+            rateStage.close();
+            rateStage = null;
+        }
+        if (buyStage != null){
+            buyStage.close();
+            buyStage = null;
+        }
+        if (sellStage != null){
+            sellStage.close();
+            sellStage = null;
+        }
+        if (transCashInStage != null){
+            transCashInStage.close();
+            transCashInStage = null;
+        }
+        if (transCashOutStage != null){
+            transCashOutStage.close();
+            transCashOutStage = null;
+        }
+        if (transCurrInStage != null){
+            transCurrInStage.close();
+            transCurrInStage = null;
+        }
+        if (transCurrOutStage != null){
+            transCurrOutStage.close();
+            transCurrOutStage = null;
+        }
+    }
 }
