@@ -70,10 +70,6 @@ public class SellScreenController extends XchController
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-
-        if (database.getAllCurrencyProperty() == null || database.getAllCurrencyProperty().isEmpty()) {
-            database.getAllCurrency();
-        }
         currChoiceBox.setItems(database.getAllCurrencyProperty());
     }    
     

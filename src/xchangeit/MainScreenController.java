@@ -34,6 +34,9 @@ public class MainScreenController implements Initializable
     private Stage transCashOutStage;
     private Stage transCurrInStage;
     private Stage transCurrOutStage;
+    private Stage allTransStage;
+    private Stage latestRatesStage;
+    private Stage aboutStage;
     
     private final XchDatabase database = new XchDatabase();
     
@@ -102,7 +105,7 @@ public class MainScreenController implements Initializable
     {
         System.out.println("You clicked Currency");
         try {
-            if  (currencyStage == null){ //for first time
+            if (currencyStage == null){ //for first time
                 currencyStage  = new Stage();
                 currencyStage.setScene(GetScene("currency/CurrencyScreen.fxml"));
                 currencyStage.setTitle("Currencies");
@@ -119,7 +122,7 @@ public class MainScreenController implements Initializable
     {
         System.out.println("You clicked Rate");
         try {
-            if  (rateStage == null){ //for first time
+            if (rateStage == null){ //for first time
                 rateStage  = new Stage();
                 rateStage.setScene(GetScene("rate/RateScreen.fxml"));
             }
@@ -137,7 +140,7 @@ public class MainScreenController implements Initializable
     {
         System.out.println("You clicked Buy");
         try {
-            if  (buyStage == null){ //for first time
+            if (buyStage == null){ //for first time
                 buyStage  = new Stage();
                 buyStage.setScene(GetScene("buy/BuyScreen.fxml"));
             }
@@ -154,7 +157,7 @@ public class MainScreenController implements Initializable
     {
         System.out.println("You clicked Sell");
         try {
-            if  (sellStage == null){ //for first time
+            if (sellStage == null){ //for first time
                 sellStage  = new Stage();
                 sellStage.setScene(GetScene("sell/SellScreen.fxml"));
             }
@@ -171,7 +174,7 @@ public class MainScreenController implements Initializable
     {
         System.out.println("You clicked TransCashIn");
         try {
-            if  (transCashInStage == null){ //for first time
+            if (transCashInStage == null){ //for first time
                 transCashInStage  = new Stage();
                 transCashInStage.setScene(GetScene("cashIn/CashInScreen.fxml"));
             }
@@ -188,7 +191,7 @@ public class MainScreenController implements Initializable
     {
         System.out.println("You clicked TransCashOut");
         try {
-            if  (transCashOutStage == null){ //for first time
+            if (transCashOutStage == null){ //for first time
                 transCashOutStage  = new Stage();
                 transCashOutStage.setScene(GetScene("cashOut/CashOutScreen.fxml"));
             }
@@ -220,12 +223,61 @@ public class MainScreenController implements Initializable
     private void handleTransCurrOutAction(ActionEvent event){
         System.out.println("You clicked TransCurrOut");
         try {
-            if  (transCurrOutStage == null){ //for first time
+            if (transCurrOutStage == null){ //for first time
                 transCurrOutStage  = new Stage();
                 transCurrOutStage.setScene(GetScene("currOut/CurrOutScreen.fxml"));
             }
             transCurrOutStage.show();
             transCurrOutStage.toFront();
+        } catch (IOException ex) {
+            Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
+    @FXML
+    private void handleAllTransAction(ActionEvent event){
+        System.out.println("You clicked All transaction");
+        try {
+            if (allTransStage == null){ //for first time
+                allTransStage  = new Stage();
+                allTransStage.setScene(GetScene("allTransScreen.fxml"));
+                allTransStage.setTitle("All Transaction");
+            }
+            allTransStage.show();
+            allTransStage.toFront();
+        } catch (IOException ex) {
+            Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
+    @FXML
+    private void handleLatestRatesAction(ActionEvent event){
+        System.out.println("You clicked Latest Rates");
+        try {
+            if (latestRatesStage == null){ //for first time
+                latestRatesStage  = new Stage();
+                latestRatesStage.setScene(GetScene("latestRatesStageScreen.fxml"));
+            }
+            latestRatesStage.show();
+            latestRatesStage.toFront();
+        } catch (IOException ex) {
+            Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
+    @FXML
+    private void handleAboutAction(ActionEvent event){
+        System.out.println("You clicked About");
+        try {
+            if (aboutStage == null){ //for first time
+                aboutStage  = new Stage();
+                aboutStage.setScene(GetScene("aboutScreen.fxml"));
+            }
+            aboutStage.show();
+            aboutStage.toFront();
         } catch (IOException ex) {
             Logger.getLogger(MainScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -289,6 +341,10 @@ public class MainScreenController implements Initializable
 
     private void closeAllWindows()
     {
+        if (connectStage != null){
+            connectStage.close();
+            connectStage = null;
+        }
         if (currencyStage != null){
             currencyStage.close();
             currencyStage = null;
@@ -321,5 +377,18 @@ public class MainScreenController implements Initializable
             transCurrOutStage.close();
             transCurrOutStage = null;
         }
+        if (allTransStage != null){
+            allTransStage.close();
+            allTransStage = null;
+        }
+        if (latestRatesStage != null){
+            latestRatesStage.close();
+            latestRatesStage = null;
+        }
+        if (aboutStage != null){
+            aboutStage.close();
+            aboutStage = null;
+        }
+        
     }
 }

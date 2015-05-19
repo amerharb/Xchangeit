@@ -10,97 +10,91 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" fx:id="transCashInButton" prefHeight="380.0" prefWidth="441.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xchangeit.MainScreenController">
-    <children>
-      <AnchorPane prefHeight="380.0" prefWidth="519.0">
+<AnchorPane id="AnchorPane" fx:id="transCashInButton" prefHeight="276.0" prefWidth="441.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xchangeit.MainScreenController">
+   <children>
+      <MenuBar layoutX="8.0" layoutY="12.0" prefHeight="20.0" prefWidth="519.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="Database">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#handleConnectAction" text="Connect ...">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="ENTER" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem mnemonicParsing="false" onAction="#handleDisconnectAction" text="Disconnect" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleExitAction" text="Exit">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="X" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Entities">
+               <items>
+                  <MenuItem fx:id="currencyMenu" disable="true" mnemonicParsing="false" onAction="#handleCurrencyAction" text="Currencies">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="C" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem fx:id="rateMenu" disable="true" mnemonicParsing="false" onAction="#handleRateAction" text="Rates">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="R" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Transactions">
+               <items>
+                  <MenuItem fx:id="buyMenu" disable="true" mnemonicParsing="false" onAction="#handleBuyAction" text="Buy" />
+                  <MenuItem fx:id="sellMenu" disable="true" mnemonicParsing="false" onAction="#handleSellAction" text="Sell" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="cashInMenu" disable="true" mnemonicParsing="false" onAction="#handleTransCashInAction" text="Cash in" />
+                  <MenuItem fx:id="cashOutMenu" disable="true" mnemonicParsing="false" onAction="#handleTransCashOutAction" text="Cash Out" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="currInMenu" disable="true" mnemonicParsing="false" onAction="#handleTransCurrInAction" text="Currency in" />
+                  <MenuItem fx:id="currOutMenu" disable="true" mnemonicParsing="false" onAction="#handleTransCurrOutAction" text="Currency out" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Reports">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="All Transactions" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Latest Rates" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="About" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <Label alignment="CENTER" layoutX="13.0" layoutY="45.0" prefHeight="40.0" prefWidth="513.0" text="Xchangeit" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Pane layoutX="10.0" layoutY="10.0" prefHeight="240.0" prefWidth="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
-            <ImageView blendMode="DARKEN" fitHeight="159.0" fitWidth="115.0" layoutX="204.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@dollar.jpg" />
-               </image>
-            </ImageView>
-            <Pane prefHeight="257.0" prefWidth="140.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0">
-               <children>
-                    <Button fx:id="currencyButton" disable="true" layoutX="15.0" layoutY="40.0" onAction="#handleCurrencyAction" prefHeight="25.0" prefWidth="100.0" text="Currency" />
-                  <Button fx:id="rateButton" disable="true" layoutX="15.0" layoutY="75.0" onAction="#handleRateAction" prefHeight="25.0" prefWidth="100.0" text="Rate" />
-                  <Button fx:id="sellButton" disable="true" layoutX="15.0" layoutY="125.0" onAction="#handleSellAction" prefHeight="25.0" prefWidth="100.0" text="Sell" />
-                  <Button fx:id="buyButton" disable="true" layoutX="15.0" layoutY="160.0" onAction="#handleBuyAction" prefHeight="25.0" prefWidth="100.0" text="Buy" />
-               </children>
-            </Pane>
-            <Pane prefHeight="257.0" prefWidth="150.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="80.0">
-               <children>
-                  <Button fx:id="cashInButton" disable="true" layoutX="15.0" layoutY="40.0" onAction="#handleTransCashInAction" prefHeight="25.0" prefWidth="100.0" text="Cash In" />
-                  <Button fx:id="cashOutButton" disable="true" layoutX="15.0" layoutY="75.0" onAction="#handleTransCashOutAction" prefHeight="25.0" prefWidth="100.0" text="Cash Out" />
-                  <Button fx:id="currInButton" disable="true" layoutX="15.0" layoutY="125.0" onAction="#handleTransCurrInAction" prefHeight="25.0" prefWidth="100.0" text="Currency In" />
-                  <Button fx:id="currOutButton" disable="true" layoutX="15.0" layoutY="160.0" onAction="#handleTransCurrOutAction" prefHeight="25.0" prefWidth="100.0" text="Currency Out" />
-               </children>
-            </Pane>
-            <Label alignment="CENTER" layoutX="3.0" layoutY="35.0" prefHeight="45.0" prefWidth="513.0" text="Xchangeit" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
-               <font>
-                  <Font name="System Bold" size="30.0" />
-               </font>
-            </Label>
-            <Label layoutX="262.0" layoutY="80.0" text="Best Rates">
-               <font>
-                  <Font name="System Bold Italic" size="12.0" />
-               </font>
-            </Label>
-            <Label layoutX="333.0" layoutY="48.0" text="(global)">
-               <font>
-                  <Font name="System Bold Italic" size="14.0" />
-               </font>
-            </Label>
-            <MenuBar layoutX="-2.0" layoutY="2.0" prefHeight="20.0" prefWidth="519.0">
-               <menus>
-                  <Menu mnemonicParsing="false" text="Database">
-                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#handleConnectAction" text="Connect ...">
-                           <accelerator>
-                              <KeyCodeCombination alt="UP" code="ENTER" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                           </accelerator></MenuItem>
-                        <MenuItem mnemonicParsing="false" onAction="#handleDisconnectAction" text="Disconnect" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" onAction="#handleExitAction" text="Exit">
-                           <accelerator>
-                              <KeyCodeCombination alt="DOWN" code="X" control="UP" meta="UP" shift="UP" shortcut="UP" />
-                           </accelerator></MenuItem>
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Entities">
-                     <items>
-                        <MenuItem fx:id="currencyMenu" disable="true" mnemonicParsing="false" onAction="#handleCurrencyAction" text="Currencies">
-                           <accelerator>
-                              <KeyCodeCombination alt="UP" code="C" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                           </accelerator>
-                        </MenuItem>
-                        <MenuItem fx:id="rateMenu" disable="true" mnemonicParsing="false" onAction="#handleRateAction" text="Rates">
-                           <accelerator>
-                              <KeyCodeCombination alt="UP" code="R" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                           </accelerator></MenuItem>
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Transactions">
-                     <items>
-                        <MenuItem fx:id="buyMenu" disable="true" mnemonicParsing="false" onAction="#handleBuyAction" text="Buy" />
-                        <MenuItem fx:id="sellMenu" disable="true" mnemonicParsing="false" onAction="#handleSellAction" text="Sell" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem fx:id="cashInMenu" disable="true" mnemonicParsing="false" onAction="#handleTransCashInAction" text="Cash in" />
-                        <MenuItem fx:id="cashOutMenu" disable="true" mnemonicParsing="false" onAction="#handleTransCashOutAction" text="Cash Out" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem fx:id="currInMenu" disable="true" mnemonicParsing="false" onAction="#handleTransCurrInAction" text="Currency in" />
-                        <MenuItem fx:id="currOutMenu" disable="true" mnemonicParsing="false" onAction="#handleTransCurrOutAction" text="Currency out" />
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Reports">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="All Transactions" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                      <MenuItem mnemonicParsing="false" text="Latest Rates" />
-                    </items>
-                  </Menu>
-               </menus>
-            </MenuBar>
+            <Button fx:id="cashInButton" disable="true" layoutX="15.0" layoutY="40.0" onAction="#handleTransCashInAction" prefHeight="25.0" prefWidth="100.0" text="Cash In" />
+            <Button fx:id="cashOutButton" disable="true" layoutX="15.0" layoutY="75.0" onAction="#handleTransCashOutAction" prefHeight="25.0" prefWidth="100.0" text="Cash Out" />
+            <Button fx:id="currInButton" disable="true" layoutX="15.0" layoutY="125.0" onAction="#handleTransCurrInAction" prefHeight="25.0" prefWidth="100.0" text="Currency In" />
+            <Button fx:id="currOutButton" disable="true" layoutX="15.0" layoutY="160.0" onAction="#handleTransCurrOutAction" prefHeight="25.0" prefWidth="100.0" text="Currency Out" />
          </children>
-      </AnchorPane>
-    </children>
+      </Pane>
+      <Pane layoutX="352.0" layoutY="109.0" prefHeight="240.0" prefWidth="140.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+         <children>
+            <Button fx:id="currencyButton" disable="true" layoutX="15.0" layoutY="40.0" onAction="#handleCurrencyAction" prefHeight="25.0" prefWidth="100.0" text="Currency" />
+            <Button fx:id="rateButton" disable="true" layoutX="15.0" layoutY="75.0" onAction="#handleRateAction" prefHeight="25.0" prefWidth="100.0" text="Rate" />
+            <Button fx:id="sellButton" disable="true" layoutX="15.0" layoutY="125.0" onAction="#handleSellAction" prefHeight="25.0" prefWidth="100.0" text="Sell" />
+            <Button fx:id="buyButton" disable="true" layoutX="15.0" layoutY="160.0" onAction="#handleBuyAction" prefHeight="25.0" prefWidth="100.0" text="Buy" />
+         </children>
+      </Pane>
+      <ImageView blendMode="DARKEN" fitHeight="159.0" fitWidth="115.0" layoutX="165.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@dollar.jpg" />
+         </image>
+      </ImageView>
+   </children>
 </AnchorPane>
