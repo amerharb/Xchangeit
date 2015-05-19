@@ -59,6 +59,13 @@ public class XchDatabase
         transNeedRefresh = true;
     }
         
+    private void everythingNeedRefresh()
+    {
+        currencyNeedRefresh = true;
+        rateNeedRefresh = true;
+        transNeedRefresh = true;
+    }
+
     public XchDatabase()
     {
         this.allCurrency = new ArrayList<>();
@@ -101,6 +108,7 @@ public class XchDatabase
             allRate.clear();
             allRateProperty.clear();
             allTrans.clear();
+            everythingNeedRefresh();
             return true;
         } catch (Exception ex) {
             System.err.println("ERROR: " + ex);
@@ -169,6 +177,9 @@ public class XchDatabase
 
     public ArrayList<Currency> getAllCurrency(){
         try{
+            if (currencyNeedRefresh || allCurrency.isEmpty()){
+                buildAllCurrency(); //fill currency if it is empty
+            }
             return allCurrency;
         
         } catch (Exception e) {
@@ -244,6 +255,9 @@ public class XchDatabase
 //    }
 //    
     public ObservableList<CurrencyProperty> getAllCurrencyProperty(){
+        if (currencyNeedRefresh || allCurrency.isEmpty()){
+            buildAllCurrency(); //fill currency if it is empty
+        }
         return allCurrencyProperty;
     }
     
@@ -293,6 +307,9 @@ public class XchDatabase
     
     public ArrayList<Rate> getAllRate(){
         try{
+            if (rateNeedRefresh || allRate.isEmpty()){
+                BuildAllRate(); //fill currency if it is empty
+            }
             return allRate;
         } catch (Exception e) {
             System.err.println("ERROR: " + e);
@@ -346,6 +363,9 @@ public class XchDatabase
     }
     
     public ObservableList<RateProperty> getAllRateProperty(){
+        if (rateNeedRefresh || allRate.isEmpty()){
+            BuildAllRate(); //fill currency if it is empty
+        }
         return allRateProperty;
     }
 

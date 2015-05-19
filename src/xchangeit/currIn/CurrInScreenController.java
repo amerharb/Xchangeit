@@ -8,6 +8,7 @@ package xchangeit.currIn;
 
 import java.net.URL;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,6 +32,11 @@ public class CurrInScreenController extends XchController
     @FXML private TextField rateText;
     @FXML private TextArea noteText;
     
+    @FXML
+    private void handleNowDateTimeAction(ActionEvent event){
+        transDateText.setText(java.sql.Timestamp.valueOf(LocalDateTime.now()).toString());
+    }
+
     @FXML
     private void handleAddAction(ActionEvent event){
         

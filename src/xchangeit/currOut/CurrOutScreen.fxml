@@ -25,5 +25,10 @@
       <Label layoutX="349.0" layoutY="87.0" text="Note" />
       <TextArea fx:id="noteText" layoutX="408.0" layoutY="83.0" prefHeight="70.0" prefWidth="149.0" />
       <Button layoutX="408.0" layoutY="197.0" mnemonicParsing="false" onAction="#handleAddAction" prefHeight="25.0" prefWidth="149.0" text="Add" />
+      <Button layoutX="295.0" layoutY="83.0" mnemonicParsing="false" onAction="#handleNowDateTimeAction" prefHeight="25.0" prefWidth="27.0" text="N">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

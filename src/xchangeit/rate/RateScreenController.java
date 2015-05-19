@@ -9,6 +9,7 @@ package xchangeit.rate;
 import java.net.URL;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -47,6 +48,11 @@ public class RateScreenController extends XchController{
 
     RateProperty selRateProp;
     
+    @FXML
+    private void handleNowDateTimeAction(ActionEvent event){
+        rateDateText.setText(java.sql.Timestamp.valueOf(LocalDateTime.now()).toString());
+    }
+
     private void fillRateFields(){
         try{
 

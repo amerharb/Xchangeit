@@ -29,7 +29,12 @@
                 <TextField fx:id="buyPriceText" layoutX="397.0" layoutY="80.0" />
                 <Button fx:id="newButton" layoutX="595.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleAddRateAction" prefHeight="25.0" prefWidth="60.0" text="New" />
                 <Button fx:id="deleteButton" layoutX="595.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleDeleteRateAction" prefHeight="25.0" prefWidth="60.0" text="Delete" />
-            <TextField fx:id="rateDateText" layoutX="101.0" layoutY="10.0" />
+            <TextField fx:id="rateDateText" layoutX="101.0" layoutY="10.0" promptText="Empty means NOW" />
+            <Button layoutX="250.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleNowDateTimeAction" prefHeight="25.0" prefWidth="27.0" text="N">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Button>
             </children>
         </AnchorPane>
         <TableView fx:id="rateTable" layoutX="100.0" layoutY="300.0" onMouseClicked="#rowClickAction" prefHeight="244.0" prefWidth="580.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="170.0">

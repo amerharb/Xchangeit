@@ -8,6 +8,7 @@ package xchangeit.currOut;
 
 import java.net.URL;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,6 +34,11 @@ public class CurrOutScreenController extends XchController
     @FXML private TextArea noteText;
     
     @FXML
+    private void handleNowDateTimeAction(ActionEvent event){
+        transDateText.setText(java.sql.Timestamp.valueOf(LocalDateTime.now()).toString());
+    }
+
+    @FXML
     private void handleAddAction(ActionEvent event){
         
         System.out.println("You Click Curr Out Screen Add Button");
@@ -49,9 +55,6 @@ public class CurrOutScreenController extends XchController
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        if (database.getAllCurrencyProperty() == null || database.getAllCurrencyProperty().isEmpty()) {
-            database.getAllCurrency();
-        }
         currChoiceBox.setItems(database.getAllCurrencyProperty());
     }    
     
