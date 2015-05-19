@@ -19,7 +19,7 @@ public abstract class XchController implements Initializable
     protected static MainScreenController mainScreen;
     protected static XchDatabase database;
 
-    protected Timestamp getTimeStamp(String datetime){
+    protected Timestamp getTimeStamp(String datetime){ //in case of error this function will return null
         try{
 
             Timestamp st = Timestamp.valueOf(datetime);

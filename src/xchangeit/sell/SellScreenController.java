@@ -47,11 +47,24 @@ public class SellScreenController extends XchController
             Timestamp st = getTimeStamp(transDateText.getText()); 
             Sell s = new Sell(0, st, noteText.getText(), currChoiceBox.getValue(),
                     currAmtText.getText(), rateText.getText(), cashText.getText(), SellBuyPriceText.getText());
-            database.addTrans(s);
+            if (database.addTrans(s)){
+                clearFields();
+            }
             
         }catch(Exception ex){
             ex.printStackTrace();
         }
+    }
+
+    private void clearFields()
+    {
+        transDateText.clear();
+        cashText.clear();
+        currChoiceBox.setValue(null);
+        currAmtText.clear();
+        rateText.clear();
+        SellBuyPriceText.clear();
+        noteText.clear();
     }
     
     @Override

@@ -59,6 +59,7 @@ public class MainScreenController implements Initializable
     private void handleExitAction(ActionEvent event)
     {
         System.out.println("You clicked Exit");
+        closeAllWindows();
         System.exit(0);
     }
 
@@ -104,6 +105,7 @@ public class MainScreenController implements Initializable
             if  (currencyStage == null){ //for first time
                 currencyStage  = new Stage();
                 currencyStage.setScene(GetScene("currency/CurrencyScreen.fxml"));
+                currencyStage.setTitle("Currencies");
             }
             currencyStage.show();
             currencyStage.toFront();

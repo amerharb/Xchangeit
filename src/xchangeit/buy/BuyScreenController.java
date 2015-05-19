@@ -49,13 +49,26 @@ public class BuyScreenController extends XchController
             Timestamp st = getTimeStamp(transDateText.getText()); 
             Buy b = new Buy(0, st, noteText.getText(), currChoiceBox.getValue(), 
                     currAmtText.getText(), rateText.getText(), cashText.getText(), SellBuyPriceText.getText());
-            database.addTrans(b);
+            if (database.addTrans(b)){
+                clearFields();
+            }
             
         }catch(Exception ex){
             ex.printStackTrace();
         }
     }
-    
+
+    private void clearFields()
+    {
+        transDateText.clear();
+        cashText.clear();
+        currChoiceBox.setValue(null);
+        currAmtText.clear();
+        rateText.clear();
+        SellBuyPriceText.clear();
+        noteText.clear();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {

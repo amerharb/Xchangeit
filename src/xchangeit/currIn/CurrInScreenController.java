@@ -44,11 +44,22 @@ public class CurrInScreenController extends XchController
         try{
             Timestamp st = getTimeStamp(transDateText.getText()); 
             CurrIn ci = new CurrIn(0, st, noteText.getText(), currChoiceBox.getValue(), currAmtText.getText(), rateText.getText());
-            database.addTrans(ci);
+            if (database.addTrans(ci)){
+                clearFields();
+            }
             
         }catch(Exception ex){
             ex.printStackTrace();
         }
+    }
+    
+    private void clearFields()
+    {
+        transDateText.clear();
+        currChoiceBox.setValue(null);
+        currAmtText.clear();
+        rateText.clear();
+        noteText.clear();
     }
     
     @Override

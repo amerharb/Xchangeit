@@ -45,11 +45,22 @@ public class CurrOutScreenController extends XchController
         try{
             Timestamp st = getTimeStamp(transDateText.getText()); 
             CurrOut co = new CurrOut(0, st, noteText.getText(), currChoiceBox.getValue(), currAmtText.getText(), rateText.getText());
-            database.addTrans(co);
+            if (database.addTrans(co)){
+                clearFields();
+            }
             
         }catch(Exception ex){
             ex.printStackTrace();
         }
+    }
+    
+    private void clearFields()
+    {
+        transDateText.clear();
+        currChoiceBox.setValue(null);
+        currAmtText.clear();
+        rateText.clear();
+        noteText.clear();
     }
     
     @Override
