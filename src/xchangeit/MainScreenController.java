@@ -57,6 +57,9 @@ public class MainScreenController implements Initializable
     @FXML private MenuItem sellMenu;
     @FXML private MenuItem currencyMenu;
     @FXML private MenuItem rateMenu;
+    @FXML private MenuItem allTransMenu;
+    @FXML private MenuItem latestRatesMenu;
+    @FXML private MenuItem aboutMenu;
     
     @FXML
     private void handleExitAction(ActionEvent event)
@@ -283,7 +286,7 @@ public class MainScreenController implements Initializable
         try {
             if (aboutStage == null){ //for first time
                 aboutStage  = new Stage();
-                aboutStage.setScene(GetScene("aboutScreen.fxml"));
+                aboutStage.setScene(GetScene("AboutScreen.fxml"));
                 aboutStage.setTitle("About");
             }
             aboutStage.show();
@@ -347,7 +350,9 @@ public class MainScreenController implements Initializable
         sellMenu.disableProperty().set(en);
         currencyMenu.disableProperty().set(en);
         rateMenu.disableProperty().set(en);
-}
+        allTransMenu.disableProperty().set(en);
+        latestRatesMenu.disableProperty().set(en);
+    }
 
     private void closeAllWindows()
     {
