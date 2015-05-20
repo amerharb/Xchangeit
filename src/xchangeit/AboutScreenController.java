@@ -7,6 +7,8 @@ package xchangeit;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 /**
@@ -14,16 +16,14 @@ import javafx.fxml.Initializable;
  *
  * @author Amer
  */
-public class AboutScreenController implements Initializable
+public class AboutScreenController extends XchController 
 {
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
-    public void initialize(URL url, ResourceBundle rb)
-    {
-        // TODO
-    }    
+    public void initialize(URL location, ResourceBundle resources) {
+        
+        
+    }
+
     
 }
