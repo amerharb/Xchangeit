@@ -49,9 +49,9 @@ public class ConnectScreenController extends XchController
         
             if (database.connect(serverNameText.getText(), rootPasswordText.getText(), "Xchangeit")){
                 mainScreen.setButtonsDisable(false);
+                //TODO: find more logical way to close window
+                serverNameText.getParent().getScene().getWindow().hide();
             };
-            //TODO: find more logical way to close window
-            serverNameText.getParent().getScene().getWindow().hide();
         }catch(Exception ex){
             ex.printStackTrace();
             System.out.println("error");    
