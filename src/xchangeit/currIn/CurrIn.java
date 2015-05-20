@@ -30,7 +30,7 @@ public class CurrIn extends Transaction
         super(pk, transDate, note);
         this.currency = currency;
         this.currAmount = Math.abs(currAmount);
-        this.rate = rate;
+        this.rate = Math.abs(rate);
         
     }
 

@@ -25,5 +25,7 @@ public interface XchTransactoinInterface
     public String getNote();
 
     public String getSqlInsertStatment();
+
+    public void setPk(int pk);
     
 }

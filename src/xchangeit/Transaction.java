@@ -115,4 +115,9 @@ public abstract class Transaction implements XchTransactoinInterface
     {
         return pk;
     }
+
+    public void setPk(int pk)
+    {
+        this.pk = pk;
+    }
 }
