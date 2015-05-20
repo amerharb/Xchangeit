@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xchangeit.AboutScreenController">
-    
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="xchangeit.AboutScreenController">
+   <children>
+      <Button layoutX="501.0" layoutY="343.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="62.0" text="Back" />
+      <Label layoutX="217.0" layoutY="14.0" prefHeight="46.0" prefWidth="167.0" text="About Xchangeit" textOverrun="WORD_ELLIPSIS">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+      <TextArea layoutX="9.0" layoutY="60.0" prefHeight="260.0" prefWidth="583.0" text="Xchangeit is an application created for the purpose of managing currency exchange within&#10;a currency exchange retail outlet. Xchangeit is needed in order to provide an exchange&#10;service that is smooth, fast, accurate and reliable. It will allow the production of daily activity&#10;reports, covering and including the total amount of currency bought and sold.Xchangeit will&#10;also deal with updating currency rates for buying and selling and handle the transactions of&#10;buying and selling currencies.&#10;This application is basic in Java and MySQL.If Xchangeit can't normal work.Pleace double &#10;check your Java and MySQL then restart the application.&#10;Thank you for using Xchangit.&#10;&#10;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextArea>
+   </children>
 </AnchorPane>
