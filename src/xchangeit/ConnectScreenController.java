@@ -49,6 +49,9 @@ public class ConnectScreenController extends XchController
         
             if (database.connect(serverNameText.getText(), rootPasswordText.getText(), "Xchangeit")){
                 mainScreen.setButtonsDisable(false);
+                settings.setDefaultDatabaseServerName(serverNameText.getText());
+                settings.setDefaultRootPassword(rootPasswordText.getText());
+                settings.saveSettings();
                 //TODO: find more logical way to close window
                 serverNameText.getParent().getScene().getWindow().hide();
             };
@@ -73,7 +76,10 @@ public class ConnectScreenController extends XchController
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-            
+        
+        serverNameText.setText(settings.getDefaultDatabaseServerName());
+        rootPasswordText.setText(settings.getDefaultRootPassword());
+        
     }    
     
 }

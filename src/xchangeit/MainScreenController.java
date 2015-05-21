@@ -39,6 +39,7 @@ public class MainScreenController implements Initializable
     private Stage aboutStage;
     
     private final XchDatabase database = new XchDatabase();
+    private final XchSettings settings = new XchSettings();
     
     @FXML private Button cashInButton;
     @FXML private Button cashOutButton;
@@ -329,6 +330,9 @@ public class MainScreenController implements Initializable
         //XchController.setMainScreen(this);
         XchController.mainScreen = this;
         XchController.database = this.database;
+        XchController.settings = this.settings;
+        
+        
     }    
 
     public void setButtonsDisable(boolean en)

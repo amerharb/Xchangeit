@@ -5,6 +5,13 @@
  */
 package xchangeit;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Properties;
+
 /**
  *
  * @author Amer
@@ -12,10 +19,12 @@ package xchangeit;
 public class XchSettings
 {
     //Test still an idea
-    private String defaultServerName;
+    private String defaultDatabaseServerAddress;
     private String defaultRootPassword;
-    private String autoConnect;
+    private boolean autoConnect;
     
+    File settingFile = new File("settings.ini");
+
     public XchSettings(){
         super();
         loadSetting();
@@ -28,21 +37,57 @@ public class XchSettings
     }
     
     private void loadSetting(){
-        //read from text file the settings
+
+        try {
+            FileReader reader = new FileReader(settingFile);
+            Properties props = new Properties();
+            props.load(reader);
+
+            defaultDatabaseServerAddress = props.getProperty("Default Database Server Address");
+            defaultRootPassword = props.getProperty("Default Database Server Address");
+            if (props.getProperty("Default Database Server Address") == "true"){
+                autoConnect = true;
+            }else{
+                autoConnect = false;
+            }
+
+            reader.close();
+        } catch (FileNotFoundException ex) {
+            // file does not exist
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            // I/O error
+            ex.printStackTrace();
+        }    
     }
     
-    private void saveSettings(){
-        //Save to text file 
+    public void saveSettings(){
+
+        try {
+            Properties props = new Properties();
+            props.setProperty("Default Database Server Address", defaultDatabaseServerAddress);
+            props.setProperty("Default Root Password", defaultRootPassword);
+            props.setProperty("Auto Connect", autoConnect ? "true":"false");
+            FileWriter writer = new FileWriter(settingFile);
+            props.store(writer, "Database settings");
+            writer.close();
+        } catch (FileNotFoundException ex) {
+            // file does not exist
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            // I/O error
+            ex.printStackTrace();
+        }    
     }
 
-    public String getDefaultServerName()
+    public String getDefaultDatabaseServerName()
     {
-        return defaultServerName;
+        return defaultDatabaseServerAddress;
     }
 
-    public void setDefaultServerName(String defaultServerName)
+    public void setDefaultDatabaseServerName(String defaultDatabaseServerName)
     {
-        this.defaultServerName = defaultServerName;
+        this.defaultDatabaseServerAddress = defaultDatabaseServerName;
     }
 
     public String getDefaultRootPassword()
@@ -55,12 +100,12 @@ public class XchSettings
         this.defaultRootPassword = defaultRootPassword;
     }
 
-    public String getAutoConnect()
+    public Boolean isAutoConnect()
     {
         return autoConnect;
     }
 
-    public void setAutoConnect(String autoConnect)
+    public void setAutoConnect(Boolean autoConnect)
     {
         this.autoConnect = autoConnect;
     }
