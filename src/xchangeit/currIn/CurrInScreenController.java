@@ -46,7 +46,7 @@ public class CurrInScreenController extends XchController
         if (c != null){
             Rate r = database.getLatesRate(c);
             if (r != null){
-                rateText.setText(String.valueOf(r.getRate()));
+                rateText.setText(r.getRateAsString());
             }
         }
     }

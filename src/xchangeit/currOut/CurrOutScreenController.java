@@ -17,7 +17,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import xchangeit.XchController;
 import xchangeit.XchDatabase;
+import xchangeit.currency.Currency;
 import xchangeit.currency.CurrencyProperty;
+import xchangeit.rate.Rate;
 
 /**
  * FXML Controller class
@@ -36,6 +38,18 @@ public class CurrOutScreenController extends XchController
     @FXML
     private void handleNowDateTimeAction(ActionEvent event){
         transDateText.setText(java.sql.Timestamp.valueOf(LocalDateTime.now()).toString());
+    }
+
+    @FXML
+    private void handleGetLatestRateAction(ActionEvent event){
+        
+        Currency c = currChoiceBox.getValue();
+        if (c != null){
+            Rate r = database.getLatesRate(c);
+            if (r != null){
+                rateText.setText(r.getRateAsString());
+            }
+        }
     }
 
     @FXML

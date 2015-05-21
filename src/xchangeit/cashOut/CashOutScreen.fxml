@@ -16,16 +16,16 @@
         </Label>
       <Label layoutX="24.0" layoutY="83.0" prefHeight="17.0" prefWidth="117.0" text="Date" />
       <TextField fx:id="transDateText" layoutX="148.0" layoutY="79.0" prefHeight="25.0" prefWidth="149.0" promptText="empty means NOW" />
+      <Button layoutX="297.0" layoutY="79.0" mnemonicParsing="false" onAction="#handleNowDateTimeAction" prefHeight="25.0" prefWidth="27.0" text="N">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Button>
       <Label layoutX="24.0" layoutY="116.0" prefHeight="25.0" prefWidth="117.0" text="Cash Amount" />
       <TextField fx:id="cashAmtText" layoutX="148.0" layoutY="116.0" prefHeight="25.0" prefWidth="149.0" />
       <Label layoutX="24.0" layoutY="161.0" text="Note" />
       <TextArea fx:id="noteText" layoutX="148.0" layoutY="159.0" prefHeight="57.0" prefWidth="149.0" />
       <Button layoutX="365.0" layoutY="188.0" mnemonicParsing="false" onAction="#handleAddAction" prefHeight="25.0" prefWidth="98.0" text="Add">
-         <font>
-            <Font size="11.0" />
-         </font>
-      </Button>
-      <Button layoutX="297.0" layoutY="79.0" mnemonicParsing="false" onAction="#handleNowDateTimeAction" prefHeight="25.0" prefWidth="27.0" text="N">
          <font>
             <Font size="11.0" />
          </font>

@@ -16,6 +16,11 @@
         </Label>
         <Label layoutX="14.0" layoutY="73.0" prefHeight="17.0" prefWidth="117.0" text="Date" />
       <TextField fx:id="transDateText" layoutX="138.0" layoutY="69.0" prefHeight="25.0" prefWidth="149.0" promptText="empty means NOW" />
+      <Button layoutX="287.0" layoutY="69.0" mnemonicParsing="false" onAction="#handleNowDateTimeAction" prefHeight="25.0" prefWidth="27.0" text="N">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Button>
         <Label layoutX="14.0" layoutY="106.0" prefHeight="25.0" prefWidth="117.0" text="Cash Amount" />
         <TextField fx:id="cashAmtText" layoutX="138.0" layoutY="106.0" prefHeight="25.0" prefWidth="149.0" />
         <Label layoutX="14.0" layoutY="151.0" text="Note" />
@@ -24,10 +29,5 @@
          <font>
             <Font size="11.0" />
          </font></Button>
-      <Button layoutX="287.0" layoutY="69.0" mnemonicParsing="false" onAction="#handleNowDateTimeAction" prefHeight="25.0" prefWidth="27.0" text="N">
-         <font>
-            <Font size="11.0" />
-         </font>
-      </Button>
     </children>
 </AnchorPane>

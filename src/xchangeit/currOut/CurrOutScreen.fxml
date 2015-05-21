@@ -16,19 +16,24 @@
         </Label>
       <Label layoutX="24.0" layoutY="91.0" prefHeight="17.0" prefWidth="117.0" text="Date" />
       <TextField fx:id="transDateText" layoutX="146.0" layoutY="83.0" prefHeight="25.0" prefWidth="149.0" promptText="empty means NOW" />
+      <Button layoutX="295.0" layoutY="83.0" mnemonicParsing="false" onAction="#handleNowDateTimeAction" prefHeight="25.0" prefWidth="27.0" text="N">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Button>
       <Label layoutX="24.0" layoutY="124.0" prefHeight="25.0" prefWidth="117.0" text="Currency" />
       <ChoiceBox fx:id="currChoiceBox" layoutX="146.0" layoutY="124.0" prefHeight="25.0" prefWidth="149.0" />
       <Label layoutX="24.0" layoutY="165.0" prefHeight="19.0" prefWidth="102.0" text="Currency Amount" />
       <TextField fx:id="currAmtText" layoutX="146.0" layoutY="162.0" prefHeight="25.0" prefWidth="149.0" />
       <Label layoutX="24.0" layoutY="197.0" prefHeight="25.0" prefWidth="117.0" text="Rate" />
       <TextField fx:id="rateText" layoutX="146.0" layoutY="197.0" prefHeight="25.0" prefWidth="149.0" />
-      <Label layoutX="349.0" layoutY="87.0" text="Note" />
-      <TextArea fx:id="noteText" layoutX="408.0" layoutY="83.0" prefHeight="70.0" prefWidth="149.0" />
-      <Button layoutX="408.0" layoutY="197.0" mnemonicParsing="false" onAction="#handleAddAction" prefHeight="25.0" prefWidth="149.0" text="Add" />
-      <Button layoutX="295.0" layoutY="83.0" mnemonicParsing="false" onAction="#handleNowDateTimeAction" prefHeight="25.0" prefWidth="27.0" text="N">
+      <Button layoutX="295.0" layoutY="197.0" mnemonicParsing="false" onAction="#handleGetLatestRateAction" prefHeight="25.0" prefWidth="27.0" text="R">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
+      <Label layoutX="349.0" layoutY="87.0" text="Note" />
+      <TextArea fx:id="noteText" layoutX="408.0" layoutY="83.0" prefHeight="70.0" prefWidth="149.0" />
+      <Button layoutX="408.0" layoutY="197.0" mnemonicParsing="false" onAction="#handleAddAction" prefHeight="25.0" prefWidth="149.0" text="Add" />
     </children>
 </AnchorPane>
