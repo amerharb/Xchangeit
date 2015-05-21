@@ -254,10 +254,6 @@ public class XchDatabase
         }
     }
     
-//    public ArrayList<Currency> getLastGrabedCurrency(){
-//        return allCurrency;
-//    }
-//    
     public ObservableList<CurrencyProperty> getAllCurrencyProperty(){
         if (currencyNeedRefresh || allCurrency.isEmpty()){
             buildAllCurrency(); //fill currency if it is empty
@@ -318,7 +314,8 @@ public class XchDatabase
                 if (rateCurrProp != null){ 
                     Rate r = new Rate(0, null, rateCurrProp, rs.getDouble("rate"), rs.getDouble("sell_price"), rs.getDouble("buy_price"), null);
                     latestRate.add(r);
-                }else{//thats mean currency not found maybe delete it by mistake from database or mistake in the currency collection here ... dont know what to do in this case yet                    
+                }else{
+                    //thats mean currency not found maybe delete it by mistake from database or mistake in the currency collection here ... dont know what to do in this case yet                    
                 }
             }
             rateNeedRefresh = false;
@@ -385,7 +382,11 @@ public class XchDatabase
         }
     }
     
-    public Rate getLatesRate(Currency c){
+    public ArrayList<Rate> getLatestRate(){
+        return latestRate;
+    }
+    
+    public Rate getLatestRate(Currency c){
         try{
             if (rateNeedRefresh || allRate.isEmpty()){
                 BuildAllRate(); //fill currency if it is empty

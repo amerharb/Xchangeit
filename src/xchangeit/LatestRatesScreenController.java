@@ -7,7 +7,11 @@ package xchangeit;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextArea;
+import static xchangeit.XchController.database;
+import xchangeit.rate.Rate;
 
 /**
  * FXML Controller class
@@ -17,13 +21,16 @@ import javafx.fxml.Initializable;
 public class LatestRatesScreenController implements Initializable
 {
 
-    /**
-     * Initializes the controller class.
-     */
+    @FXML private TextArea latestRatesText;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
+        String s="\n";
+        for (Rate r:database.getAllRate()){
+            s += ((r.getCurr() == null) ? "" : r.getCurr().getIsoSymbol()) + " " + r.getRate() + " " + r.getSellPriceAsString() + " " + r.getBuyPriceAsString() + "\n";
+        }
+        latestRatesText.setText(s);
     }    
     
 }

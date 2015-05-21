@@ -44,7 +44,7 @@ public class CurrInScreenController extends XchController
         
         Currency c = currChoiceBox.getValue();
         if (c != null){
-            Rate r = database.getLatesRate(c);
+            Rate r = database.getLatestRate(c);
             if (r != null){
                 rateText.setText(r.getRateAsString());
             }
