@@ -163,11 +163,32 @@ public class CurrencyScreenController extends XchController
         
         System.out.println("You Click update Currency");
         try{
-            updateCurrencyFromTextFields(selCurrencyProp);
-            database.updateCurrency(selCurrencyProp);
-            //fillCurrencyTable(); //no need to 
+            if(String.valueOf(currNameText.getText()).isEmpty() ){
+                warningLabel.setText("currency name please!");
+                shakeControl(currNameText);
+            }
+            else if(String.valueOf(isoSymbolText.getText()).isEmpty() ){
+                warningLabel.setText("iso symbol please");
+                shakeControl(isoSymbolText);
+            }
+            else if(String.valueOf(symbolText.getText()).isEmpty() ){
+                warningLabel.setText("symbol please");
+                shakeControl(symbolText);
+            }
+            else {
+                updateCurrencyFromTextFields(selCurrencyProp);
+                database.updateCurrency(selCurrencyProp);
+                warningLabel.setText("currency updated");
+                //fillCurrencyTable(); //no need to    
+            }
+                
+                
+            
         }catch(Exception ex){
-            ex.printStackTrace();
+            //warningLabel.setText(ex.toString());
+            //ex.printStackTrace();
+            System.out.println("error");
+            
         }
     }
 
