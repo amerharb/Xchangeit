@@ -8,6 +8,12 @@ package xchangeit;
 
 import javafx.fxml.Initializable;
 import java.sql.Timestamp;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.scene.control.Control;
+import javafx.scene.transform.Rotate;
+import javafx.util.Duration;
 
 /**
  *
@@ -30,5 +36,23 @@ public abstract class XchController implements Initializable
         }
     }
     
+    protected void shakeControl(Control cont) throws InterruptedException
+    {
 
+        // create a rotation transform starting at 0 degrees, rotating about pivot point 50, 50.
+        final Rotate rotationTransform = new Rotate(5);
+        cont.getTransforms().add(rotationTransform);
+        rotationTransform.setAxis(Rotate.Z_AXIS);
+        final Timeline rotationAnimation = new Timeline();
+        rotationAnimation.getKeyFrames()
+            .add(
+                new KeyFrame(
+                    Duration.seconds(0.1),
+                    new KeyValue(rotationTransform.angleProperty(), 0)
+                )
+            );
+        rotationAnimation.setCycleCount(6);
+        rotationAnimation.play();   
+        cont.requestFocus();
+    }
 }
