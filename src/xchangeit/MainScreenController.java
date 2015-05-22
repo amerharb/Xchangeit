@@ -333,7 +333,7 @@ public class MainScreenController implements Initializable
         XchController.settings = this.settings;
         
         if (settings.isAutoConnect()){
-            if (database.connect(settings.getDefaultDatabaseServerName(), settings.getDefaultRootPassword(), "Xchangeit")){
+            if (database.connect(settings.getDefaultDatabaseServerAddress(), settings.getDefaultRootPassword(), settings.getDefaultDatabaseName())){
                 setButtonsDisable(false);
             }
         }

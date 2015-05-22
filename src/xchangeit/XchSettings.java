@@ -21,6 +21,7 @@ public class XchSettings
     //Test still an idea
     private String defaultDatabaseServerAddress;
     private String defaultRootPassword;
+    private String defaultDatabaseName;
     private boolean autoConnect;
     private boolean savePassword;
     
@@ -46,6 +47,7 @@ public class XchSettings
 
             defaultDatabaseServerAddress = props.getProperty("DefaultDatabaseServerAddress");
             defaultRootPassword = props.getProperty("DefaultRootPassword");
+            defaultDatabaseName = props.getProperty("DefaultDatabaseName");
             autoConnect = props.getProperty("AutoConnect").equals("true");
             savePassword = props.getProperty("SavePassword").equals("true");
 
@@ -65,6 +67,7 @@ public class XchSettings
             Properties props = new Properties();
             props.setProperty("DefaultDatabaseServerAddress", defaultDatabaseServerAddress);
             props.setProperty("DefaultRootPassword", defaultRootPassword);
+            props.setProperty("DefaultDatabaseName", defaultDatabaseName);
             props.setProperty("AutoConnect", autoConnect ? "true":"false");
             props.setProperty("SavePassword", savePassword ? "true":"false");
             FileWriter writer = new FileWriter(settingFile);
@@ -79,14 +82,14 @@ public class XchSettings
         }    
     }
 
-    public String getDefaultDatabaseServerName()
+    public String getDefaultDatabaseServerAddress()
     {
         return defaultDatabaseServerAddress;
     }
 
-    public void setDefaultDatabaseServerName(String defaultDatabaseServerName)
+    public void setDefaultDatabaseServerAddress(String defaultDatabaseServerAddress)
     {
-        this.defaultDatabaseServerAddress = defaultDatabaseServerName;
+        this.defaultDatabaseServerAddress = defaultDatabaseServerAddress;
     }
 
     public String getDefaultRootPassword()
@@ -117,6 +120,16 @@ public class XchSettings
     public void setSavePassword(boolean savePassword)
     {
         this.savePassword = savePassword;
+    }
+
+    void setDefaultDatabaseName(String defaultDatabaseName)
+    {
+        this.defaultDatabaseName = defaultDatabaseName;
+    }
+
+    String getDefaultDatabaseName()
+    {
+        return defaultDatabaseName;
     }
     
 }

@@ -25,7 +25,8 @@ public class ConnectScreenController extends XchController
 {
 
     @FXML private AnchorPane connectPane;
-    @FXML private TextField serverNameText;
+    @FXML private TextField serverAddressText;
+    @FXML private TextField databaseNameText;
     @FXML private PasswordField rootPasswordText;
     @FXML private CheckBox savePasswordCheckBox;
     @FXML private CheckBox autoConnectCheckBox;
@@ -38,8 +39,8 @@ public class ConnectScreenController extends XchController
         if (database.getStatus() == XchDatabase.XchConnectionStatusEnum.Connected)
             database.disconnect();
         
-        database.connect(serverNameText.getText(), rootPasswordText.getText());
-        database.createDatabase("Xchangeit");
+        database.connect(serverAddressText.getText(), rootPasswordText.getText());
+        database.createDatabase(databaseNameText.getText());
         
     }
     
@@ -49,20 +50,21 @@ public class ConnectScreenController extends XchController
         System.out.println("You clicked Connect");
         try{
         
-            if (database.connect(serverNameText.getText(), rootPasswordText.getText(), "Xchangeit")){
+            if (database.connect(serverAddressText.getText(), rootPasswordText.getText(), databaseNameText.getText())){
                 mainScreen.setButtonsDisable(false);
-                settings.setDefaultDatabaseServerName(serverNameText.getText());
+                settings.setDefaultDatabaseServerAddress(serverAddressText.getText());
                 if (savePasswordCheckBox.isSelected()){
                     settings.setDefaultRootPassword(rootPasswordText.getText());
                 }else{
                     settings.setDefaultRootPassword("");
                 }
+                settings.setDefaultDatabaseName(databaseNameText.getText());
                 settings.setAutoConnect(autoConnectCheckBox.isSelected());
                 settings.setSavePassword(savePasswordCheckBox.isSelected());
 
                 settings.saveSettings();
                 //TODO: find more logical way to close window
-                serverNameText.getParent().getScene().getWindow().hide();
+                serverAddressText.getParent().getScene().getWindow().hide();
             };
         }catch(Exception ex){
             ex.printStackTrace();
@@ -79,15 +81,16 @@ public class ConnectScreenController extends XchController
     {
         System.out.println("You clicked Cancel");
         //TODO: find more logical way to close window
-        serverNameText.getParent().getScene().getWindow().hide();
+        serverAddressText.getParent().getScene().getWindow().hide();
     }
         
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
         
-        serverNameText.setText(settings.getDefaultDatabaseServerName());
+        serverAddressText.setText(settings.getDefaultDatabaseServerAddress());
         rootPasswordText.setText(settings.getDefaultRootPassword());
+        databaseNameText.setText(settings.getDefaultDatabaseName());
         autoConnectCheckBox.setSelected(settings.isAutoConnect());
         savePasswordCheckBox.setSelected(settings.isSavePassword());
         

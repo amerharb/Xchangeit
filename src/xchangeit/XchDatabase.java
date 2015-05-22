@@ -517,7 +517,6 @@ public class XchDatabase
     
     public void createDatabase(String databaseName){
 
-        System.out.println("You Click Create Database");
         try{
             Statement st = conn.createStatement();
             st.execute("drop database if exists " + databaseName);
