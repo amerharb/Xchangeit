@@ -50,9 +50,11 @@ public class ConnectScreenController extends XchController
         System.out.println("You clicked Connect");
         try{
         
-            if (database.getStatus() == XchDatabase.XchConnectionStatusEnum.Connected)
+            if (database.getStatus() == XchDatabase.XchConnectionStatusEnum.Connected){
                 database.disconnect();
-
+                mainScreen.closeAllWindows();
+            }
+            
             if (database.connect(serverAddressText.getText(), rootPasswordText.getText(), databaseNameText.getText())){
                 mainScreen.setButtonsDisable(false);
                 settings.setDefaultDatabaseServerAddress(serverAddressText.getText());

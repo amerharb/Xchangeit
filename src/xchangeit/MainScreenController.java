@@ -363,7 +363,7 @@ public class MainScreenController implements Initializable
         latestRatesMenu.disableProperty().set(en);
     }
 
-    private void closeAllWindows()
+    protected void closeAllWindows()
     {
         if (connectStage != null){
             connectStage.close();
