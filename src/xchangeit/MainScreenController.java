@@ -332,6 +332,11 @@ public class MainScreenController implements Initializable
         XchController.database = this.database;
         XchController.settings = this.settings;
         
+        if (settings.isAutoConnect()){
+            if (database.connect(settings.getDefaultDatabaseServerName(), settings.getDefaultRootPassword(), "Xchangeit")){
+                setButtonsDisable(false);
+            }
+        }
         
     }    
 

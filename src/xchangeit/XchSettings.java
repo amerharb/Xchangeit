@@ -22,6 +22,7 @@ public class XchSettings
     private String defaultDatabaseServerAddress;
     private String defaultRootPassword;
     private boolean autoConnect;
+    private boolean savePassword;
     
     File settingFile = new File("settings.ini");
 
@@ -43,13 +44,10 @@ public class XchSettings
             Properties props = new Properties();
             props.load(reader);
 
-            defaultDatabaseServerAddress = props.getProperty("Default Database Server Address");
-            defaultRootPassword = props.getProperty("Default Database Server Address");
-            if (props.getProperty("Default Database Server Address") == "true"){
-                autoConnect = true;
-            }else{
-                autoConnect = false;
-            }
+            defaultDatabaseServerAddress = props.getProperty("DefaultDatabaseServerAddress");
+            defaultRootPassword = props.getProperty("DefaultRootPassword");
+            autoConnect = props.getProperty("AutoConnect").equals("true");
+            savePassword = props.getProperty("SavePassword").equals("true");
 
             reader.close();
         } catch (FileNotFoundException ex) {
@@ -65,11 +63,12 @@ public class XchSettings
 
         try {
             Properties props = new Properties();
-            props.setProperty("Default Database Server Address", defaultDatabaseServerAddress);
-            props.setProperty("Default Root Password", defaultRootPassword);
-            props.setProperty("Auto Connect", autoConnect ? "true":"false");
+            props.setProperty("DefaultDatabaseServerAddress", defaultDatabaseServerAddress);
+            props.setProperty("DefaultRootPassword", defaultRootPassword);
+            props.setProperty("AutoConnect", autoConnect ? "true":"false");
+            props.setProperty("SavePassword", savePassword ? "true":"false");
             FileWriter writer = new FileWriter(settingFile);
-            props.store(writer, "Database settings");
+            props.store(writer, "Database Settings");
             writer.close();
         } catch (FileNotFoundException ex) {
             // file does not exist
@@ -100,14 +99,24 @@ public class XchSettings
         this.defaultRootPassword = defaultRootPassword;
     }
 
-    public Boolean isAutoConnect()
+    public boolean isAutoConnect()
     {
         return autoConnect;
     }
 
-    public void setAutoConnect(Boolean autoConnect)
+    public void setAutoConnect(boolean autoConnect)
     {
         this.autoConnect = autoConnect;
+    }
+
+    public boolean isSavePassword()
+    {
+        return savePassword;
+    }
+    
+    public void setSavePassword(boolean savePassword)
+    {
+        this.savePassword = savePassword;
     }
     
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,17 +8,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" fx:id="connectPane" prefHeight="264.0" prefWidth="498.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xchangeit.ConnectScreenController">
+<AnchorPane id="AnchorPane" fx:id="connectPane" prefHeight="345.0" prefWidth="465.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xchangeit.ConnectScreenController">
    <children>
-      <Pane layoutX="186.0" layoutY="139.0" prefHeight="159.0" prefWidth="498.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+      <Pane layoutX="186.0" layoutY="139.0" prefHeight="159.0" prefWidth="498.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
          <children>
             <Label layoutX="26.0" layoutY="20.0" text="Server" />
             <Label layoutX="26.0" layoutY="65.0" text="Password" />
             <TextField fx:id="serverNameText" layoutX="114.0" layoutY="20.0" prefHeight="25.0" prefWidth="269.0" text="localhost" />
             <PasswordField fx:id="rootPasswordText" layoutX="114.0" layoutY="61.0" prefHeight="25.0" prefWidth="269.0" promptText="the password is root" text="root" />
-            <Button fx:id="okButton" defaultButton="true" layoutX="316.0" layoutY="103.0" mnemonicParsing="false" onAction="#handleOkButtonAction" prefHeight="25.0" prefWidth="120.0" text="Connect" />
-            <Button fx:id="cancelButton1" layoutX="178.0" layoutY="103.0" mnemonicParsing="false" onAction="#handleCreateDatabaseButtonAction" prefHeight="25.0" prefWidth="120.0" text="Create Database" />
-            <Button fx:id="cancelButton" cancelButton="true" layoutX="34.0" layoutY="103.0" mnemonicParsing="false" onAction="#handleCancelButtonAction" prefHeight="25.0" prefWidth="120.0" text="Cancel" />
+            <Button fx:id="okButton" defaultButton="true" layoutX="314.0" layoutY="195.0" mnemonicParsing="false" onAction="#handleOkButtonAction" prefHeight="25.0" prefWidth="120.0" text="Connect" />
+            <Button fx:id="cancelButton1" layoutX="173.0" layoutY="195.0" mnemonicParsing="false" onAction="#handleCreateDatabaseButtonAction" prefHeight="25.0" prefWidth="120.0" text="Create Database" />
+            <Button fx:id="cancelButton" cancelButton="true" layoutX="32.0" layoutY="195.0" mnemonicParsing="false" onAction="#handleCancelButtonAction" prefHeight="25.0" prefWidth="120.0" text="Cancel" />
+            <CheckBox fx:id="savePasswordCheckBox" layoutX="116.0" layoutY="106.0" mnemonicParsing="false" text="Save Password (Warrning: will be saved in clear text!)" />
+            <CheckBox fx:id="autoConnectCheckBox" layoutX="116.0" layoutY="140.0" mnemonicParsing="false" text="Auto Connect next time" />
          </children>
       </Pane>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="10.0" text="Connect" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -25,6 +28,6 @@
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="219.0" prefHeight="31.0" prefWidth="423.0" text="A new database will be created called Xchangeit by clicking 'create database'" />
+      <Label layoutX="14.0" layoutY="290.0" prefHeight="41.0" prefWidth="445.0" text="A new database will be created called Xchangeit by clicking 'create database' old one will be delete it if exsist with the same name" textFill="#c80000" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
    </children>
 </AnchorPane>

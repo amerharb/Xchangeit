@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -25,8 +26,9 @@ public class ConnectScreenController extends XchController
 
     @FXML private AnchorPane connectPane;
     @FXML private TextField serverNameText;
-    
     @FXML private PasswordField rootPasswordText;
+    @FXML private CheckBox savePasswordCheckBox;
+    @FXML private CheckBox autoConnectCheckBox;
     
     @FXML 
     private void handleCreateDatabaseButtonAction(ActionEvent event)
@@ -50,7 +52,14 @@ public class ConnectScreenController extends XchController
             if (database.connect(serverNameText.getText(), rootPasswordText.getText(), "Xchangeit")){
                 mainScreen.setButtonsDisable(false);
                 settings.setDefaultDatabaseServerName(serverNameText.getText());
-                settings.setDefaultRootPassword(rootPasswordText.getText());
+                if (savePasswordCheckBox.isSelected()){
+                    settings.setDefaultRootPassword(rootPasswordText.getText());
+                }else{
+                    settings.setDefaultRootPassword("");
+                }
+                settings.setAutoConnect(autoConnectCheckBox.isSelected());
+                settings.setSavePassword(savePasswordCheckBox.isSelected());
+
                 settings.saveSettings();
                 //TODO: find more logical way to close window
                 serverNameText.getParent().getScene().getWindow().hide();
@@ -79,6 +88,8 @@ public class ConnectScreenController extends XchController
         
         serverNameText.setText(settings.getDefaultDatabaseServerName());
         rootPasswordText.setText(settings.getDefaultRootPassword());
+        autoConnectCheckBox.setSelected(settings.isAutoConnect());
+        savePasswordCheckBox.setSelected(settings.isSavePassword());
         
     }    
     
