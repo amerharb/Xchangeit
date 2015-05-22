@@ -148,6 +148,8 @@ public class CurrencyScreenController extends XchController
                 if (database.delCurrency(selCurrencyProp)){
                     //no need it should be done automatic
                     //fillCurrencyTable();
+                    warningLabel.setText("currency has been deleted");
+                    System.out.println("currency deleted");
                 }
             }
             fillFields();
