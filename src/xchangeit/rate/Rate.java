@@ -135,7 +135,7 @@ public class Rate
         s += "rate, sell_price, buy_price, note) values ("; 
         s += curr.getPk();
         if (rateDate != null){
-            s += ", " + rateDate.toString();
+            s += ", '" + rateDate.toString() + "'";
         }
         s += ", " + rate;
         s += ", " + sellPrice ;
