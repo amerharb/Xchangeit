@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import xchangeit.rate.Rate;
 
@@ -23,7 +24,8 @@ public class AllTransScreenController extends XchController
     /**
      * Initializes the controller class.
      */
-    @FXML private TextArea allTransText;
+   // @FXML private TextArea allTransText;
+    @FXML TableView transTable;
     
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -32,7 +34,7 @@ public class AllTransScreenController extends XchController
         for (XchTransactoinInterface t:database.getAllTrans()){
             s += t.getPk() + " " + t.getTransType().name() + " " + t.getTransDate().toString() + " " + t.getSellBuyPrice()+ " " + t.getCash() + " " + t.getNote() + "\n";
         }
-        allTransText.setText(s);
+      //  allTransText.setText(s);
     }    
     
 }

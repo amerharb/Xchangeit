@@ -38,7 +38,7 @@
                 <Button fx:id="deleteButton" layoutX="595.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleDeleteRateAction" prefHeight="25.0" prefWidth="69.0" text="Delete" />
             </children>
         </AnchorPane>
-        <TableView fx:id="rateTable" layoutX="100.0" layoutY="300.0" onMouseClicked="#rowClickAction" prefHeight="244.0" prefWidth="580.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="170.0">
+        <TableView fx:id="rateTable" layoutX="100.0" layoutY="190.0" onMouseClicked="#rowClickAction" prefHeight="260.0" prefWidth="687.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="190.0">
             <columns>
                 <TableColumn fx:id="pkCol" prefWidth="38.0" sortable="false" text="pk" />
                 <TableColumn fx:id="rateDateCol" prefWidth="77.0" text="Date" />
@@ -49,5 +49,6 @@
                 <TableColumn fx:id="noteCol" prefWidth="163.0" text="Note" />
             </columns>
         </TableView>
+      <Label fx:id="warningLabel" layoutX="106.0" layoutY="160.0" prefHeight="25.0" prefWidth="168.0" />
     </children>
 </AnchorPane>

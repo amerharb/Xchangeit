@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import xchangeit.XchController;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -48,6 +49,7 @@ public class RateScreenController extends XchController{
     @FXML private TextArea noteText;
 
     @FXML private Button clearButton;
+    @FXML private Label  warningLabel;
     
     RateProperty selRateProp;
     
