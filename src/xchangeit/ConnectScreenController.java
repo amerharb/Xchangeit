@@ -35,7 +35,7 @@ public class ConnectScreenController extends XchController
     private void handleCreateDatabaseButtonAction(ActionEvent event)
     {
         System.out.println("You clicked Create Database");
-        //XchDatabase db = mainScreen.getDatabase();
+
         if (database.getStatus() == XchDatabase.XchConnectionStatusEnum.Connected)
             database.disconnect();
         
@@ -50,6 +50,9 @@ public class ConnectScreenController extends XchController
         System.out.println("You clicked Connect");
         try{
         
+            if (database.getStatus() == XchDatabase.XchConnectionStatusEnum.Connected)
+                database.disconnect();
+
             if (database.connect(serverAddressText.getText(), rootPasswordText.getText(), databaseNameText.getText())){
                 mainScreen.setButtonsDisable(false);
                 settings.setDefaultDatabaseServerAddress(serverAddressText.getText());
@@ -70,10 +73,6 @@ public class ConnectScreenController extends XchController
             ex.printStackTrace();
             System.out.println("error");    
         }
-            
-        
-        
-
     }
     
     @FXML
