@@ -57,7 +57,6 @@ public class RateProperty extends Rate
         return pkProperty;
     }
 
-    //TODO check about date property
     public SimpleObjectProperty getRateDateProperty()
     {
         return rateDateProperty;
