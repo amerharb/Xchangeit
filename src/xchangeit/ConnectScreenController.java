@@ -39,7 +39,7 @@ public class ConnectScreenController extends XchController
             database.disconnect();
         
         database.connect(serverNameText.getText(), rootPasswordText.getText());
-        database.createDatabase();
+        database.createDatabase("Xchangeit");
         
     }
     

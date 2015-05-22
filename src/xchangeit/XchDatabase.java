@@ -514,11 +514,6 @@ public class XchDatabase
 
         }
     }
-
-
-    public void createDatabase(){
-        createDatabase("Xchangeit");
-    }
     
     public void createDatabase(String databaseName){
 
