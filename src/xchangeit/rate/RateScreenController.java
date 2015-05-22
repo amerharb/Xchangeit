@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import xchangeit.XchController;
 import javafx.scene.control.TableColumn;
@@ -46,6 +47,8 @@ public class RateScreenController extends XchController{
     @FXML private TextField buyPriceText;
     @FXML private TextArea noteText;
 
+    @FXML private Button clearButton;
+    
     RateProperty selRateProp;
     
     @FXML
@@ -67,19 +70,34 @@ public class RateScreenController extends XchController{
                 noteText.setText(selRateProp.getNote());
                 
             }else{
-                
-                rateDateText.clear(); 
-                currChoiceBox.setValue(null);
-                rateText.clear();
-                sellPriceText.clear();
-                buyPriceText.clear();
-                noteText.clear();
+                clearFields();
             }
         }catch(Exception ex){
             ex.printStackTrace();
         }
     }
     
+    private void clearFields()
+    {
+        rateDateText.clear(); 
+        currChoiceBox.setValue(null);
+        rateText.clear();
+        sellPriceText.clear();
+        buyPriceText.clear();
+        noteText.clear();
+    }
+    
+    @FXML
+    private void clearAction(ActionEvent event){
+        
+        System.out.println("You Click clear");
+        try{
+            clearFields();
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
     private void fillRateTable(){
         try{
             if (mainScreen != null){
@@ -150,5 +168,5 @@ public class RateScreenController extends XchController{
         }
 
     }    
-    
+
 }

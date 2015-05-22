@@ -38,6 +38,7 @@ public class CurrencyScreenController extends XchController
     @FXML private Button updateButton;
     @FXML private Button newButton;
     @FXML private Button deleteButton;
+    @FXML private Button clearButton;
     @FXML private Label  warningLabel;
     
 //    ArrayList<Currency> allCureency;
@@ -100,17 +101,22 @@ public class CurrencyScreenController extends XchController
                 inactiveCheck.setSelected(selCurrencyProp.isInactive());
                 
             }else{
-                currNameText.clear();
-                isoSymbolText.clear();
-                symbolText.clear();
-                noteText.clear();
-                inactiveCheck.setSelected(false);
+                clearFields();
             }
         }catch(Exception ex){
             ex.printStackTrace();
         }
     }
     
+    private void clearFields()
+    {
+        currNameText.clear();
+        isoSymbolText.clear();
+        symbolText.clear();
+        noteText.clear();
+        inactiveCheck.setSelected(false);
+    }
+
     private void updateCurrencyFromTextFields(CurrencyProperty c){
         try{
             
@@ -158,13 +164,12 @@ public class CurrencyScreenController extends XchController
         }
     }
 
-    //TEMP: this method is just a template for any other method
     @FXML
-    private void xxxAction(ActionEvent event){
+    private void clearAction(ActionEvent event){
         
-        System.out.println("You Click xxx");
+        System.out.println("You Click clear");
         try{
-
+            clearFields();
         }catch(Exception ex){
             ex.printStackTrace();
         }
