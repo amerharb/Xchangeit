@@ -42,9 +42,13 @@ public class CurrInScreenController extends XchController
     }
 
     @FXML
-    private void handleGetLatestRateAction(ActionEvent event){
+    private void handleGetLatestRateAction(ActionEvent event) throws InterruptedException{
         
         Currency c = currChoiceBox.getValue();
+        if (c == null){
+            warningLabel.setText("choose currency");
+            shakeControl(currChoiceBox);
+            }
         if (c != null){
             Rate r = database.getLatestRate(c);
             if (r != null){
@@ -58,13 +62,31 @@ public class CurrInScreenController extends XchController
         
         System.out.println("You Click Curr In Screen Add Button");
         try{
+             if(currChoiceBox.getValue()==null) {
+                 warningLabel.setText("choose currency please!");
+                 shakeControl(currChoiceBox);
+             } else if(String.valueOf(currAmtText.getText()).isEmpty()){      //|| Integer.valueOf(currAmtText.getText())<=0 ){
+                 warningLabel.setText("empty field!");
+                 shakeControl(currAmtText);
+             } else if(Integer.valueOf(currAmtText.getText()) <=0){
+                 warningLabel.setText("enter positive amount");
+                 shakeControl(currAmtText);
+             }
+             else if(String.valueOf(rateText.getText()).isEmpty()){
+                 warningLabel.setText("click on R button!");
+                 shakeControl(rateText);
+             }else{
             Timestamp st = getTimeStamp(transDateText.getText()); 
             CurrIn ci = new CurrIn(0, st, noteText.getText(), currChoiceBox.getValue(), currAmtText.getText(), rateText.getText());
             if (database.addTrans(ci)){
                 clearFields();
+                warningLabel.setText(null);
+             }  
             }
             
+            
         }catch(Exception ex){
+            System.out.println("error");
             ex.printStackTrace();
         }
     }
