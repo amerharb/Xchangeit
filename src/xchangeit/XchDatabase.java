@@ -36,6 +36,7 @@ import xchangeit.sell.Sell;
 
 public class XchDatabase
 {
+    ObservableList<XchTransactoinInterface> getAllTrans;
 
     public enum XchConnectionStatusEnum{
         Disconnect,
