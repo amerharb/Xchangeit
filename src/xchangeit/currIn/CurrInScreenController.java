@@ -13,6 +13,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import xchangeit.XchController;
@@ -33,6 +34,7 @@ public class CurrInScreenController extends XchController
     @FXML private TextField currAmtText;
     @FXML private TextField rateText;
     @FXML private TextArea noteText;
+    @FXML private Label warningLabel;
     
     @FXML
     private void handleNowDateTimeAction(ActionEvent event){

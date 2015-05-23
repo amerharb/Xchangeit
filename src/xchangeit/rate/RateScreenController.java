@@ -96,7 +96,9 @@ public class RateScreenController extends XchController{
         System.out.println("You Click clear");
         try{
             clearFields();
+            warningLabel.setText(null);
             System.out.println("all the fields are clreared ");
+            
         }catch(Exception ex){
             ex.printStackTrace();
         }

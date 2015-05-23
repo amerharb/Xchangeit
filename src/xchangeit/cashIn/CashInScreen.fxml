@@ -29,5 +29,10 @@
          <font>
             <Font size="11.0" />
          </font></Button>
+      <Label fx:id="warningLabel" layoutX="334.0" layoutY="110.0" prefHeight="25.0" prefWidth="125.0" textFill="RED">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>
