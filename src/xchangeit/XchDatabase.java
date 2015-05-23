@@ -125,24 +125,42 @@ public class XchDatabase
         return status;
     }
     
-//    public Currency getCurrencyByPK(int pk){
-//        try{
-//            Statement st = conn.createStatement();
-//            ResultSet rs = st.executeQuery("select curr_name, iso_symbol, symbol, note, inactive from curr where pk = " + pk);
-//
-//            if (rs.first()){
-//                Currency curr = new Currency(pk, rs.getString("curr_name"), rs.getString("iso_symbol"), rs.getString("symbol"), rs.getString("note"), rs.getBoolean("inactive") );
-//                return curr;
-//            }else{
-//                return null;
-//            }
-//        } catch (Exception e) {
-//            System.err.println("ERROR: " + e);
-//            return null;
-//        }
-//        
-//    }
-//    
+    private Currency findCurrencyByPK(int pk){ //this function will look for currency inside allCurrency Array
+        try{
+            if (currencyNeedRefresh || allCurrency.isEmpty()){
+                buildAllCurrency(); //fill currency if it is empty
+            }
+            for (Currency c:allCurrency){
+                if (c.getPk() == pk){
+                    return c;
+                }
+            }
+            return null;
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            return null;
+        }
+        
+    }
+    
+    private CurrencyProperty findCurrencyPropertyByPK(int pk){ //this function will look for currency inside allCurrencyProperty  Array
+        try{
+            if (currencyNeedRefresh || allCurrency.isEmpty()){
+                buildAllCurrency(); //fill currency if it is empty
+            }
+            for (CurrencyProperty c:allCurrencyProperty){
+                if (c.getPk() == pk){
+                    return c;
+                }
+            }
+            return null;
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            return null;
+        }
+        
+    }
+    
 //    public boolean delCurrencyByPK(int pk){
 //        try{
 //            Statement st = conn.createStatement();
@@ -280,22 +298,17 @@ public class XchDatabase
             }
             
             while(rs.next()){
-                CurrencyProperty rateCurrProp = null; // I found it kind of stupid that i have to init this var to null in order to make it work 
-                //look for the currency 
-                for (CurrencyProperty c:allCurrencyProperty){
-                    if (c.getPk() == rs.getInt("curr")){
-                        rateCurrProp = c;
-                        break;
-                    }
-                }
+                CurrencyProperty rateCurrProp = findCurrencyPropertyByPK(rs.getInt("curr"));
+
                 if (rateCurrProp != null){ 
                     Timestamp ts = rs.getTimestamp("rate_date");
                     RateProperty rp = new RateProperty(rs.getInt("pk"), ts, rateCurrProp, rs.getDouble("rate"), rs.getDouble("sell_price"), rs.getDouble("buy_price"), rs.getString("note"));
 
                     allRate.add(rp);
                     allRateProperty.add(rp);
-                }else{//thats mean currency not found maybe delete it by mistake from database or mistake in the currency collection here ... dont know what to do in this case yet
-                    
+                }else{
+                    //thats mean currency not found maybe delete it by mistake from database or mistake in the currency collection here ... dont know what to do in this case yet
+                    //no rate shall be added in this case
                 }
             }
             rs.close();
@@ -303,14 +316,7 @@ public class XchDatabase
             //get the latest rates
             rs = st.executeQuery("select c.pk curr ,r.rate rate ,r.sell_price sell_price ,r.buy_price buy_price from (select max(rate_date) rate_date ,curr from rates group by curr order by rate_date desc ,pk desc) as lr left join rates r on r.rate_date = lr.rate_date and r.curr = lr.curr left join curr c on r.curr = c.pk" );
             while(rs.next()){
-                CurrencyProperty rateCurrProp = null; // I found it kind of stupid that i have to init this var to null in order to make it work 
-                //look for the currency 
-                for (CurrencyProperty c:allCurrencyProperty){
-                    if (c.getPk() == rs.getInt("curr")){
-                        rateCurrProp = c;
-                        break;
-                    }
-                }
+                CurrencyProperty rateCurrProp = findCurrencyPropertyByPK(rs.getInt("curr"));
                 if (rateCurrProp != null){ 
                     Rate r = new Rate(0, null, rateCurrProp, rs.getDouble("rate"), rs.getDouble("sell_price"), rs.getDouble("buy_price"), null);
                     latestRate.add(r);
@@ -423,47 +429,45 @@ public class XchDatabase
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("select pk, trans_date, trans_type, cash, curr, curr_amt, rate, sell_buy_price, note from trans" );
             while(rs.next()){
-                Currency transCurr = null; // I found it kind of stupid that i have to init this var to null in order to make it work 
-                //look for the currency if it is Cash in or Cash out 
-                int transCurrPK = rs.getInt("curr");
-                if (!rs.wasNull()){
-                    for (Currency c:allCurrency){
-                        if (c.getPk() == transCurrPK){
-                            transCurr = c;
-                            break;
-                        }
+                int transType;
+                transType = rs.getInt("trans_type");
+                // look for currency if the trans is not cash in or cash out
+                Currency transCurr;
+                if (transType != 2 && transType != 12){
+                    int transCurrPK = rs.getInt("curr");
+                    if (!rs.wasNull()){
+                        transCurr = findCurrencyByPK(transCurrPK); 
+                    }else{
+                        transCurr = null;
                     }
+                }else{
+                    transCurr = null;
                 }
-                if (transCurr != null){
-                    XchTransactoinInterface t = null;
-                    Timestamp td = rs.getTimestamp("trans_date");
-                    int transType;
-                    transType = rs.getInt("trans_type");
-                    switch (transType){
-                    case 1: //Curr in
-                        t = new CurrIn(rs.getInt("pk"), td, rs.getString("note"), transCurr, rs.getDouble("curr_amt"), rs.getDouble("rate"));
-                        break;
-                    case 2: //Cash out
-                        t = new CashOut(rs.getInt("pk"), td, rs.getString("note"), rs.getDouble("cash"));
-                        break;
-                    case 3: //Buy
-                        t = new Buy(rs.getInt("pk"), td, rs.getString("note"), transCurr, rs.getDouble("curr_amt"), rs.getDouble("rate"), rs.getDouble("cash"), rs.getDouble("sell_buy_price"));
-                        break;
-                    case 11: //Curr Out
-                        t = new CurrOut(rs.getInt("pk"), td, rs.getString("note"), transCurr, rs.getDouble("curr_amt"), rs.getDouble("rate"));
-                        break;
-                    case 12: //Cash in
-                        t = new CashIn(rs.getInt("pk"), td, rs.getString("note"), rs.getDouble("cash"));
-                        break;
-                    case 13: //Sell
-                        t = new Sell(rs.getInt("pk"), td, rs.getString("note"), transCurr, rs.getDouble("curr_amt"), rs.getDouble("rate"), rs.getDouble("cash"), rs.getDouble("sell_buy_price"));
-                        break;
-                    }
-                    
-                    allTrans.add(t);
-                }else{//thats mean currency not found maybe delete it by mistake from database or mistake in the currency collection here ... dont know what to do in this case yet
-                    
+
+                XchTransactoinInterface t = null;
+                Timestamp td = rs.getTimestamp("trans_date");
+                switch (transType){
+                case 1: //Curr in
+                    t = new CurrIn(rs.getInt("pk"), td, rs.getString("note"), transCurr, rs.getDouble("curr_amt"), rs.getDouble("rate"));
+                    break;
+                case 2: //Cash out
+                    t = new CashOut(rs.getInt("pk"), td, rs.getString("note"), rs.getDouble("cash"));
+                    break;
+                case 3: //Buy
+                    t = new Buy(rs.getInt("pk"), td, rs.getString("note"), transCurr, rs.getDouble("curr_amt"), rs.getDouble("rate"), rs.getDouble("cash"), rs.getDouble("sell_buy_price"));
+                    break;
+                case 11: //Curr Out
+                    t = new CurrOut(rs.getInt("pk"), td, rs.getString("note"), transCurr, rs.getDouble("curr_amt"), rs.getDouble("rate"));
+                    break;
+                case 12: //Cash in
+                    t = new CashIn(rs.getInt("pk"), td, rs.getString("note"), rs.getDouble("cash"));
+                    break;
+                case 13: //Sell
+                    t = new Sell(rs.getInt("pk"), td, rs.getString("note"), transCurr, rs.getDouble("curr_amt"), rs.getDouble("rate"), rs.getDouble("cash"), rs.getDouble("sell_buy_price"));
+                    break;
                 }
+
+                allTrans.add(t);
              }
             
             transNeedRefresh = false;
