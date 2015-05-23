@@ -307,7 +307,7 @@ public class XchDatabase
                     allRate.add(rp);
                     allRateProperty.add(rp);
                 }else{
-                    //thats mean currency not found maybe delete it by mistake from database or mistake in the currency collection here ... dont know what to do in this case yet
+                    //thats mean currency not found maybe delete it by mistake from database or mistake in the currency collection here
                     //no rate shall be added in this case
                 }
             }
@@ -431,17 +431,17 @@ public class XchDatabase
             while(rs.next()){
                 int transType;
                 transType = rs.getInt("trans_type");
-                // look for currency if the trans is not cash in or cash out
+                // look for currency 
                 Currency transCurr;
-                if (transType != 2 && transType != 12){
+                if (transType == 2 | transType == 12){ // if the tran is cash in/out then currency is null
+                    transCurr = null;
+                }else{
                     int transCurrPK = rs.getInt("curr");
                     if (!rs.wasNull()){
                         transCurr = findCurrencyByPK(transCurrPK); 
-                    }else{
+                    }else{ //there must a problem in database 
                         transCurr = null;
                     }
-                }else{
-                    transCurr = null;
                 }
 
                 XchTransactoinInterface t = null;
@@ -468,7 +468,7 @@ public class XchDatabase
                 }
 
                 allTrans.add(t);
-             }
+            }
             
             transNeedRefresh = false;
 
