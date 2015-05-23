@@ -5,6 +5,7 @@
  */
 package xchangeit;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import xchangeit.currency.Currency;
 
@@ -15,7 +16,7 @@ import xchangeit.currency.Currency;
 public interface XchTransactoinInterface
 {
     public int getPk();
-    public Date getTransDate();
+    public Timestamp getTransDate();
     public XchTransactionTypeeEnum getTransType();
     public double getCash();
     public Currency getCurr();

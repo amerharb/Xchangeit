@@ -39,8 +39,8 @@ public abstract class XchController implements Initializable
     protected void shakeControl(Control cont) throws InterruptedException
     {
 
-        // create a rotation transform starting at 0 degrees, rotating about pivot point 50, 50.
-        final Rotate rotationTransform = new Rotate(5);
+        // create a rotation transform starting at 8 degrees, rotating about pivot point control center.
+        final Rotate rotationTransform = new Rotate(8,cont.getWidth()/2,cont.getHeight()/2);
         cont.getTransforms().add(rotationTransform);
         rotationTransform.setAxis(Rotate.Z_AXIS);
         final Timeline rotationAnimation = new Timeline();
@@ -51,7 +51,7 @@ public abstract class XchController implements Initializable
                     new KeyValue(rotationTransform.angleProperty(), 0)
                 )
             );
-        rotationAnimation.setCycleCount(6);
+        rotationAnimation.setCycleCount(7);
         rotationAnimation.play();   
         cont.requestFocus();
     }

@@ -133,7 +133,7 @@ public class RateScreenController extends XchController{
                  warningLabel.setText("choose currency please!");
                  shakeControl(currChoiceBox);
              } else if(String.valueOf(rateText.getText()).isEmpty() ){
-                 warningLabel.setText("enter the company rate");
+                 warningLabel.setText("enter the rate");
                  shakeControl(rateText);
              }
              else if(String.valueOf(sellPriceText.getText()).isEmpty() ){
@@ -149,7 +149,6 @@ public class RateScreenController extends XchController{
                  Rate r = new Rate(0, st, currChoiceBox.getValue(), rateText.getText(), sellPriceText.getText(), buyPriceText.getText(), noteText.getText());
                  database.addRate(r);
                  //fillRateTable(); no need should be automatic
-                 
              } 
             
         }catch(Exception ex){

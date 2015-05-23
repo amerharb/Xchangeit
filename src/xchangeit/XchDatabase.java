@@ -56,7 +56,8 @@ public class XchDatabase
     private ObservableList<CurrencyProperty> allCurrencyProperty;
     private ObservableList<RateProperty> allRateProperty;
     private ObservableList<RateProperty> latestRateProperty;
-
+    private ObservableList<TransactionProperty> allTransProperty;
+    
     private boolean currencyNeedRefresh; // this is an indicator that something has been changed in currency 
     private boolean rateNeedRefresh; // this is an indicator that something has been changed in Rate 
     private boolean transNeedRefresh; //this is an indicator that somehting has been changed in Trans table
@@ -78,7 +79,7 @@ public class XchDatabase
         this.allCurrencyProperty = FXCollections.observableArrayList();
         this.allRateProperty = FXCollections.observableArrayList();
         this.latestRateProperty = FXCollections.observableArrayList();
-
+        this.allTransProperty = FXCollections.observableArrayList();
     }
 
     public void connect(String server, String rootPassword){
@@ -114,6 +115,7 @@ public class XchDatabase
             latestRate.clear();
             latestRateProperty.clear();
             allTrans.clear();
+            allTransProperty.clear();
             everythingNeedRefresh();
             return true;
         } catch (Exception ex) {
@@ -161,23 +163,6 @@ public class XchDatabase
         }
         
     }
-    
-//    public boolean delCurrencyByPK(int pk){
-//        try{
-//            Statement st = conn.createStatement();
-//            boolean r = st.execute("delete from curr where pk = " + pk);
-//            if (st.getUpdateCount()>0)
-//                //TODO look in allCurrency object and remove the currency from here also
-//                return true;
-//            else
-//                return false;
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//            return false;
-// 
-//        }
-//        
-//    }
     
     private void buildAllCurrency(){ // this method will fill the all currency object 
         try{
@@ -422,6 +407,7 @@ public class XchDatabase
     private void buildAllTrans(){ // this method will fill the all transaction
         try{
             allTrans.clear();
+            allTransProperty.clear();
             
             if (currencyNeedRefresh || allCurrency.isEmpty()){
                 buildAllCurrency(); //fill currency if it is empty
@@ -440,7 +426,7 @@ public class XchDatabase
                     int transCurrPK = rs.getInt("curr");
                     if (!rs.wasNull()){
                         transCurr = findCurrencyByPK(transCurrPK); 
-                    }else{ //there must a problem in database 
+                    }else{ 
                         transCurr = null;
                     }
                 }
@@ -469,12 +455,13 @@ public class XchDatabase
                 }
 
                 allTrans.add(t);
+                allTransProperty.add(new TransactionProperty(t));
             }
             
             transNeedRefresh = false;
 
-        } catch (Exception e) {
-            System.err.println("ERROR: " + e);
+        } catch (Exception ex) {
+            System.err.println("ERROR: " + ex);
         }
         
     }
@@ -485,6 +472,18 @@ public class XchDatabase
                 buildAllTrans(); //fill Trans if it is empty
             }
             return allTrans;
+        } catch (Exception e) {
+            System.err.println("ERROR: " + e);
+            return null;
+        }
+    }
+
+    public ObservableList<TransactionProperty> getAllTransProperty(){
+        try{
+            if (transNeedRefresh || allTrans.isEmpty()){
+                buildAllTrans(); //fill Trans if it is empty
+            }
+            return allTransProperty;
         } catch (Exception e) {
             System.err.println("ERROR: " + e);
             return null;
@@ -508,6 +507,7 @@ public class XchDatabase
                 rs.close();
 
                 allTrans.add(t);
+                allTransProperty.add(new TransactionProperty(t));
                 return true;
             }else{return false;}
                 

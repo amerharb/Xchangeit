@@ -22,7 +22,6 @@ import javafx.beans.property.SimpleStringProperty;
 public class RateProperty extends Rate
 {
     private final SimpleIntegerProperty pkProperty;
-    //TODO
     private final SimpleObjectProperty rateDateProperty;
     private final CurrencyProperty currProperty;
     private final SimpleDoubleProperty rateProperty;
@@ -43,9 +42,9 @@ public class RateProperty extends Rate
         if (currProp == null){
             //TODO error stop the construction
             throw new Exception("error: currency can not be null when you create rate");
-        }else
+        }else{
             this.currProperty = currProp;
-        
+        }
         this.rateProperty = new SimpleDoubleProperty(rate);
         this.sellPriceProperty = new SimpleDoubleProperty(sellPrice);
         this.buyPriceProperty = new SimpleDoubleProperty(buyPrice);

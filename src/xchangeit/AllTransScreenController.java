@@ -28,38 +28,44 @@ public class AllTransScreenController extends XchController
      * Initializes the controller class.
      */
     @FXML private TextArea allTransText;
-    @FXML TableView<XchTransactoinInterface> transTable;
-    //@FXML private TableView<CurrencyProperty> transTable;
+    @FXML TableView<TransactionProperty> allTransTable;
     
-    @FXML private TableColumn<XchTransactoinInterface, Integer> pkCol;
-    @FXML private TableColumn<XchTransactoinInterface , String> transCol;
-    private Object XchTransactionInterface;
-    
+    @FXML private TableColumn<TransactionProperty, Integer> pkCol;
+    @FXML private TableColumn<TransactionProperty , String> transDateCol;
+    @FXML private TableColumn<TransactionProperty , String> transTypeCol;
+    @FXML private TableColumn<TransactionProperty , Double> cashCol;
+    @FXML private TableColumn<TransactionProperty , String> currCol;
+    @FXML private TableColumn<TransactionProperty , Double> currAmtCol;
+    @FXML private TableColumn<TransactionProperty , Double> rateCol;
+    @FXML private TableColumn<TransactionProperty , Double> sellBuyPriceCol;
+    @FXML private TableColumn<TransactionProperty , String> noteCol;
     
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-//        String s="\n";
-//        for (XchTransactoinInterface t:database.getAllTrans()){
-//            s += t.getPk() + "-- " + t.getTransType().name() + "--" + t.getTransDate().toString() + "--" +
-//                 t.getSellBuyPrice()+ "--" + t.getCash() + "--" + t.getNote() + "\n";
-//
-//        }
-//        allTransText.setText(s);
-        // i didn,t remove the text area still we do it later maybe when table view will work
+        String s="\n";
+        for (XchTransactoinInterface t:database.getAllTrans()){
+            s += t.getPk() + "-- " + t.getTransType().name() + "--" + t.getTransDate().toString() + "--" +
+                 t.getSellBuyPrice()+ "--" + t.getCash() + "--" + t.getNote() + "\n";
+
+        }
+        allTransText.setText(s);
+        fillCurrencyTable();
     }
     
      private void fillCurrencyTable(){
         try{
-           
-          //  pkCol.setCellValueFactory(cellData -> cellData.getValue().getPk().asObject());
-            //transCol.setCellValueFactory(cellData -> cellData.getValue().getTransType().name());
-//            isoCol.setCellValueFactory(cellData -> cellData.getValue().getIsoSymbolProperty());
-//            symbolCol.setCellValueFactory(cellData -> cellData.getValue().getSymbolProperty());
-//            noteCol.setCellValueFactory(cellData -> cellData.getValue().getNoteProperty());
+            pkCol.setCellValueFactory(cellData -> cellData.getValue().getPkProperty().asObject());
+            transDateCol.setCellValueFactory(cellData -> cellData.getValue().getTransDateProperty());
+            transTypeCol.setCellValueFactory(cellData -> cellData.getValue().getTransTypeProperty());
+            cashCol.setCellValueFactory(cellData -> cellData.getValue().getCashProperty().asObject());
+            currCol.setCellValueFactory(cellData -> cellData.getValue().getCurrProperty().getCurrNameProperty());
+            currAmtCol.setCellValueFactory(cellData -> cellData.getValue().getCurrAmtProperty().asObject());
+            rateCol.setCellValueFactory(cellData -> cellData.getValue().getRateProperty().asObject());
+            sellBuyPriceCol.setCellValueFactory(cellData -> cellData.getValue().getSellBuyPriceProperty().asObject());
+            noteCol.setCellValueFactory(cellData -> cellData.getValue().getNoteProperty());
 
-            transTable.setItems(database.getAllTrans);
-             //currencyTable.setItems(database.getAllCurrencyProperty());
+            //allTransTable.setItems(database.getAllTransProperty());
         }catch(Exception ex) {
             ex.printStackTrace();
         }
