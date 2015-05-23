@@ -52,8 +52,8 @@ public class AllTransScreenController extends XchController
      private void fillCurrencyTable(){
         try{
            
-            pkCol.setCellValueFactory(cellData -> cellData.getValue().getPk().asObject());
-            transCol.setCellValueFactory(cellData -> cellData.getValue().getTransType().name());
+          //  pkCol.setCellValueFactory(cellData -> cellData.getValue().getPk().asObject());
+            //transCol.setCellValueFactory(cellData -> cellData.getValue().getTransType().name());
 //            isoCol.setCellValueFactory(cellData -> cellData.getValue().getIsoSymbolProperty());
 //            symbolCol.setCellValueFactory(cellData -> cellData.getValue().getSymbolProperty());
 //            noteCol.setCellValueFactory(cellData -> cellData.getValue().getNoteProperty());

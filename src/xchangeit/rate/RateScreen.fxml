@@ -49,6 +49,9 @@
                 <TableColumn fx:id="noteCol" prefWidth="163.0" text="Note" />
             </columns>
         </TableView>
-      <Label fx:id="warningLabel" layoutX="106.0" layoutY="160.0" prefHeight="25.0" prefWidth="168.0" />
+      <Label fx:id="warningLabel" layoutX="112.0" layoutY="160.0" prefHeight="25.0" prefWidth="168.0" textFill="RED">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
     </children>
 </AnchorPane>

@@ -42,14 +42,30 @@ public class CashInScreenController extends XchController
         
         System.out.println("You Click Cash In Screen Add Button");
         try{
-            Timestamp st = getTimeStamp(transDateText.getText());
-            CashIn ci = new CashIn(0, st, noteText.getText(), cashAmtText.getText());
+             if(String.valueOf(cashAmtText.getText()).isEmpty() ){
+                warningLabel.setText("field cannot be empty!");
+                shakeControl(cashAmtText);
+            
+            
+            }else if(Integer.valueOf(cashAmtText.getText())<=0 ){
+                warningLabel.setText("enter cash please!");
+                shakeControl(cashAmtText);
+            }   
+             else{
+             Timestamp st = getTimeStamp(transDateText.getText());
+            CashIn ci = new CashIn(0, st, noteText.getText(), cashAmtText.getText());  
+            
             if (database.addTrans(ci)){
                 clearFields();
+                warningLabel.setText(null);
+              }    
             }
+            
+            
             
         }catch(Exception ex){
             ex.printStackTrace();
+            System.out.println("error");
         }
     }
     
