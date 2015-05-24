@@ -17,6 +17,8 @@ import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import xchangeit.buy.Buy;
@@ -48,15 +50,15 @@ public class XchDatabase
     private Connection conn;
 
     //TEST still under test
-    private ArrayList<Currency> allCurrency;
-    private ArrayList<Rate> allRate;
-    private ArrayList<Rate> latestRate;
-    private ArrayList<XchTransactoinInterface> allTrans;
+    private final ArrayList<Currency> allCurrency;
+    private final ArrayList<Rate> allRate;
+    private final ArrayList<Rate> latestRate;
+    private final ArrayList<XchTransactoinInterface> allTrans;
     
-    private ObservableList<CurrencyProperty> allCurrencyProperty;
-    private ObservableList<RateProperty> allRateProperty;
-    private ObservableList<RateProperty> latestRateProperty;
-    private ObservableList<TransactionProperty> allTransProperty;
+    private final ObservableList<CurrencyProperty> allCurrencyProperty;
+    private final ObservableList<RateProperty> allRateProperty;
+    private final ObservableList<RateProperty> latestRateProperty;
+    private final ObservableList<TransactionProperty> allTransProperty;
     
     private boolean currencyNeedRefresh; // this is an indicator that something has been changed in currency 
     private boolean rateNeedRefresh; // this is an indicator that something has been changed in Rate 
@@ -269,7 +271,6 @@ public class XchDatabase
         try{
             allRate.clear();
             allRateProperty.clear();
-            latestRate.clear();
             
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("select pk, rate_date, curr, rate, sell_price, buy_price, note from rates" );
@@ -298,24 +299,36 @@ public class XchDatabase
                 }
             }
             rs.close();
-            
-            //get the latest rates
-            rs = st.executeQuery("select c.pk curr ,r.rate rate ,r.sell_price sell_price ,r.buy_price buy_price from (select max(rate_date) rate_date ,curr from rates group by curr order by rate_date desc ,pk desc) as lr left join rates r on r.rate_date = lr.rate_date and r.curr = lr.curr left join curr c on r.curr = c.pk" );
-            while(rs.next()){
-                CurrencyProperty rateCurrProp = findCurrencyPropertyByPK(rs.getInt("curr"));
-                if (rateCurrProp != null){ 
-                    Rate r = new Rate(0, null, rateCurrProp, rs.getDouble("rate"), rs.getDouble("sell_price"), rs.getDouble("buy_price"), null);
-                    latestRate.add(r);
-                }else{
-                    //thats mean currency not found maybe delete it by mistake from database or mistake in the currency collection here ... dont know what to do in this case yet                    
-                }
-            }
+
+            buildLatestRate();
             rateNeedRefresh = false;
 
         } catch (Exception e) {
             System.err.println("ERROR: " + e);
         }
         
+    }
+    
+    private void buildLatestRate() throws Exception{
+        try {
+            //get the latest rates
+            latestRate.clear();
+            latestRateProperty.clear();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("select c.pk curr ,r.rate rate ,r.sell_price sell_price ,r.buy_price buy_price from (select max(rate_date) rate_date ,curr from rates group by curr order by rate_date desc ,pk desc) as lr left join rates r on r.rate_date = lr.rate_date and r.curr = lr.curr left join curr c on r.curr = c.pk" );
+            while(rs.next()){
+                CurrencyProperty rateCurrProp = findCurrencyPropertyByPK(rs.getInt("curr"));
+                if (rateCurrProp != null){
+                    RateProperty rp = new RateProperty(0, null, rateCurrProp, rs.getDouble("rate"), rs.getDouble("sell_price"), rs.getDouble("buy_price"), null);
+                    latestRate.add(rp);
+                    latestRateProperty.add(rp);
+                }else{
+                    //thats mean currency not found maybe delete it by mistake from database or mistake in the currency collection here ... dont know what to do in this case yet
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(XchDatabase.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public ArrayList<Rate> getAllRate(){
@@ -337,6 +350,7 @@ public class XchDatabase
             if (st.getUpdateCount()>0){
                 allRate.remove(r);
                 allRateProperty.remove(r);
+                buildLatestRate();
                 return true;
             }else{return false;}
         } catch (Exception ex) {
@@ -364,6 +378,7 @@ public class XchDatabase
                 RateProperty rateProp = new RateProperty(r);
                 allRate.add(rateProp);
                 allRateProperty.add(rateProp);
+                buildLatestRate();
                 return rateProp;
             }else{return null;}
             
@@ -375,7 +390,17 @@ public class XchDatabase
     }
     
     public ArrayList<Rate> getLatestRate(){
+        if (rateNeedRefresh || allRate.isEmpty()){
+            BuildAllRate(); //fill currency if it is empty
+        }
         return latestRate;
+    }
+    
+    public ObservableList<RateProperty> getLatestRateProperty(){
+        if (rateNeedRefresh || allRate.isEmpty()){
+            BuildAllRate(); //fill currency if it is empty
+        }
+        return latestRateProperty;
     }
     
     public Rate getLatestRate(Currency c){

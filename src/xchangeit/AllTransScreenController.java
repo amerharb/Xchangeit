@@ -65,7 +65,7 @@ public class AllTransScreenController extends XchController
             sellBuyPriceCol.setCellValueFactory(cellData -> cellData.getValue().getSellBuyPriceProperty().asObject());
             noteCol.setCellValueFactory(cellData -> cellData.getValue().getNoteProperty());
 
-            //allTransTable.setItems(database.getAllTransProperty());
+            allTransTable.setItems(database.getAllTransProperty());
         }catch(Exception ex) {
             ex.printStackTrace();
         }

@@ -33,7 +33,7 @@ public class LatestRatesScreenController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         String s="\n";
-        for (Rate r:database.getAllRate()){
+        for (Rate r:database.getLatestRate()){
             s += ((r.getCurr() == null) ? "" : r.getCurr().getIsoSymbol()) + " " + r.getRate() + " " + r.getSellPriceAsString() + " " + r.getBuyPriceAsString() + "\n";
         }
         latestRatesText.setText(s);
