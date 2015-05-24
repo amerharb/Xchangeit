@@ -10,6 +10,7 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
+import xchangeit.currency.Currency;
 import xchangeit.currency.CurrencyProperty;
 
 /**
@@ -30,7 +31,7 @@ public class TransactionProperty
 
     public TransactionProperty(XchTransactoinInterface trans){
         this(trans.getPk(), trans.getTransDate(), trans.getTransType(), trans.getCash(),
-                trans.getCurr() == null? null :  new CurrencyProperty(trans.getCurr()), trans.getCurrAmt(), trans.getRate(), 
+                trans.getCurr() == null? new CurrencyProperty(new Currency(0, null, null, null, null, true)):  new CurrencyProperty(trans.getCurr()), trans.getCurrAmt(), trans.getRate(), 
                 trans.getSellBuyPrice(), trans.getNote());
     }
     

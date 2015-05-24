@@ -34,7 +34,7 @@ public class LatestRatesScreenController implements Initializable
     {
         String s="\n";
         for (Rate r:database.getLatestRate()){
-            s += ((r.getCurr() == null) ? "" : r.getCurr().getIsoSymbol()) + " " + r.getRate() + " " + r.getSellPriceAsString() + " " + r.getBuyPriceAsString() + "\n";
+            s += ((r.getCurr() == null) ? "   " : r.getCurr().getIsoSymbol()) + " -- " + r.getRate() + " -- " + r.getSellPriceAsString() + " -- " + r.getBuyPriceAsString() + "\n";
         }
         latestRatesText.setText(s);
     }    

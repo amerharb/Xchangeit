@@ -59,7 +59,8 @@ public class AllTransScreenController extends XchController
             transDateCol.setCellValueFactory(cellData -> cellData.getValue().getTransDateProperty());
             transTypeCol.setCellValueFactory(cellData -> cellData.getValue().getTransTypeProperty());
             cashCol.setCellValueFactory(cellData -> cellData.getValue().getCashProperty().asObject());
-            currCol.setCellValueFactory(cellData -> cellData.getValue().getCurrProperty().getCurrNameProperty());
+            
+            currCol.setCellValueFactory(cellData -> (cellData.getValue().getCurrProperty() != null) ? cellData.getValue().getCurrProperty().getCurrNameProperty():null );
             currAmtCol.setCellValueFactory(cellData -> cellData.getValue().getCurrAmtProperty().asObject());
             rateCol.setCellValueFactory(cellData -> cellData.getValue().getRateProperty().asObject());
             sellBuyPriceCol.setCellValueFactory(cellData -> cellData.getValue().getSellBuyPriceProperty().asObject());

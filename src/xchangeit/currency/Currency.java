@@ -29,8 +29,6 @@ public class Currency
         this.inactive = inactive;
     }
     
-//    public Currency(){}
-    
     public int getPk()
     {
         return pk;
