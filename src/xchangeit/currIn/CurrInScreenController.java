@@ -54,6 +54,7 @@ public class CurrInScreenController extends XchController
             if (r != null){
                 rateText.setText(r.getRateAsString());
             }
+            warningLabel.setText("added");
         }
     }
     

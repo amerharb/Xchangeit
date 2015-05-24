@@ -33,12 +33,12 @@
                           <columns>
                             <TableColumn fx:id="pkCol" prefWidth="39.0" text="pk" />
                             <TableColumn fx:id="transDateCol" editable="false" prefWidth="137.0" text="Date&amp;Time" />
-                              <TableColumn fx:id="transTypeCol" prefWidth="41.0" text="Type" />
-                              <TableColumn fx:id="cashCol" prefWidth="84.0" text="Cash" />
-                              <TableColumn fx:id="currCol" prefWidth="68.0" text="Currency" />
-                              <TableColumn fx:id="currAmtCol" prefWidth="67.0" text="Amount" />
-                              <TableColumn fx:id="rateCol" prefWidth="70.0" text="Rate" />
-                              <TableColumn fx:id="sellBuyPriceCol" prefWidth="78.0" text="Price" />
+                              <TableColumn fx:id="transTypeCol" prefWidth="57.0" text="Type" />
+                              <TableColumn fx:id="cashCol" prefWidth="68.0" text="Cash" />
+                              <TableColumn fx:id="currCol" prefWidth="84.0" text="Currency" />
+                              <TableColumn fx:id="currAmtCol" prefWidth="60.0" text="Amount" />
+                              <TableColumn fx:id="rateCol" prefWidth="78.0" text="Rate" />
+                              <TableColumn fx:id="sellBuyPriceCol" prefWidth="61.0" text="Price" />
                               <TableColumn fx:id="noteCol" prefWidth="188.0" text="Note" />
                           </columns>
                         </TableView>

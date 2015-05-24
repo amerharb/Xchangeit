@@ -13,6 +13,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import xchangeit.XchController;
@@ -35,6 +36,8 @@ public class SellScreenController extends XchController
     @FXML private TextField rateText;
     @FXML private TextField SellBuyPriceText;
     @FXML private TextArea noteText;
+    @FXML private Label warningLabel;
+    
     
     @FXML
     private void handleNowDateTimeAction(ActionEvent event){
@@ -42,15 +45,20 @@ public class SellScreenController extends XchController
     }
 
     @FXML
-    private void handleGetLatestRateAction(ActionEvent event){
+    private void handleGetLatestRateAction(ActionEvent event) throws InterruptedException{
         
         Currency c = currChoiceBox.getValue();
+        if (c == null){
+            warningLabel.setText("choose currency");
+            shakeControl(currChoiceBox);
+            }
         if (c != null){
             Rate r = database.getLatestRate(c);
             if (r != null){
                 rateText.setText(r.getRateAsString());
                 SellBuyPriceText.setText(r.getSellPriceAsString());
             }
+            warningLabel.setText("latest rates added");
         }
     }
     
@@ -59,14 +67,38 @@ public class SellScreenController extends XchController
         
         System.out.println("You Click Buy Screen Add Button");
         try{
+            if(currChoiceBox.getValue()==null ){
+                warningLabel.setText("choose currency please!");
+                shakeControl(currChoiceBox);
+            }
+            else if(String.valueOf(currAmtText.getText()).isEmpty() ){
+                warningLabel.setText("currency amount");
+                shakeControl(currAmtText);
+            }
+            else if(String.valueOf(cashText.getText()).isEmpty() ){
+                warningLabel.setText("symbol please");
+                shakeControl(cashText);
+            }
+            else if(String.valueOf(rateText.getText()).isEmpty()){
+                warningLabel.setText("click the R button");
+                shakeControl(rateText);
+            }
+            else if(String.valueOf(SellBuyPriceText.getText()).isEmpty()){
+                warningLabel.setText("click the R button");
+                shakeControl(SellBuyPriceText);
+            }else{
             Timestamp st = getTimeStamp(transDateText.getText()); 
             Sell s = new Sell(0, st, noteText.getText(), currChoiceBox.getValue(),
                     currAmtText.getText(), rateText.getText(), cashText.getText(), SellBuyPriceText.getText());
             if (database.addTrans(s)){
                 clearFields();
+                warningLabel.setText(null);
+             }    
             }
             
+            
         }catch(Exception ex){
+            System.out.println("system error");
             ex.printStackTrace();
         }
     }
