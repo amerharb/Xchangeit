@@ -9,12 +9,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
-import static xchangeit.XchController.database;
-import static xchangeit.XchController.mainScreen;
 import xchangeit.rate.Rate;
 import xchangeit.rate.RateProperty;
 
@@ -23,7 +20,7 @@ import xchangeit.rate.RateProperty;
  *
  * @author Amer
  */
-public class LatestRatesScreenController implements Initializable
+public class LatestRatesScreenController extends XchController
 {
 
     @FXML private TextArea latestRatesText;
