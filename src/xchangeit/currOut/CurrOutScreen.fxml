@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -9,11 +10,6 @@
 
 <AnchorPane id="AnchorPane" prefHeight="244.0" prefWidth="576.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xchangeit.currOut.CurrOutScreenController">
     <children>
-         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="247.0" layoutY="36.0" prefHeight="35.0" prefWidth="127.0" text="Currency Out" textAlignment="CENTER" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-            <font>
-                <Font name="System Bold" size="20.0" />
-            </font>
-        </Label>
       <Label layoutX="24.0" layoutY="91.0" prefHeight="17.0" prefWidth="117.0" text="Date" />
       <TextField fx:id="transDateText" layoutX="146.0" layoutY="83.0" prefHeight="25.0" prefWidth="149.0" promptText="empty means NOW" />
       <Button layoutX="295.0" layoutY="83.0" mnemonicParsing="false" onAction="#handleNowDateTimeAction" prefHeight="25.0" prefWidth="27.0" text="N">
@@ -40,5 +36,10 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
+      <ImageView fitHeight="51.0" fitWidth="194.0" layoutX="198.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Currency%20out.jpg" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>

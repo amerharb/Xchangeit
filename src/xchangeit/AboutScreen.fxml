@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -9,15 +10,15 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xchangeit.AboutScreenController">
    <children>
-      <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="167.0" text="About Xchangeit" textOverrun="WORD_ELLIPSIS" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-         <font>
-            <Font name="System Bold" size="21.0" />
-         </font>
-      </Label>
       <TextArea editable="false" layoutX="10.0" layoutY="60.0" prefHeight="326.0" prefWidth="580.0" text="Product Version&#10;Xchangeit 1.0&#10;&#10;Build Information&#10;Version: 1.0&#10;Date: 2014-03-21 09:29&#10;&#10;Operating System&#10;Windows 7, x86, 6.1&#10;&#10;Copyright © 2015, iWAA and/or its affiliates. All rights reserved.&#10;&#10;This software and related documentation are provided under a license agreement containing restrictions on use &#10;and disclosure and are protected by intellectual property laws. &#10;Except as expressly permitted in your license agreement or allowed by law, you may not use, copy, &#10;reproduce, translate, broadcast, modify, license, transmit, distribute, exhibit, &#10;perform, publish, or display any part, in any form, or by any means. Reverse engineering, disassembly, &#10;or decompilation of this software, unless required by law for interoperability, is prohibited.&#10;&#10;The information contained herein is subject to change without notice and &#10;is not warranted to be error-free. If you find any errors, please report them to us in writing.&#10;&#10;This software is developed for general use as a currency management application. &#10;It is not developed or intended for use in any inherently dangerous applications, including applications which may create a risk of personal injury. &#10;If you use this software in dangerous applications, then you shall be responsible to take all appropriate fail-safe, backup, redundancy, &#10;and other measures to ensure the safe use of this software. Xchangeit and its affiliates disclaim any liability for any damages caused by use of this software in dangerous applications.&#10;&#10;Xchangeit is a registered trademark of iWAA and/or its affiliates. Other names may be trademarks of their respective owners.&#10;&#10;This software and documentation may provide access to or information on content, products, and services from third parties. &#10;iWAA and its affiliates are not responsible for and expressly disclaim all warranties of any kind with respect to third-party content, products, and services. &#10;iWAA and its affiliates will not be responsible for any loss, costs, or damages incurred due to your access to or use of third-party content, products, or services.&#10;&#10;" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
          <font>
             <Font size="14.0" />
          </font>
       </TextArea>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="200.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@About.jpg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
