@@ -25,7 +25,6 @@ import xchangeit.XchDatabase;
  */
 public class CashInScreenController extends XchController
 {
-
     @FXML private TextField transDateText;
     @FXML private TextField cashAmtText;
     @FXML private TextArea noteText;
@@ -35,34 +34,26 @@ public class CashInScreenController extends XchController
     private void handleNowDateTimeAction(ActionEvent event){
         transDateText.setText(java.sql.Timestamp.valueOf(LocalDateTime.now()).toString());
     }
-    
 
     @FXML
     private void handleAddAction(ActionEvent event){
         
         System.out.println("You Click Cash In Screen Add Button");
         try{
-             if(String.valueOf(cashAmtText.getText()).isEmpty() ){
+            if(String.valueOf(cashAmtText.getText()).isEmpty() ){
                 warningLabel.setText("field cannot be empty!");
                 shakeControl(cashAmtText);
-            
-            
             }else if(Integer.valueOf(cashAmtText.getText())<=0 ){
                 warningLabel.setText("enter cash please!");
                 shakeControl(cashAmtText);
-            }   
-             else{
-             Timestamp st = getTimeStamp(transDateText.getText());
-            CashIn ci = new CashIn(0, st, noteText.getText(), cashAmtText.getText());  
-            
-            if (database.addTrans(ci)){
-                clearFields();
-                warningLabel.setText(null);
-              }    
+            }else{
+                Timestamp st = getTimeStamp(transDateText.getText());
+                CashIn ci = new CashIn(0, st, noteText.getText(), cashAmtText.getText());  
+                if (database.addTrans(ci)){
+                    clearFields();
+                    warningLabel.setText(null);
+                }    
             }
-            
-            
-            
         }catch(Exception ex){
             ex.printStackTrace();
             System.out.println("error");
