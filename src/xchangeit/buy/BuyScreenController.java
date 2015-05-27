@@ -52,14 +52,20 @@ public class BuyScreenController extends XchController
         if (c == null){
             warningLabel.setText("choose currency");
             shakeControl(currChoiceBox);
-            }
+        }
         if (c != null){
             Rate r = database.getLatestRate(c);
             if (r != null){
                 rateText.setText(r.getRateAsString());
                 SellBuyPriceText.setText(r.getBuyPriceAsString());
+                if (cashText.getText().isEmpty()){
+                    try {
+                        cashText.setText(String.valueOf(r.getBuyPrice() * Double.valueOf(currAmtText.getText())));
+                    } catch (Exception e) {
+                        //do nothing
+                    }
+                }
             }
-            warningLabel.setText("latest rates added");
         }
     }
     
@@ -88,16 +94,14 @@ public class BuyScreenController extends XchController
                 warningLabel.setText("click the R button");
                 shakeControl(SellBuyPriceText);
             }else{
-             Timestamp st = getTimeStamp(transDateText.getText()); 
-            Buy b = new Buy(0, st, noteText.getText(), currChoiceBox.getValue(), 
-                    currAmtText.getText(), rateText.getText(), cashText.getText(), SellBuyPriceText.getText());
-            if (database.addTrans(b)){
-                clearFields();
-                warningLabel.setText(null);
-             }   
+                Timestamp st = getTimeStamp(transDateText.getText()); 
+                Buy b = new Buy(0, st, noteText.getText(), currChoiceBox.getValue(), 
+                currAmtText.getText(), rateText.getText(), cashText.getText(), SellBuyPriceText.getText());
+                if (database.addTrans(b)){
+                    clearFields();
+                    warningLabel.setText(null);
+                }   
             }
-            
-            
         }catch(Exception ex){
             System.out.println("system error");
             ex.printStackTrace();

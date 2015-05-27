@@ -57,8 +57,14 @@ public class SellScreenController extends XchController
             if (r != null){
                 rateText.setText(r.getRateAsString());
                 SellBuyPriceText.setText(r.getSellPriceAsString());
+                if (cashText.getText().isEmpty()){
+                    try {
+                        cashText.setText(String.valueOf(r.getBuyPrice() * Double.valueOf(currAmtText.getText())));
+                    } catch (Exception e) {
+                        //do nothing
+                    }
+                }
             }
-            warningLabel.setText("latest rates added");
         }
     }
     
