@@ -11,7 +11,11 @@ import java.sql.Timestamp;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.fxml.FXML;
 import javafx.scene.control.Control;
+import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
@@ -25,7 +29,13 @@ public abstract class XchController implements Initializable
     protected static MainScreenController mainScreen;
     protected static XchDatabase database;
     protected static XchSettings settings;
-
+    @FXML protected Label messageLabel;    
+    
+    public enum XchMessageType{
+        XchInfo
+        ,XchWarrning
+    }
+    
     protected Timestamp getTimeStamp(String datetime){ //in case of error this function will return null
         try{
 
@@ -36,7 +46,25 @@ public abstract class XchController implements Initializable
         }
     }
     
-    protected void shakeControl(Control cont) throws InterruptedException
+    protected void showMessage(String msg)
+    {
+        showMessage(msg, XchMessageType.XchWarrning);
+    }
+    
+    protected void showMessage(String msg, XchMessageType msgType)
+    {
+        switch (msgType){
+        case XchWarrning:
+            messageLabel.setTextFill(Color.web("red"));
+            break;
+        case XchInfo:
+            messageLabel.setTextFill(Color.web("green"));
+            break;
+        }
+        messageLabel.setText(msg);
+    }
+    
+    protected void shakeControl(Control cont) //throws InterruptedException
     {
 
         // create a rotation transform starting at 8 degrees, rotating about pivot point control center.

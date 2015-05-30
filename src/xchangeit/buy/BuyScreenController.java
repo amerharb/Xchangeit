@@ -13,12 +13,10 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import xchangeit.XchController;
-import xchangeit.currIn.CurrIn;
 import xchangeit.currency.Currency;
 import xchangeit.currency.CurrencyProperty;
 import xchangeit.rate.Rate;
@@ -30,7 +28,6 @@ import xchangeit.rate.Rate;
  */
 public class BuyScreenController extends XchController
 {
-
     @FXML private TextField transDateText;
     @FXML private TextField cashText;
     @FXML private ChoiceBox<CurrencyProperty> currChoiceBox;
@@ -38,7 +35,6 @@ public class BuyScreenController extends XchController
     @FXML private TextField rateText;
     @FXML private TextField SellBuyPriceText;
     @FXML private TextArea noteText;
-    @FXML private Label warningLabel;
     
     @FXML
     private void handleNowDateTimeAction(ActionEvent event){
@@ -50,9 +46,12 @@ public class BuyScreenController extends XchController
         
         Currency c = currChoiceBox.getValue();
         if (c == null){
-            warningLabel.setText("choose currency");
+            showMessage("choose currency",XchMessageType.XchWarrning);
             shakeControl(currChoiceBox);
+        }else{
+            showMessage(null);
         }
+        
         if (c != null){
             Rate r = database.getLatestRate(c);
             if (r != null){
@@ -61,7 +60,7 @@ public class BuyScreenController extends XchController
                 if (cashText.getText().isEmpty()){
                     try {
                         cashText.setText(String.valueOf(r.getBuyPrice() * Double.valueOf(currAmtText.getText())));
-                    } catch (Exception e) {
+                    }catch(Exception ex){
                         //do nothing
                     }
                 }
@@ -75,23 +74,23 @@ public class BuyScreenController extends XchController
         System.out.println("You Click Buy Screen Add Button");
         try{
             if(currChoiceBox.getValue()==null ){
-                warningLabel.setText("choose currency please!");
+                showMessage("choose currency please!", XchMessageType.XchWarrning);
                 shakeControl(currChoiceBox);
             }
             else if(String.valueOf(currAmtText.getText()).isEmpty() ){
-                warningLabel.setText("currency amount");
+                showMessage("currency amount",XchMessageType.XchWarrning);
                 shakeControl(currAmtText);
             }
             else if(String.valueOf(cashText.getText()).isEmpty() ){
-                warningLabel.setText("symbol please");
+                showMessage("symbol please",XchMessageType.XchWarrning);
                 shakeControl(cashText);
             }
             else if(String.valueOf(rateText.getText()).isEmpty()){
-                warningLabel.setText("click the R button");
+                showMessage("Enter Rate... try click the R button",XchMessageType.XchWarrning);
                 shakeControl(rateText);
             }
             else if(String.valueOf(SellBuyPriceText.getText()).isEmpty()){
-                warningLabel.setText("click the R button");
+                showMessage("click the R button",XchMessageType.XchWarrning);
                 shakeControl(SellBuyPriceText);
             }else{
                 Timestamp st = getTimeStamp(transDateText.getText()); 
@@ -99,7 +98,7 @@ public class BuyScreenController extends XchController
                 currAmtText.getText(), rateText.getText(), cashText.getText(), SellBuyPriceText.getText());
                 if (database.addTrans(b)){
                     clearFields();
-                    warningLabel.setText(null);
+                    showMessage("Buy added",XchMessageType.XchInfo);
                 }   
             }
         }catch(Exception ex){

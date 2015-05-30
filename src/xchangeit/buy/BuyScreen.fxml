@@ -40,7 +40,7 @@
       <Label layoutX="339.0" layoutY="81.0" text="Note" />
       <TextArea fx:id="noteText" layoutX="429.0" layoutY="77.0" prefHeight="63.0" prefWidth="149.0" />
       <Button layoutX="429.0" layoutY="258.0" mnemonicParsing="false" onAction="#handleAddAction" prefHeight="25.0" prefWidth="149.0" text="Add" />
-      <Label fx:id="warningLabel" layoutX="429.0" layoutY="188.0" prefHeight="25.0" prefWidth="149.0" textFill="RED">
+      <Label fx:id="messageLabel" layoutX="429.0" layoutY="188.0" prefHeight="63.0" prefWidth="149.0" textFill="#0009ff" wrapText="true">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
