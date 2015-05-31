@@ -39,10 +39,7 @@ public class CashInScreenController extends XchController
         
         System.out.println("You Click Cash In Screen Add Button");
         try{
-            if(String.valueOf(cashAmtText.getText()).isEmpty() ){
-                showMessage("field cannot be empty!");
-                shakeControl(cashAmtText);
-            }else if(Integer.valueOf(cashAmtText.getText())<=0 ){
+            if(Integer.valueOf(cashAmtText.getText())<=0 ){
                 showMessage("enter cash please!");
                 shakeControl(cashAmtText);
             }else{
