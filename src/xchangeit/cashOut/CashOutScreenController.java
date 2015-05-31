@@ -28,7 +28,6 @@ public class CashOutScreenController extends XchController
     @FXML private TextField transDateText;
     @FXML private TextField cashAmtText;
     @FXML private TextArea noteText;
-    @FXML private Label warningLabel;
     
     @FXML
     private void handleNowDateTimeAction(ActionEvent event){
@@ -41,11 +40,11 @@ public class CashOutScreenController extends XchController
         System.out.println("You Click Cash Out Screen Add Button");
         try{
             if(String.valueOf(cashAmtText.getText()).isEmpty()){
-                warningLabel.setText("field cannot be empty");
+                showMessage("field cannot be empty");
                 shakeControl(cashAmtText);
             }  
             else if(Integer.valueOf(cashAmtText.getText())<=0 ){
-                warningLabel.setText("enter cash please!");
+                showMessage("enter cash please!");
                 shakeControl(cashAmtText);
             }   
             else{
@@ -54,7 +53,7 @@ public class CashOutScreenController extends XchController
             
             if (database.addTrans(co)){
                 clearFields();
-                warningLabel.setText(null);
+                showMessage(null);
               }    
             }    
             

@@ -7,14 +7,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="460.0" prefWidth="707.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xchangeit.rate.RateScreenController">
+<AnchorPane id="AnchorPane" prefHeight="519.0" prefWidth="707.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xchangeit.rate.RateScreenController">
     <children>
         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="247.0" layoutY="36.0" prefHeight="35.0" prefWidth="127.0" text="Rates" textAlignment="CENTER" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
             <font>
                 <Font name="System Bold" size="20.0" />
             </font>
         </Label>
-        <AnchorPane layoutX="10.0" layoutY="45.0" prefHeight="115.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="45.0">
+        <AnchorPane layoutX="10.0" layoutY="45.0" prefHeight="150.0" prefWidth="687.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="45.0">
             <children>
                 <Label layoutX="10.0" layoutY="14.0" prefWidth="90.0" text="Rate Date" />
             <TextField fx:id="rateDateText" layoutX="101.0" layoutY="10.0" promptText="Empty means NOW" />
@@ -26,7 +26,7 @@
                 <Label layoutX="10.0" layoutY="49.0" prefWidth="90.0" text="Currency" />
                 <ChoiceBox fx:id="currChoiceBox" layoutX="100.0" layoutY="45.0" prefWidth="150.0" />
                 <Label layoutX="10.0" layoutY="84.0" text="Note" />
-                <TextArea fx:id="noteText" layoutX="100.0" layoutY="80.0" prefHeight="25.0" prefWidth="149.0" />
+                <TextArea fx:id="noteText" layoutX="100.0" layoutY="80.0" prefHeight="59.0" prefWidth="149.0" />
                 <Label layoutX="318.0" layoutY="14.0" prefHeight="17.0" prefWidth="60.0" text="Rate" />
                 <TextField fx:id="rateText" layoutX="397.0" layoutY="10.0" />
                 <Label layoutX="318.0" layoutY="49.0" prefHeight="17.0" prefWidth="60.0" text="Sell Price" />
@@ -35,10 +35,15 @@
                 <TextField fx:id="buyPriceText" layoutX="397.0" layoutY="80.0" />
             <Button fx:id="clearButton" layoutX="557.0" layoutY="10.0" mnemonicParsing="false" onAction="#clearAction" prefHeight="25.0" prefWidth="25.0" text="C" />
                 <Button fx:id="newButton" layoutX="595.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleAddRateAction" prefHeight="25.0" prefWidth="69.0" text="Add Rate" />
+            <Label fx:id="messageLabel" layoutX="397.0" layoutY="110.0" prefHeight="25.0" prefWidth="149.0" textFill="#0009ff" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
                 <Button fx:id="deleteButton" layoutX="595.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleDeleteRateAction" prefHeight="25.0" prefWidth="69.0" text="Delete" />
             </children>
         </AnchorPane>
-        <TableView fx:id="rateTable" layoutX="100.0" layoutY="190.0" onMouseClicked="#rowClickAction" prefHeight="260.0" prefWidth="687.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="190.0">
+        <TableView fx:id="rateTable" layoutX="100.0" layoutY="190.0" onMouseClicked="#rowClickAction" prefHeight="260.0" prefWidth="687.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="210.0">
             <columns>
                 <TableColumn fx:id="pkCol" prefWidth="38.0" sortable="false" text="pk" />
                 <TableColumn fx:id="rateDateCol" prefWidth="77.0" text="Date" />
@@ -49,9 +54,5 @@
                 <TableColumn fx:id="noteCol" prefWidth="163.0" text="Note" />
             </columns>
         </TableView>
-      <Label fx:id="warningLabel" layoutX="112.0" layoutY="160.0" prefHeight="25.0" prefWidth="168.0" textFill="RED">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Label>
     </children>
 </AnchorPane>

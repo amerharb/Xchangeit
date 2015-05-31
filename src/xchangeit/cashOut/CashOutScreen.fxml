@@ -30,7 +30,7 @@
             <Font size="11.0" />
          </font>
       </Button>
-      <Label fx:id="warningLabel" layoutX="328.0" layoutY="120.0" prefHeight="25.0" prefWidth="165.0" textFill="RED">
+      <Label fx:id="messageLabel" layoutX="365.0" layoutY="110.0" prefHeight="63.0" prefWidth="117.0" textFill="#0009ff" wrapText="true">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

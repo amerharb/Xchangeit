@@ -34,7 +34,6 @@ public class CurrInScreenController extends XchController
     @FXML private TextField currAmtText;
     @FXML private TextField rateText;
     @FXML private TextArea noteText;
-    @FXML private Label warningLabel;
     
     @FXML
     private void handleNowDateTimeAction(ActionEvent event){
@@ -46,15 +45,14 @@ public class CurrInScreenController extends XchController
         
         Currency c = currChoiceBox.getValue();
         if (c == null){
-            warningLabel.setText("choose currency");
+            showMessage("choose currency");
             shakeControl(currChoiceBox);
-            }
-        if (c != null){
+        }else{
             Rate r = database.getLatestRate(c);
             if (r != null){
                 rateText.setText(r.getRateAsString());
             }
-            warningLabel.setText("added");
+            showMessage(null);
         }
     }
     
@@ -64,23 +62,23 @@ public class CurrInScreenController extends XchController
         System.out.println("You Click Curr In Screen Add Button");
         try{
             if(currChoiceBox.getValue()==null) {
-                warningLabel.setText("choose currency please!");
+                showMessage("choose currency please!");
                 shakeControl(currChoiceBox);
             } else if(String.valueOf(currAmtText.getText()).isEmpty()){      //|| Integer.valueOf(currAmtText.getText())<=0 ){
-                warningLabel.setText("empty field!");
+                showMessage("empty field!");
                 shakeControl(currAmtText);
             } else if(Integer.valueOf(currAmtText.getText()) <=0){
-                warningLabel.setText("enter positive amount");
+                showMessage("enter positive amount");
                 shakeControl(currAmtText);
             } else if(String.valueOf(rateText.getText()).isEmpty()){
-                 warningLabel.setText("click on R button!");
+                 showMessage("click on R button!");
                  shakeControl(rateText);
             }else{
                 Timestamp st = getTimeStamp(transDateText.getText()); 
                 CurrIn ci = new CurrIn(0, st, noteText.getText(), currChoiceBox.getValue(), currAmtText.getText(), rateText.getText());
                 if (database.addTrans(ci)){
                     clearFields();
-                    warningLabel.setText(null);
+                    showMessage("added",XchMessageType.XchInfo);
                 }  
             }
         }catch(Exception ex){

@@ -36,7 +36,6 @@ public class SellScreenController extends XchController
     @FXML private TextField rateText;
     @FXML private TextField SellBuyPriceText;
     @FXML private TextArea noteText;
-    @FXML private Label warningLabel;
     
     
     @FXML
@@ -49,9 +48,11 @@ public class SellScreenController extends XchController
         
         Currency c = currChoiceBox.getValue();
         if (c == null){
-            warningLabel.setText("choose currency");
+            showMessage("choose currency");
             shakeControl(currChoiceBox);
-            }
+        }else{
+            showMessage(null);
+        }
         if (c != null){
             Rate r = database.getLatestRate(c);
             if (r != null){
@@ -74,23 +75,23 @@ public class SellScreenController extends XchController
         System.out.println("You Click Buy Screen Add Button");
         try{
             if(currChoiceBox.getValue()==null ){
-                warningLabel.setText("choose currency please!");
+                showMessage("choose currency please!");
                 shakeControl(currChoiceBox);
             }
             else if(String.valueOf(currAmtText.getText()).isEmpty() ){
-                warningLabel.setText("currency amount");
+                showMessage("currency amount");
                 shakeControl(currAmtText);
             }
             else if(String.valueOf(cashText.getText()).isEmpty() ){
-                warningLabel.setText("symbol please");
+                showMessage("symbol please");
                 shakeControl(cashText);
             }
             else if(String.valueOf(rateText.getText()).isEmpty()){
-                warningLabel.setText("click the R button");
+                showMessage("click the R button");
                 shakeControl(rateText);
             }
             else if(String.valueOf(SellBuyPriceText.getText()).isEmpty()){
-                warningLabel.setText("click the R button");
+                showMessage("click the R button");
                 shakeControl(SellBuyPriceText);
             }else{
             Timestamp st = getTimeStamp(transDateText.getText()); 
@@ -98,7 +99,7 @@ public class SellScreenController extends XchController
                     currAmtText.getText(), rateText.getText(), cashText.getText(), SellBuyPriceText.getText());
             if (database.addTrans(s)){
                 clearFields();
-                warningLabel.setText(null);
+                showMessage(null);
              }    
             }
             

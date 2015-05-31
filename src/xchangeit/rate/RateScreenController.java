@@ -49,14 +49,12 @@ public class RateScreenController extends XchController{
     @FXML private TextArea noteText;
 
     @FXML private Button clearButton;
-    @FXML private Label  warningLabel;
     
     RateProperty selRateProp;
     
     @FXML
     private void handleNowDateTimeAction(ActionEvent event){
         rateDateText.setText(java.sql.Timestamp.valueOf(LocalDateTime.now()).toString());
-        warningLabel.setText("current date of system");
     }
 
     private void fillRateFields(){
@@ -96,7 +94,7 @@ public class RateScreenController extends XchController{
         System.out.println("You Click clear");
         try{
             clearFields();
-            warningLabel.setText(null);
+            showMessage(null);
             System.out.println("all the fields are clreared ");
             
         }catch(Exception ex){
@@ -130,24 +128,26 @@ public class RateScreenController extends XchController{
         try{
             //TODO fix the value of PK by retreve it from database later, check the value if string is empty, 
              if(currChoiceBox.getValue()==null) {
-                 warningLabel.setText("choose currency please!");
+                 showMessage("choose currency please!");
                  shakeControl(currChoiceBox);
              } else if(String.valueOf(rateText.getText()).isEmpty() ){
-                 warningLabel.setText("enter the rate");
+                 showMessage("enter the rate");
                  shakeControl(rateText);
              }
              else if(String.valueOf(sellPriceText.getText()).isEmpty() ){
-                 warningLabel.setText("selling price");
+                 showMessage("selling price");
                  shakeControl(sellPriceText);
              }
              else if(String.valueOf(buyPriceText.getText()).isEmpty() ){
-                 warningLabel.setText("buying price");
+                 showMessage("buying price");
                  shakeControl(buyPriceText);
              }
              else {
                  Timestamp st = getTimeStamp(rateDateText.getText());
                  Rate r = new Rate(0, st, currChoiceBox.getValue(), rateText.getText(), sellPriceText.getText(), buyPriceText.getText(), noteText.getText());
-                 database.addRate(r);
+                 if (database.addRate(r) != null){
+                     showMessage("rate added",XchMessageType.XchInfo);
+                 }
                  //fillRateTable(); no need should be automatic
              } 
             
@@ -162,8 +162,7 @@ public class RateScreenController extends XchController{
         try{
             if (selRateProp != null){
                 if (database.delRate(selRateProp)){
-                    //fillRateTable(); no need
-                   warningLabel.setText("deleted");
+                    showMessage("deleted",XchMessageType.XchInfo);
                     System.out.println("deleted");
                 }
             }

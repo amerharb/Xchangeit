@@ -36,7 +36,6 @@ public class CurrOutScreenController extends XchController
     @FXML private TextField currAmtText;
     @FXML private TextField rateText;
     @FXML private TextArea noteText;
-    @FXML private Label warningLabel;
     @FXML private Button lr;
     
     @FXML
@@ -48,15 +47,14 @@ public class CurrOutScreenController extends XchController
     private void handleGetLatestRateAction(ActionEvent event) throws InterruptedException{
         Currency c = currChoiceBox.getValue();
         if (c == null){
-            warningLabel.setText("choose currency");
+            showMessage("choose currency");
             shakeControl(currChoiceBox);
-        }
-        if (c != null){
+        }else{
             Rate r = database.getLatestRate(c);
             if (r != null){
                 rateText.setText(r.getRateAsString());
             }
-            warningLabel.setText("added"); 
+            showMessage(null); 
         }   
     }
 
@@ -66,20 +64,20 @@ public class CurrOutScreenController extends XchController
         System.out.println("You Click Curr Out Screen Add Button");
         try{
             if(currChoiceBox.getValue()==null) {
-                warningLabel.setText("choose currency please!");
+                showMessage("choose currency please!");
                 shakeControl(currChoiceBox);
             } else if(String.valueOf(currAmtText.getText()).isEmpty() || Integer.valueOf(currAmtText.getText())<=0 ){
-                warningLabel.setText("amount please!");
+                showMessage("amount please!");
                 shakeControl(currAmtText);
             } else if(String.valueOf(rateText.getText()).isEmpty()){
-                warningLabel.setText("click on R button!");
+                showMessage("enter rate, try click R button!");
                 shakeControl(rateText);
             }else{
                 Timestamp st = getTimeStamp(transDateText.getText()); 
                 CurrOut co = new CurrOut(0, st, noteText.getText(), currChoiceBox.getValue(), currAmtText.getText(), rateText.getText());
                 if (database.addTrans(co)){
                     clearFields();
-                    warningLabel.setText(null);
+                    showMessage("Currency Out added", XchMessageType.XchInfo);
                 }   
             }
         }catch(Exception ex){
