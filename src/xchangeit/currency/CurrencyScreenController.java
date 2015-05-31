@@ -40,7 +40,6 @@ public class CurrencyScreenController extends XchController
     @FXML private Button newButton;
     @FXML private Button deleteButton;
     @FXML private Button clearButton;
-    @FXML private Label  warningLabel;
     
 //    ArrayList<Currency> allCureency;
 //    ObservableList<CurrencyProperty> allCurrencyProperty = FXCollections.observableArrayList();
@@ -52,34 +51,28 @@ public class CurrencyScreenController extends XchController
         
         System.out.println("You Click Currency Screen Add Button");
         try{
-            //TODO fix the value of PK by retreve it from database later, check the value if string is empty, 
-            //inactive will be false becuase its a new value
-            //if(String.valueOf(currNameText.getText()).isEmpty() && String.valueOf(isoSymbolText.getText()).isEmpty() && String.valueOf(symbolText.getText()).isEmpty()){
-//               warningLabel.setText("Add the information first"); 
-//            }
-//            else 
             if(String.valueOf(currNameText.getText()).isEmpty() ){
-                warningLabel.setText("currency name please!");
+                showMessage("currency name please!");
                 shakeControl(currNameText);
             }
             else if(String.valueOf(isoSymbolText.getText()).isEmpty() ){
-                warningLabel.setText("iso symbol please");
+                showMessage("iso symbol please");
                 shakeControl(isoSymbolText);
             }
             else if(String.valueOf(symbolText.getText()).isEmpty() ){
-                warningLabel.setText("symbol please");
+                showMessage("symbol please");
                 shakeControl(symbolText);
             }
             else{
                 Currency c = new Currency(0, currNameText.getText(), isoSymbolText.getText(), symbolText.getText(), noteText.getText(), false);
-                database.addCurrency(c);
-                //fillCurrencyTable(); should be automatic
-                warningLabel.setText(null);
+                if (database.addCurrency(c) != null){
+                    showMessage("Added",XchMessageType.XchInfo);
+                }else{
+                    showMessage("Not Added there was an Error");
+                }
             }   
-            
         }catch(Exception ex){
-            //ex.printStackTrace();
-            warningLabel.setText(ex.toString());
+            showMessage(ex.toString());
         }
     }
 
@@ -144,11 +137,8 @@ public class CurrencyScreenController extends XchController
         System.out.println("You Click delete currency");
         try{
             if (selCurrencyProp != null){
-//                if (database.delCurrencyByPK(selCurrencyProp.getPk())){
                 if (database.delCurrency(selCurrencyProp)){
-                    //no need it should be done automatic
-                    //fillCurrencyTable();
-                    warningLabel.setText("currency has been deleted");
+                    showMessage("currency has been deleted",XchMessageType.XchInfo);
                     System.out.println("currency deleted");
                 }
             }
@@ -164,30 +154,31 @@ public class CurrencyScreenController extends XchController
         System.out.println("You Click update Currency");
         try{
             if(String.valueOf(currNameText.getText()).isEmpty() ){
-                warningLabel.setText("currency name please!");
+                showMessage("currency name please!");
                 shakeControl(currNameText);
             }
             else if(String.valueOf(isoSymbolText.getText()).isEmpty() ){
-                warningLabel.setText("iso symbol please");
+                showMessage("iso symbol please");
                 shakeControl(isoSymbolText);
             }
             else if(String.valueOf(symbolText.getText()).isEmpty() ){
-                warningLabel.setText("symbol please");
+                showMessage("symbol please");
                 shakeControl(symbolText);
             }
             else {
                 updateCurrencyFromTextFields(selCurrencyProp);
-                database.updateCurrency(selCurrencyProp);
-                warningLabel.setText("currency updated");
-                //fillCurrencyTable(); //no need to    
+                if (database.updateCurrency(selCurrencyProp)){
+                    showMessage("currency updated",XchMessageType.XchInfo);
+                }else{
+                    showMessage("not update, there is error");
+                }
             }
                 
                 
             
         }catch(Exception ex){
-            //warningLabel.setText(ex.toString());
-            //ex.printStackTrace();
-            System.out.println("error");
+            showMessage(ex.toString());
+            System.out.println(ex.toString());
             
         }
     }
