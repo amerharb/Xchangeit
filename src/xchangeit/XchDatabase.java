@@ -545,7 +545,7 @@ public class XchDatabase
         }
     }
     
-    public void createDatabase(String databaseName){
+    public boolean createDatabase(String databaseName){
 
         try{
             Statement st = conn.createStatement();
@@ -611,8 +611,10 @@ public class XchDatabase
                             "                (trans_type = 13 	and cash > 0 		and curr is not null 	and curr_amt < 0 		and rate > 0 		and sell_buy_price > 0)	)\n" +
                             "	,note             	nvarchar(100)		null\n" +
                             ");\n" );
+            return true; //means everything goes smooth
         }catch(Exception ex){
             ex.printStackTrace();
+            return false;
         }
     }
 

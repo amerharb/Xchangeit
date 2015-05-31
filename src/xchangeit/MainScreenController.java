@@ -79,6 +79,7 @@ public class MainScreenController implements Initializable
                 connectStage  = new Stage();
                 connectStage.setScene(GetScene("ConnectScreen.fxml"));
                 connectStage.setTitle("Connect To Database");
+                connectStage.setResizable(false);
             }
             connectStage.show();
             connectStage.toFront();
@@ -150,6 +151,7 @@ public class MainScreenController implements Initializable
                 buyStage  = new Stage();
                 buyStage.setScene(GetScene("buy/BuyScreen.fxml"));
                 buyStage.setTitle("Buy");
+                buyStage.setResizable(false);
             }
             buyStage.show();
             buyStage.toFront();
@@ -168,6 +170,7 @@ public class MainScreenController implements Initializable
                 sellStage  = new Stage();
                 sellStage.setScene(GetScene("sell/SellScreen.fxml"));
                 sellStage.setTitle("Sell");
+                sellStage.setResizable(false);
             }
             sellStage.show();
             sellStage.toFront();
@@ -186,6 +189,7 @@ public class MainScreenController implements Initializable
                 transCashInStage  = new Stage();
                 transCashInStage.setScene(GetScene("cashIn/CashInScreen.fxml"));
                 transCashInStage.setTitle("Cash In");
+                transCashInStage.setResizable(false);
             }
             transCashInStage.show();
             transCashInStage.toFront();
@@ -204,6 +208,7 @@ public class MainScreenController implements Initializable
                 transCashOutStage  = new Stage();
                 transCashOutStage.setScene(GetScene("cashOut/CashOutScreen.fxml"));
                 transCashOutStage.setTitle("Cash Out");
+                transCashOutStage.setResizable(false);
             }
             transCashOutStage.show();
             transCashOutStage.toFront();
@@ -221,6 +226,7 @@ public class MainScreenController implements Initializable
                 transCurrInStage  = new Stage();
                 transCurrInStage.setScene(GetScene("currIn/CurrInScreen.fxml"));
                 transCurrInStage.setTitle("Currency In");
+                transCurrInStage.setResizable(false);
             }
             transCurrInStage.show();
             transCurrInStage.toFront();
@@ -238,6 +244,7 @@ public class MainScreenController implements Initializable
                 transCurrOutStage  = new Stage();
                 transCurrOutStage.setScene(GetScene("currOut/CurrOutScreen.fxml"));
                 transCurrOutStage.setTitle("Currency Out");
+                transCurrOutStage.setResizable(false);
             }
             transCurrOutStage.show();
             transCurrOutStage.toFront();

@@ -36,11 +36,15 @@ public class ConnectScreenController extends XchController
     {
         System.out.println("You clicked Create Database");
 
-        if (database.getStatus() == XchDatabase.XchConnectionStatusEnum.Connected)
+        if (database.getStatus() == XchDatabase.XchConnectionStatusEnum.Connected){
             database.disconnect();
-        
+        }
         database.connect(serverAddressText.getText(), rootPasswordText.getText());
-        database.createDatabase(databaseNameText.getText());
+        if (database.createDatabase(databaseNameText.getText())){
+            showMessage("Database has been created", XchMessageType.XchInfo);
+        }else{
+            showMessage("Error in creating database", XchMessageType.XchWarrning);
+        }
         
     }
     
@@ -73,7 +77,7 @@ public class ConnectScreenController extends XchController
             };
         }catch(Exception ex){
             ex.printStackTrace();
-            System.out.println("error");    
+            showMessage(ex.toString());
         }
     }
     
@@ -88,13 +92,11 @@ public class ConnectScreenController extends XchController
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        
         serverAddressText.setText(settings.getDefaultDatabaseServerAddress());
         rootPasswordText.setText(settings.getDefaultRootPassword());
         databaseNameText.setText(settings.getDefaultDatabaseName());
         autoConnectCheckBox.setSelected(settings.isAutoConnect());
         savePasswordCheckBox.setSelected(settings.isSavePassword());
-        
     }    
     
 }
