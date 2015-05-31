@@ -17,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import xchangeit.XchController;
+import xchangeit.XchNumberField;
 import xchangeit.currency.Currency;
 import xchangeit.currency.CurrencyProperty;
 import xchangeit.rate.Rate;
@@ -29,7 +30,7 @@ import xchangeit.rate.Rate;
 public class BuyScreenController extends XchController
 {
     @FXML private TextField transDateText;
-    @FXML private TextField cashText;
+    @FXML private XchNumberField cashText;
     @FXML private ChoiceBox<CurrencyProperty> currChoiceBox;
     @FXML private TextField currAmtText;
     @FXML private TextField rateText;
