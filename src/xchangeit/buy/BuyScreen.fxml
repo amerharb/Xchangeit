@@ -5,7 +5,7 @@
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
-<?import xchangeit.XchNumberField?>
+<?import xchangeit.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -26,18 +26,18 @@
         <Label layoutX="14.0" layoutY="114.0" prefHeight="25.0" prefWidth="117.0" text="Currency" />
         <ChoiceBox fx:id="currChoiceBox" layoutX="136.0" layoutY="114.0" prefHeight="25.0" prefWidth="149.0" />
         <Label layoutX="14.0" layoutY="152.0" prefHeight="25.0" prefWidth="117.0" text="Currency Amount" />
-        <TextField fx:id="currAmtText" layoutX="136.0" layoutY="152.0" prefHeight="25.0" prefWidth="149.0" />
+        <XchNumberField fx:id="currAmtText" layoutX="136.0" layoutY="152.0" prefHeight="25.0" prefWidth="149.0" />
         <Label layoutX="14.0" layoutY="188.0" prefHeight="25.0" prefWidth="117.0" text="Cash Amount" />
         <XchNumberField fx:id="cashText" layoutX="136.0" layoutY="188.0" prefHeight="25.0" prefWidth="149.0" />
         <Label layoutX="14.0" layoutY="223.0" prefHeight="25.0" prefWidth="117.0" text="Rate" />
-        <TextField fx:id="rateText" layoutX="136.0" layoutY="223.0" prefHeight="25.0" prefWidth="149.0" />
+        <XchNumberField fx:id="rateText" layoutX="136.0" layoutY="223.0" prefHeight="25.0" prefWidth="149.0" />
         <Button layoutX="287.0" layoutY="223.0" mnemonicParsing="false" onAction="#handleGetLatestRateAction" prefHeight="25.0" prefWidth="27.0" text="R">
             <font>
                 <Font size="11.0" />
             </font>
         </Button>
         <Label layoutX="14.0" layoutY="258.0" prefHeight="25.0" prefWidth="117.0" text="Price" />
-        <TextField fx:id="SellBuyPriceText" layoutX="136.0" layoutY="258.0" prefHeight="25.0" prefWidth="149.0" />
+        <XchNumberField fx:id="SellBuyPriceText" layoutX="136.0" layoutY="258.0" prefHeight="25.0" prefWidth="149.0" />
         <Label layoutX="382.0" layoutY="81.0" text="Note" />
         <TextArea fx:id="noteText" layoutX="429.0" layoutY="77.0" prefHeight="63.0" prefWidth="149.0" />
         <Button layoutX="429.0" layoutY="258.0" mnemonicParsing="false" onAction="#handleAddAction" prefHeight="25.0" prefWidth="149.0" text="Add" />

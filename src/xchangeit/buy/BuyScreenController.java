@@ -32,9 +32,9 @@ public class BuyScreenController extends XchController
     @FXML private TextField transDateText;
     @FXML private XchNumberField cashText;
     @FXML private ChoiceBox<CurrencyProperty> currChoiceBox;
-    @FXML private TextField currAmtText;
-    @FXML private TextField rateText;
-    @FXML private TextField SellBuyPriceText;
+    @FXML private XchNumberField currAmtText;
+    @FXML private XchNumberField rateText;
+    @FXML private XchNumberField SellBuyPriceText;
     @FXML private TextArea noteText;
     
     @FXML
